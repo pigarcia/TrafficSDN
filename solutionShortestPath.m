@@ -15,43 +15,47 @@ solMatrix= zeros(nodes);
 for fil = 1:1
     for col = 1:4
         if(trafficMatrix(fil, col) ~= 0)
-            sol =  kShortestPath(mapCost, fil, col, 3);
+            sol =  kShortestPath(mapCost, fil, col, 5);
             done=false;
-            for i=1:(length(sol))
+            %Obtener los caminos míminos
+            min=length(cell2mat(sol(1)));
+            shortestPath=1;
+            cell2mat(sol(1))
+            for i=2:(length(sol))
                 mapCapacity = cell2mat(sol(i));
-                if (done == false)
-                    disp("mapCapacity del nodo IP");
-                    mapCapacity
-                    for j=1:length(mapCapacity)-1
-                        totalTraffic =  solMatrix(mapCapacity(j),mapCapacity(j+1)) + trafficMatrix(fil, col);
-                        if(totalTraffic < capMatrix(mapCapacity(j),mapCapacity(j+1)))
-                            if(false == isSDN(mapCapacity(j), numSDN, sdnMatrix))
-                                solMatrix(mapCapacity(j),mapCapacity(j+1)) =  totalTraffic;
-                                if(j== length(mapCapacity)-1)
-                                    done = true;
-                                    disp("encontrada solucion");
-                                end
-                            else
-                                disp("El nodo es sdn");
-                                sdn = mapCapacity(j);
-                                visitedSDN = zeros(1, nodes);
-                                totalTraffic = trafficMatrix(fil, col);
-                                solMatrix = solutionShortestPathSDN(capMatrix, solMatrix, totalTraffic, sdnMatrix, sdn,numSDN, mapCost2, col, netLink, nodes, visitedSDN);
-                                done=true;
-                            end
-                        end
-                    end
+                mapCapacity
+                if(length(mapCapacity) == min)
+                    shortestPath=i;
                 end
-                if(i == length(sol))
-                    if (done == false)
-                        disp(" <<<<<< No se ha encontrado solucion >>>>>>")
+            end
+            disp("The number of shortest paths is");
+            shortestPath
+            
+            if shortestPath==1
+                mapCapacity = cell2mat(sol(1));
+            end
+            for j=1:length(mapCapacity)-1
+                totalTraffic =  solMatrix(mapCapacity(j),mapCapacity(j+1)) + trafficMatrix(fil, col);
+                if(totalTraffic < capMatrix(mapCapacity(j),mapCapacity(j+1)))
+                    if(false == isSDN(mapCapacity(j), numSDN, sdnMatrix))
+                        solMatrix(mapCapacity(j),mapCapacity(j+1)) =  totalTraffic;
+                        if(j== length(mapCapacity)-1)
+                            disp("encontrada solucion");
+                        end
+                    else
+                        %disp("El nodo es sdn");
+                        %sdn = mapCapacity(j);
+                        %visitedSDN = zeros(1, nodes);
+                        %totalTraffic = trafficMatrix(fil, col);
+                        %solMatrix = solutionShortestPathSDN(capMatrix, solMatrix, totalTraffic, sdnMatrix, sdn,numSDN, mapCost2, col, netLink, nodes, visitedSDN);
+                        %done=true;
                     end
+                else
+                    disp("---- Capacidad superarda superada ----");
                 end
             end
         end
     end
 end
-
-
 end
 
