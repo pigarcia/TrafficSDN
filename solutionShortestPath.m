@@ -68,20 +68,18 @@ for fil = 1:1
                         percentageMatrix = getPercentage(solMatrixAux, capMatrix, nodes);
                         %Calculamos el MLU
                         disp("Calculating totalPercentage");
-                        totalPercentage=0;
-                        for x=1:nodes
-                            for y=1:nodes
-                                totalPercentage = totalPercentage + percentageMatrix(x, y);
+                        maxPercentage=0;
+                        for j=1:length(mapCapacity)-1
+                            if maxPercentage < percentageMatrix(mapCapacity(j),mapCapacity(j+1))
+                                maxPercentage = percentageMatrix(mapCapacity(j),mapCapacity(j+1));
                             end
                         end
                         percentageMatrix
-                        totalPercentage
-                        totalPercentage = totalPercentage / (nodes*nodes);
-                        totalPercentage
+                        maxPercentage
                         
-                        if (totalPercentage < MLU)
+                        if (maxPercentage < MLU)
                             shortestPath = i;
-                            MLU = totalPercentage;
+                            MLU = maxPercentage;
                         end
                         disp("MLU");
                         MLU
