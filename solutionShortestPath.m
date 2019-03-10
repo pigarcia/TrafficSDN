@@ -16,24 +16,84 @@ for fil = 1:1
     for col = 1:4
         if(trafficMatrix(fil, col) ~= 0)
             sol =  kShortestPath(mapCost, fil, col, 5);
-            done=false;
+            
             %Obtener los caminos míminos
             min=length(cell2mat(sol(1)));
-            shortestPath=1;
+            nShortestPaths=1;
+            shortestPaths=zeros(1, length(sol));
+            shortestPaths(1,1)=1;
             cell2mat(sol(1))
             for i=2:(length(sol))
                 mapCapacity = cell2mat(sol(i));
                 mapCapacity
                 if(length(mapCapacity) == min)
-                    shortestPath=i;
+                    nShortestPaths= nShortestPaths +1;
+                    shortestPaths(1,i)=1;
                 end
             end
             disp("The number of shortest paths is");
-            shortestPath
+            nShortestPaths
+            shortestPaths
             
-            if shortestPath==1
-                mapCapacity = cell2mat(sol(1));
+            
+            if nShortestPaths==1
+                %Si solo hay un camino mínimo
+                disp("Solo hay un camino mínimo");
+                shortestPath=1;
+            else
+                %si hay varios caminos minimos
+                disp("Hay varios caminos mínimos");
+                MLU=nodes*100;
+                shortestPath=1;
+                for i=1:length(sol)
+                    if(shortestPaths(1,i)== 1)
+                        mapCapacity = cell2mat(sol(i));
+                        solMatrixAux=solMatrix;
+                        %Repartimos el trafico
+                        for j=1:length(mapCapacity)-1
+                            totalTraffic =  solMatrixAux(mapCapacity(j),mapCapacity(j+1)) + trafficMatrix(fil, col);
+                            if(totalTraffic < capMatrix(mapCapacity(j),mapCapacity(j+1)))
+                                if(false == isSDN(mapCapacity(j), numSDN, sdnMatrix))
+                                    solMatrixAux(mapCapacity(j),mapCapacity(j+1)) =  totalTraffic;
+                                else
+                                    %disp("El nodo es sdn");
+                                end
+                            else
+                                disp("---- Capacidad superarda superada ----");
+                            end
+                        end
+                        
+                        solMatrixAux
+                        %Calculamos el porcentaje de carga
+                        percentageMatrix = getPercentage(solMatrixAux, capMatrix, nodes);
+                        %Calculamos el MLU
+                        disp("Calculating totalPercentage");
+                        totalPercentage=0;
+                        for x=1:nodes
+                            for y=1:nodes
+                                totalPercentage = totalPercentage + percentageMatrix(x, y);
+                            end
+                        end
+                        percentageMatrix
+                        totalPercentage
+                        totalPercentage = totalPercentage / (nodes*nodes);
+                        totalPercentage
+                        
+                        if (totalPercentage < MLU)
+                            shortestPath = i;
+                            MLU = totalPercentage;
+                        end
+                        disp("MLU");
+                        MLU
+                        shortestPath
+                    end
+                end
+                
+                
             end
+            
+            %Guardar solución en la matriz
+            mapCapacity = cell2mat(sol(shortestPath));
             for j=1:length(mapCapacity)-1
                 totalTraffic =  solMatrix(mapCapacity(j),mapCapacity(j+1)) + trafficMatrix(fil, col);
                 if(totalTraffic < capMatrix(mapCapacity(j),mapCapacity(j+1)))
@@ -54,6 +114,8 @@ for fil = 1:1
                     disp("---- Capacidad superarda superada ----");
                 end
             end
+            
+            
         end
     end
 end
