@@ -89,8 +89,21 @@ solMatrix
 percentageMatrix = getPercentage(solMatrix, capMatrix, nodes);
 percentageMatrix
 
+percentageList = ones(nodes*nodes, 3);
+cont = 0;
+for x = 1:nodes
+    for y = 1:nodes
+        cont = cont +1;
+        percentageList(cont, 1) = x;
+        percentageList(cont, 2) = y;
+        percentageList(cont, 3) =  percentageMatrix(x, y);
+    end
+end
+percentageList
+
 %Write solution matrices
 csvwrite("salidaPorcentual.csv",percentageMatrix);
+csvwrite("listaPorcentual.csv",percentageList);
 csvwrite("salida.csv",solMatrix);
 
 end
