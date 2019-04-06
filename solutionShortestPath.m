@@ -12,8 +12,8 @@ function [ solMatrix ] = solutionShortestPath(capMatrix ,nodes, trafficMatrix, s
 % mapCost2: normalized map cost matrix.
 
 solMatrix= zeros(nodes);
-for fil = 1:1
-    for col = 1:4
+for fil = 1:nodes 
+    for col = 1:nodes
         if(trafficMatrix(fil, col) ~= 0)
             sol =  kShortestPath(mapCost, fil, col, 5);
             
@@ -101,12 +101,11 @@ for fil = 1:1
                             disp("encontrada solucion");
                         end
                     else
-                        %disp("El nodo es sdn");
-                        %sdn = mapCapacity(j);
-                        %visitedSDN = zeros(1, nodes);
-                        %totalTraffic = trafficMatrix(fil, col);
-                        %solMatrix = solutionShortestPathSDN(capMatrix, solMatrix, totalTraffic, sdnMatrix, sdn,numSDN, mapCost2, col, netLink, nodes, visitedSDN);
-                        %done=true;
+                        disp("El nodo es sdn");
+                        sdn = mapCapacity(j);;
+                        totalTraffic = trafficMatrix(fil, col);
+                        solMatrix = solutionShortestPathSDN(capMatrix, solMatrix, totalTraffic, sdn, mapCost2, col, netLink);
+                        done=true;
                     end
                 else
                     disp("---- Capacidad superarda superada ----");
