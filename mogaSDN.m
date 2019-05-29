@@ -1,4 +1,4 @@
-function mogaSDN (topology, topologyPath, numSDN)
+function mogaSDN (topology, topologyPath, heuristic, numSDN)
 
 global nvars; %Number of variables considered in the problem
 global mapCapacity;
@@ -41,8 +41,17 @@ for i = 1:nodes
     end
 end
 
+
 %Calculate SDN nodes and properties.
-sdnMatrix = getSDN(nodes, S.netLink, numSDN);
+pathMatrix = ones(nodes);
+for i = 1:nodes
+    for j = 1:nodes
+        if (S.A(i,j) == 0) %Links are only considered if capacity is > 0
+            pathMatrix(i,j)=inf;
+        end
+    end
+end
+sdnMatrix = getSDN(nodes, S.netLink, numSDN, heuristic, pathMatrix);
 
 
 
