@@ -1,121 +1,113 @@
-function [ solMatrix] = solutionShortestPathSDN(capMatrix, solMatrix, totalTraffic, sdnMatrix, sdn, numSDN, mapCost2, destiny, netLink, nodes, visitedSDN)
+function [ solMatrixAux] = solutionShortestPathSDN(capMatrix, solMatrix, totalTraffic, sdn, mapCost2, destiny, netLink)
 %SOLUTIONSHORTESTPATHSDN Calculates the traffic between an SDN node and the
 %destiny.
 % solMatrix: matrix containing the solution.
 % capMatrix: matrix that indicates de capacity of each link.
 % totalTraffic: value of the traffic.
-% nodes: number of total nodes.
-% sdnMatrix: matrix that indicates de SDN nodes used and the number of
-% links of each one.
-% numSDN: number of SDN nodes.
 % netLink: matrix of links and their nodes.
 % mapCost2: normalized map cost matrix.
 % sdn: current source sdn link.
 % destiny: the receiver link.
-% visitedSDN: previous visited SDSN links.
 
-%Calcular Tráfico y repartirlo entre las conexiones SDN
+solMatrixAux = solMatrix;
 SDNLinks =  getSDNLinks(sdn, netLink);
-visitedSDN(1, sdn) = 1;
-calculated = false;
-validLink = ones(1, length(SDNLinks));
-totalLinks = length(SDNLinks);
-disp("Repartir trafico entre los links de sdn")
-sdn
 SDNLinks
-% visitedSDN
-while (calculated == false)
-    disp("----- Recalculate -------");
-    
-    traffic = totalTraffic/totalLinks;
-    solMatrixAux = solMatrix;
-    recalculate = false;
-    exit = false;
-    while exit == false
-        for x=1:length(SDNLinks)
-            if validLink(1, x) == 1
-                currentTraffic =  traffic + solMatrixAux(sdn, SDNLinks(x));
-                if(currentTraffic < capMatrix(sdn,SDNLinks(x)))
-                    if false == isSDN(SDNLinks(x), numSDN, sdnMatrix)
-                        solMatrixAux(sdn, SDNLinks(x)) = currentTraffic;
-                    else
-                        %disp("El link es SDN")
-                        if visitedSDN(1, SDNLinks(x)) == 1
-                            disp("El link es SDN y ha sido visitado");
-                            validLink(1, x)= 0;
-                            totalLinks = totalLinks - 1;
-                            recalculate = true;
-                            exit = true;
-                        else
-                            if SDNLinks(x) == destiny
-                                %disp("El nodo es SDN pero es el destino")
-                                solMatrixAux(sdn, SDNLinks(x)) = currentTraffic;
-                            else
-                                %disp("El nodo es SDN")
-                                solMatrixAux(sdn, SDNLinks(x)) = currentTraffic;
-                                newSDN = SDNLinks(x);
-                                solMatrixAux = solutionShortestPathSDN(capMatrix, solMatrixAux, traffic, sdnMatrix, newSDN, numSDN, mapCost2, destiny, netLink, nodes, visitedSDN);
-                            end
-                        end
-                    end
-                else
-                    disp("El trafico supera la capacidad del link:");
-                    %                 currentTraffic
-                    %                 capMatrix(sdn,SDNLinks(x))
-                    %                 sdn
-                    %                 SDNLinks(x)
-                    %                 capMatrix
-                    validLink(1, x)= 0;
-                    totalLinks = totalLinks - 1;
-                    recalculate = true;
-                    exit = true;
-                end
+length(SDNLinks)
+min=100;
+nShortestPaths=0;
+shortestPaths=cell(1, length(SDNLinks));
+for x=1:length(SDNLinks)
+    %Obtener los caminos míminos
+    sol =  kShortestPath(mapCost2, SDNLinks(x), destiny, 3);
+    for y=1:(length(sol))
+        mapCapacity = cell2mat(sol(y));
+        mapCapacity
+        valid=true;
+        for i=1:length(mapCapacity)
+            if mapCapacity(i) == sdn
+                valid= false;
             end
         end
-        if(recalculate == false)
-            disp("Tráfico calculado y repartido entre las conexiones SDN");
-            %solMatrixAux
-            
-            %Calcular los caminos desde los nodos repartidos hasta el destino
-            for x=1:length(SDNLinks)
-                if SDNLinks(x) ~= destiny
-                    if false == isSDN(SDNLinks(x), numSDN, sdnMatrix)
-                        if validLink(1, x) == 1
-                            %disp("Calcular tráfico desde los nodos hasta el destino");
-                            [valid , solMatrixAux] = calculateSDNSolution(capMatrix,nodes,  solMatrixAux, traffic, SDNLinks(x), sdn, sdnMatrix, numSDN, mapCost2, destiny, netLink, visitedSDN );
-                            if(valid == false)
-                                disp("El link no era válido:");
-                                SDNLinks(x)
-                                validLink(1, x)= 0;
-                                totalLinks = totalLinks - 1;
-                                recalculate = true;
-                                exit = true;
-                            end
-                        end
+        if valid == true
+            if(length(mapCapacity) == min)
+                disp("Hay otro minimo")
+                nShortestPaths=nShortestPaths +1;
+                shortestPaths(1,x)=sol(y);
+            else
+                if (length(mapCapacity) < min)
+                    disp("Hay un nuevo minimo")
+                    min = length(mapCapacity);
+                    nShortestPaths=1;
+                    shortestPaths(1,x)=sol(y);
+                    cont = 1;
+                    number = x;
+                    while (cont < number)
+                        shortestPaths(1,cont)=num2cell(0);
+                        cont = cont + 1;
                     end
+                    shortestPaths
                 end
             end
-            
-            %comprobar que hacer si no hay ningun link valido
         end
         
-        if(recalculate == false)
-            %If everything is correct
-            disp("Solucion calculada correctamente");
-            solMatrixAux
-            exit = true;
-            calculated = true;
+    end
+end
+disp("The number of shortest paths is");
+nShortestPaths
+shortestPaths
+
+if nShortestPaths==1
+    %Si solo hay un camino mínimo
+    disp("Solo hay un camino mínimo");
+    shortestPath=1;
+    for x=1:length(SDNLinks)
+        sol = cell2mat(shortestPaths(1,x));
+        if (sol ~= 0)
+            shortestPath=SDNLinks(x);
+            mapCapacity = cell2mat(shortestPaths(1,x));
+            mapCapacity
+        end 
+    end
+    currentTraffic =  solMatrixAux(sdn, shortestPath) + totalTraffic;
+    if(currentTraffic < capMatrix(sdn, shortestPath))
+        solMatrixAux(sdn, shortestPath) =  totalTraffic;
+        for j=1:length(mapCapacity)-1
+            currentTraffic =  solMatrix(mapCapacity(j),mapCapacity(j+1)) + totalTraffic;
+            if(currentTraffic < capMatrix(mapCapacity(j),mapCapacity(j+1)))
+                solMatrixAux(mapCapacity(j),mapCapacity(j+1)) =  currentTraffic;
+                if(j== length(mapCapacity)-1)
+                    disp("encontrada solucion");
+                end
+            end
+        end
+    end
+else
+    disp("Hay varios caminos minimos");
+    traffic = totalTraffic / nShortestPaths;
+    for x=1:length(SDNLinks)
+        sol = cell2mat(shortestPaths(1,x));
+        sol
+        if (sol ~= 0)
+            currentTraffic =  solMatrixAux(sdn, SDNLinks(x)) + traffic;
+            if(currentTraffic < capMatrix(sdn, SDNLinks(x)))
+                solMatrixAux(sdn, SDNLinks(x)) =  traffic;
+                mapCapacity = cell2mat(shortestPaths(1,x));
+                mapCapacity
+                for j=1:length(mapCapacity)-1
+                    currentTraffic =  solMatrix(mapCapacity(j),mapCapacity(j+1)) + traffic;
+                    if(currentTraffic < capMatrix(mapCapacity(j),mapCapacity(j+1)))
+                        solMatrixAux(mapCapacity(j),mapCapacity(j+1)) =  currentTraffic;
+                        if(j== length(mapCapacity)-1)
+                            disp("encontrada solucion");
+                        end
+                    end
+                end
+            end
         end
     end
 end
 
-%Volcar matriz de solución
-solMatrix = solMatrixAux;
 
-%end
 
-% if done == false
-%     disp("Nodo SDN: Sin solución");
-% end
 
 
