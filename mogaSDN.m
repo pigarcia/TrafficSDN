@@ -1,5 +1,5 @@
-function mogaSDN (topology, topologyPath, heuristic, numSDN)
-
+function mogaSDN (topologyPath, heuristic, numSDN, useSPT)
+tic;
 global nvars; %Number of variables considered in the problem
 global mapCapacity;
 global nodes;
@@ -82,15 +82,15 @@ for i = 1:nodes
         end
     end
 end
-%Initial array (full array) with all the links powered on
-fullArray = [];
-
-for i=1:nvars
-    fullArray = [fullArray,1];
+%Initial array of Shortest Path Trees
+if(useSPT == 1)
+    sptMatrix = priorPhase(nodes, mapCost, S.T1);
+else
+    sptMatrix = cell(nodes);
 end
 
 %Call shortest path algorithm
-solMatrix = solutionShortestPath(capMatrix,nodes, S.T1, sdnMatrix, numSDN, S.netLink, mapCost, mapCost2 );
+[solMatrix, errors] = solutionShortestPath(capMatrix,nodes, S.T1, sdnMatrix, numSDN, S.netLink, mapCost, mapCost2, sptMatrix, useSPT);
 
 
 solMatrix
@@ -110,9 +110,12 @@ for x = 1:nodes
 end
 percentageList
 
+disp("---- number of routing errors: ");
+disp(errors);
+
 %Write solution matrices
 csvwrite("salidaPorcentual.csv",percentageMatrix);
 csvwrite("listaPorcentual.csv",percentageList);
 csvwrite("salida.csv",solMatrix);
-
+toc;
 end
