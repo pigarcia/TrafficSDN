@@ -1,5 +1,5 @@
-function mogaSDN (topologyPath, heuristic, numSDN, useSPT)
-tic;
+function [percentageList, errors] = mogaSDN (topologyPath, heuristic, numSDN, useSPT, trafficMatrix)
+
 global nvars; %Number of variables considered in the problem
 global mapCapacity;
 global nodes;
@@ -41,7 +41,7 @@ for i = 1:nodes
     end
 end
 
-
+tic;
 %Calculate SDN nodes and properties.
 pathMatrix = ones(nodes);
 for i = 1:nodes
@@ -84,31 +84,37 @@ for i = 1:nodes
 end
 %Initial array of Shortest Path Trees
 if(useSPT == 1)
-    sptMatrix = priorPhase(nodes, mapCost, S.T1);
+    sptMatrix = priorPhase(nodes, mapCost, trafficMatrix);
 else
     sptMatrix = cell(nodes);
 end
 
 %Call shortest path algorithm
-[solMatrix, errors] = solutionShortestPath(capMatrix,nodes, S.T1, sdnMatrix, numSDN, S.netLink, mapCost, mapCost2, sptMatrix, useSPT);
-
-
-solMatrix
+[solMatrix, errors] = solutionShortestPath(capMatrix,nodes, trafficMatrix, sdnMatrix, numSDN, S.netLink, mapCost, mapCost2, sptMatrix, useSPT);
+toc;
 %Calculate solution in percentages
 percentageMatrix = getPercentage(solMatrix, capMatrix, nodes);
-percentageMatrix
 
-percentageList = ones(nodes*nodes, 3);
+% percentageList = ones(nodes*nodes, 3);
+% cont = 0;
+% for x = 1:nodes
+%     for y = 1:nodes
+%         cont = cont +1;
+%         percentageList(cont, 1) = x;
+%         percentageList(cont, 2) = y;
+%         percentageList(cont, 3) =  percentageMatrix(x, y);
+%     end
+% end
+
+
+percentageList = ones(nodes*nodes, 1);
 cont = 0;
 for x = 1:nodes
     for y = 1:nodes
         cont = cont +1;
-        percentageList(cont, 1) = x;
-        percentageList(cont, 2) = y;
-        percentageList(cont, 3) =  percentageMatrix(x, y);
+        percentageList(cont, 1) =  percentageMatrix(x, y);
     end
 end
-percentageList
 
 disp("---- number of routing errors: ");
 disp(errors);
@@ -117,5 +123,5 @@ disp(errors);
 csvwrite("salidaPorcentual.csv",percentageMatrix);
 csvwrite("listaPorcentual.csv",percentageList);
 csvwrite("salida.csv",solMatrix);
-toc;
+
 end
