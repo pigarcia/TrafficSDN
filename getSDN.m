@@ -45,9 +45,8 @@ switch (heuristic)
         
         %Obtener HCC ordenados
         for x = 1:numSDN
-            min = shortestPathsEdges(1,1);
-            sdn = 1;
-            for i = 2:nodes
+            min = 1000;
+            for i = 1:nodes
                 cont = shortestPathsEdges(1,i);
                 if(cont <= min)
                     if (0 == isSDN(i, numSDN, sdnMatrix))
