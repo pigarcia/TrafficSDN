@@ -1,4 +1,4 @@
-function [ solMatrix ] = solutionShortestPath(capMatrix ,nodes, trafficMatrix, sdnMatrix, numSDN, netLink, mapCost, mapCost2 )
+function [ solMatrix, errors ] = solutionShortestPath(capMatrix ,nodes, trafficMatrix, sdnMatrix, numSDN, netLink, mapCost, mapCost2, SPTMatrix, useSPT)
 %SOLUTIONSHORTESTPATH Calculates solution using shortest path algorithm
 % solMatrix: matrix containing the solution.
 % capMatrix: matrix that indicates de capacity of each link.
@@ -11,30 +11,39 @@ function [ solMatrix ] = solutionShortestPath(capMatrix ,nodes, trafficMatrix, s
 % mapCost: map cost matrix.
 % mapCost2: normalized map cost matrix.
 
+
+
 solMatrix= zeros(nodes);
-for fil = 1:nodes 
+errors = 0;
+for fil = 1:nodes
     for col = 1:nodes
         if(trafficMatrix(fil, col) ~= 0)
-            sol =  kShortestPath(mapCost, fil, col, 5);
+            
+            
             
             %Obtener los caminos míminos
-            min=length(cell2mat(sol(1)));
             nShortestPaths=1;
-            shortestPaths=zeros(1, length(sol));
-            shortestPaths(1,1)=1;
-            cell2mat(sol(1))
-            for i=2:(length(sol))
-                mapCapacity = cell2mat(sol(i));
-                mapCapacity
-                if(length(mapCapacity) == min)
-                    nShortestPaths= nShortestPaths +1;
-                    shortestPaths(1,i)=1;
+            if(useSPT == 1)
+                disp("use Shortest Path tree");
+                sol = SPTMatrix(fil, col);
+            else
+                sol =  kShortestPath(mapCost, fil, col, 5);
+                min=length(cell2mat(sol(1)));
+                shortestPaths=zeros(1, length(sol));
+                shortestPaths(1,1)=1;
+                cell2mat(sol(1))
+                for i=2:(length(sol))
+                    mapCapacity = cell2mat(sol(i));
+                    mapCapacity
+                    if(length(mapCapacity) == min)
+                        nShortestPaths= nShortestPaths +1;
+                        shortestPaths(1,i)=1;
+                    end
                 end
+                disp("The number of shortest paths is");
+                nShortestPaths
+                shortestPaths
             end
-            disp("The number of shortest paths is");
-            nShortestPaths
-            shortestPaths
-            
             
             if nShortestPaths==1
                 %Si solo hay un camino mínimo
@@ -102,19 +111,22 @@ for fil = 1:nodes
                         end
                     else
                         disp("El nodo es sdn");
-                        sdn = mapCapacity(j);;
+                        sdn = mapCapacity(j);
                         totalTraffic = trafficMatrix(fil, col);
-                        solMatrix = solutionShortestPathSDN(capMatrix, solMatrix, totalTraffic, sdn, mapCost2, col, netLink);
-                        done=true;
+                        [solMatrix, errors] = solutionShortestPathSDN(capMatrix, solMatrix, totalTraffic, sdn, mapCost2, col, netLink, SPTMatrix, useSPT, errors);
                     end
                 else
+                    errors = errors + 1;
                     disp("---- Capacidad superarda superada ----");
                 end
             end
             
-            
+        
         end
     end
 end
+
+
 end
+
 
