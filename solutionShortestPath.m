@@ -24,34 +24,34 @@ for fil = 1:nodes
             %Obtener los caminos míminos
             nShortestPaths=1;
             if(useSPT == 1)
-                disp("use Shortest Path tree");
+                %disp("use Shortest Path tree");
                 sol = SPTMatrix(fil, col);
             else
                 sol =  kShortestPath(mapCost, fil, col, 5);
                 min=length(cell2mat(sol(1)));
                 shortestPaths=zeros(1, length(sol));
                 shortestPaths(1,1)=1;
-                cell2mat(sol(1))
+                %cell2mat(sol(1))
                 for i=2:(length(sol))
                     mapCapacity = cell2mat(sol(i));
-                    mapCapacity
+                    %mapCapacity
                     if(length(mapCapacity) == min)
                         nShortestPaths= nShortestPaths +1;
                         shortestPaths(1,i)=1;
                     end
                 end
-                disp("The number of shortest paths is");
-                nShortestPaths
-                shortestPaths
+                %disp("The number of shortest paths is");
+                %nShortestPaths
+                %shortestPaths
             end
             
             if nShortestPaths==1
                 %Si solo hay un camino mínimo
-                disp("Solo hay un camino mínimo");
+                %disp("Solo hay un camino mínimo");
                 shortestPath=1;
             else
                 %si hay varios caminos minimos
-                disp("Hay varios caminos mínimos");
+                %disp("Hay varios caminos mínimos");
                 MLU=nodes*100;
                 shortestPath=1;
                 for i=1:length(sol)
@@ -68,31 +68,31 @@ for fil = 1:nodes
                                     %disp("El nodo es sdn");
                                 end
                             else
-                                disp("---- Capacidad superarda superada ----");
+                                %disp("---- Capacidad superarda superada ----");
                             end
                         end
                         
-                        solMatrixAux
+                        %solMatrixAux
                         %Calculamos el porcentaje de carga
                         percentageMatrix = getPercentage(solMatrixAux, capMatrix, nodes);
                         %Calculamos el MLU
-                        disp("Calculating totalPercentage");
+                        %disp("Calculating totalPercentage");
                         maxPercentage=0;
                         for j=1:length(mapCapacity)-1
                             if maxPercentage < percentageMatrix(mapCapacity(j),mapCapacity(j+1))
                                 maxPercentage = percentageMatrix(mapCapacity(j),mapCapacity(j+1));
                             end
                         end
-                        percentageMatrix
-                        maxPercentage
+                        %percentageMatrix
+                        %maxPercentage
                         
                         if (maxPercentage < MLU)
                             shortestPath = i;
                             MLU = maxPercentage;
                         end
-                        disp("MLU");
-                        MLU
-                        shortestPath
+                        %disp("MLU");
+                        %MLU
+                        %shortestPath
                     end
                 end
                 
@@ -107,17 +107,17 @@ for fil = 1:nodes
                     if(false == isSDN(mapCapacity(j), numSDN, sdnMatrix))
                         solMatrix(mapCapacity(j),mapCapacity(j+1)) =  totalTraffic;
                         if(j== length(mapCapacity)-1)
-                            disp("encontrada solucion");
+                            %disp("encontrada solucion");
                         end
                     else
-                        disp("El nodo es sdn");
+                        %disp("El nodo es sdn");
                         sdn = mapCapacity(j);
                         totalTraffic = trafficMatrix(fil, col);
                         [solMatrix, errors] = solutionShortestPathSDN(capMatrix, solMatrix, totalTraffic, sdn, mapCost2, col, netLink, SPTMatrix, useSPT, errors);
                     end
                 else
                     errors = errors + 1;
-                    disp("---- Capacidad superarda superada ----");
+                    %disp("---- Capacidad superarda superada ----");
                 end
             end
             

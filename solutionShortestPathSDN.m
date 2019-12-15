@@ -11,7 +11,7 @@ function [ solMatrixAux, errors] = solutionShortestPathSDN(capMatrix, solMatrix,
 
 solMatrixAux = solMatrix;
 SDNLinks =  getSDNLinks(sdn, netLink);
-SDNLinks
+%SDNLinks
 length(SDNLinks)
 min=100;
 nShortestPaths=0;
@@ -26,7 +26,7 @@ for x=1:length(SDNLinks)
         sol =  kShortestPath(mapCost2, SDNLinks(x), destiny, 3);
         for y=1:(length(sol))
             mapCapacity = cell2mat(sol(y));
-            mapCapacity
+            %mapCapacity
             valid=true;
             for i=1:length(mapCapacity)
                 if mapCapacity(i) == sdn
@@ -35,12 +35,12 @@ for x=1:length(SDNLinks)
             end
             if valid == true
                 if(length(mapCapacity) == min)
-                    disp("Hay otro minimo")
+                    %disp("Hay otro minimo")
                     nShortestPaths=nShortestPaths +1;
                     shortestPaths(1,x)=sol(y);
                 else
                     if (length(mapCapacity) < min)
-                        disp("Hay un nuevo minimo")
+                        %disp("Hay un nuevo minimo")
                         min = length(mapCapacity);
                         nShortestPaths=1;
                         shortestPaths(1,x)=sol(y);
@@ -50,7 +50,7 @@ for x=1:length(SDNLinks)
                             shortestPaths(1,cont)=num2cell(0);
                             cont = cont + 1;
                         end
-                        shortestPaths
+                        %shortestPaths
                     end
                 end
             end
@@ -58,20 +58,20 @@ for x=1:length(SDNLinks)
         end
     end
 end
-disp("The number of shortest paths is");
-nShortestPaths
-shortestPaths
+%disp("The number of shortest paths is");
+%nShortestPaths
+%shortestPaths
 
 if nShortestPaths==1
     %Si solo hay un camino mínimo
-    disp("Solo hay un camino mínimo");
+    %disp("Solo hay un camino mínimo");
     shortestPath=1;
     for x=1:length(SDNLinks)
         sol = cell2mat(shortestPaths(1,x));
         if (sol ~= 0)
             shortestPath=SDNLinks(x);
             mapCapacity = cell2mat(shortestPaths(1,x));
-            mapCapacity
+            %mapCapacity
         end
     end
     currentTraffic =  solMatrixAux(sdn, shortestPath) + totalTraffic;
@@ -82,7 +82,7 @@ if nShortestPaths==1
             if(currentTraffic < capMatrix(mapCapacity(j),mapCapacity(j+1)))
                 solMatrixAux(mapCapacity(j),mapCapacity(j+1)) =  currentTraffic;
                 if(j== length(mapCapacity)-1)
-                    disp("encontrada solucion");
+                    %disp("encontrada solucion");
                 end
             else
                 errors = errors + 1;
@@ -90,23 +90,23 @@ if nShortestPaths==1
         end
     end
 else
-    disp("Hay varios caminos minimos");
+    %disp("Hay varios caminos minimos");
     traffic = totalTraffic / nShortestPaths;
     for x=1:length(SDNLinks)
         sol = cell2mat(shortestPaths(1,x));
-        sol
+        %sol
         if (sol ~= 0)
             currentTraffic =  solMatrixAux(sdn, SDNLinks(x)) + traffic;
             if(currentTraffic < capMatrix(sdn, SDNLinks(x)))
                 solMatrixAux(sdn, SDNLinks(x)) =  traffic;
                 mapCapacity = cell2mat(shortestPaths(1,x));
-                mapCapacity
+                %mapCapacity
                 for j=1:length(mapCapacity)-1
                     currentTraffic =  solMatrix(mapCapacity(j),mapCapacity(j+1)) + traffic;
                     if(currentTraffic < capMatrix(mapCapacity(j),mapCapacity(j+1)))
                         solMatrixAux(mapCapacity(j),mapCapacity(j+1)) =  currentTraffic;
                         if(j== length(mapCapacity)-1)
-                            disp("encontrada solucion");
+                            %disp("encontrada solucion");
                         end
                     end
                 end

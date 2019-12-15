@@ -1,13 +1,13 @@
-function ProcessTraffic(topologyPath)
+function initialScript(topologyPath)
 %PROCESSTRAFFIC Summary of this function goes here
 %   Detailed explanation goes here
 
-matrixCount = 5;
+matrixCount = 1;
 heuristicCount = 3;
-sdnCount = 17;
+sdnCount = 0;
 
 
-simulationResults = zeros((matrixCount*matrixCount*(sdnCount+1)), 7);
+simulationResults = zeros((matrixCount*matrixCount*(sdnCount+1)), 8);
 
 dataVars = {'A','C','N','netLink','T1','T2','T3','T4','T5'};
 S = load(topologyPath,dataVars{:});
@@ -50,7 +50,7 @@ for matrix = 1:matrixCount
             simulationResults(fil, 2) = heuristic;
             simulationResults(fil, 3) = sdn;
             
-            [percentageList, errors] = mogaSDN('nobel_tfg.mat',heuristicName, sdn, 1, trafficMatrix);
+            [percentageList, finalMatrix, offNodes, errors] = mogaSDN('nobel_tfg.mat',heuristicName, sdn, 1, trafficMatrix);
             
             %GetMax
             max = 0;
@@ -83,11 +83,15 @@ for matrix = 1:matrixCount
             simulationResults(fil, 6)=min;
             
             simulationResults(fil, 7)= errors;
+            
+             simulationResults(fil, 8)= offNodes;
         end
     end
 end
 
 csvwrite("SimulationResults.csv",simulationResults);
+
+disp("======== End of simulation =========");
 
 end
 

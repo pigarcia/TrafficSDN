@@ -1,4 +1,4 @@
-function [percentageList, errors] = mogaSDN (topologyPath, heuristic, numSDN, useSPT, trafficMatrix)
+function [percentageList, finalMatrix, offNodes, errors] = mogaSDN (topologyPath, heuristic, numSDN, useSPT, trafficMatrix)
 
 global nvars; %Number of variables considered in the problem
 global mapCapacity;
@@ -63,9 +63,9 @@ for i = 1:nodes
             mapCost(i,j)=inf;
         else
             for m = 1:numSDN
-            if (i == sdnMatrix(1, m) || j == sdnMatrix(1, m))
-                mapCost(i,j)=1/sdnMatrix(2,m); %Calculating cost of SND nodes
-            end
+                if (i == sdnMatrix(1, m) || j == sdnMatrix(1, m))
+                    mapCost(i,j)=1/sdnMatrix(2,m); %Calculating cost of SND nodes
+                end
             end
         end
     end
@@ -91,37 +91,71 @@ end
 
 %Call shortest path algorithm
 [solMatrix, errors] = solutionShortestPath(capMatrix,nodes, trafficMatrix, sdnMatrix, numSDN, S.netLink, mapCost, mapCost2, sptMatrix, useSPT);
+
 toc;
 %Calculate solution in percentages
 percentageMatrix = getPercentage(solMatrix, capMatrix, nodes);
 
-% percentageList = ones(nodes*nodes, 3);
-% cont = 0;
-% for x = 1:nodes
-%     for y = 1:nodes
-%         cont = cont +1;
-%         percentageList(cont, 1) = x;
-%         percentageList(cont, 2) = y;
-%         percentageList(cont, 3) =  percentageMatrix(x, y);
-%     end
-% end
 
-
-percentageList = ones(nodes*nodes, 1);
+percentageList = ones(nodes*nodes, 3);
 cont = 0;
 for x = 1:nodes
     for y = 1:nodes
         cont = cont +1;
-        percentageList(cont, 1) =  percentageMatrix(x, y);
+        percentageList(cont, 1) = x;
+        percentageList(cont, 2) = y;
+        percentageList(cont, 3) =  percentageMatrix(x, y);
     end
 end
+
+
+% percentageList = ones(nodes*nodes, 1);
+% cont = 0;
+% for x = 1:nodes
+%     for y = 1:nodes
+%         cont = cont +1;
+%         percentageList(cont, 1) =  percentageMatrix(x, y);
+%     end
+% end
+
+finalMatrix = zeros(nodes);
+offNodes = 0;
+
+if errors == 0
+    [finalMatrix, offNodes] = finalPhase(percentageList, capMatrix, nodes, trafficMatrix, sdnMatrix, numSDN, S.netLink, mapCost, mapCost2, sptMatrix, useSPT);
+    
+end
+
+finalPercentageMatrix = getPercentage(finalMatrix, capMatrix, nodes);
+finalPercentageList = ones(nodes*nodes, 1);
+cont = 0;
+for x = 1:nodes
+    for y = 1:nodes
+        cont = cont +1;
+        finalPercentageList(cont, 1) =  finalPercentageMatrix(x, y);
+    end
+end
+
+
+
+
 
 disp("---- number of routing errors: ");
 disp(errors);
 
+disp("---- number of nodes turned off: ");
+disp(offNodes);
+
+
 %Write solution matrices
 csvwrite("salidaPorcentual.csv",percentageMatrix);
 csvwrite("listaPorcentual.csv",percentageList);
+
 csvwrite("salida.csv",solMatrix);
 
+csvwrite("salidaPorcentualFinal.csv",finalPercentageMatrix);
+csvwrite("listaPorcentualFinal.csv",finalPercentageList);
+
+csvwrite("salidaFinal.csv",finalMatrix);
 end
+
