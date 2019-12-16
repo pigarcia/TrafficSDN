@@ -2,12 +2,12 @@ function initialScript(topologyPath)
 %PROCESSTRAFFIC Summary of this function goes here
 %   Detailed explanation goes here
 
-matrixCount = 1;
+matrixCount = 5;
 heuristicCount = 3;
-sdnCount = 0;
+sdnCount = 17;
 
 
-simulationResults = zeros((matrixCount*matrixCount*(sdnCount+1)), 8);
+simulationResults = zeros((matrixCount*matrixCount*(sdnCount+1)), 11);
 
 dataVars = {'A','C','N','netLink','T1','T2','T3','T4','T5'};
 S = load(topologyPath,dataVars{:});
@@ -45,12 +45,11 @@ for matrix = 1:matrixCount
         
         for sdn = 0:sdnCount
             fil = fil + 1;
-            disp(fil);
             simulationResults(fil, 1) = matrix;
             simulationResults(fil, 2) = heuristic;
             simulationResults(fil, 3) = sdn;
             
-            [percentageList, finalMatrix, offNodes, errors] = mogaSDN('nobel_tfg.mat',heuristicName, sdn, 1, trafficMatrix);
+            [percentageList, finalPercentageList, offNodes, errors] = mogaSDN('nobel_tfg.mat',heuristicName, sdn, 1, trafficMatrix);
             
             %GetMax
             max = 0;
@@ -61,6 +60,7 @@ for matrix = 1:matrixCount
                 end
             end
             simulationResults(fil, 4)=max;
+            max
             
             %GetAvg
             cont = 0;
@@ -69,6 +69,7 @@ for matrix = 1:matrixCount
             end
             avg = cont/(nodes*nodes);
             simulationResults(fil, 5)=avg;
+            avg
             
             %GetMin
             min = 100;
@@ -81,10 +82,47 @@ for matrix = 1:matrixCount
                 end
             end
             simulationResults(fil, 6)=min;
+            min
             
             simulationResults(fil, 7)= errors;
+            errors
             
-             simulationResults(fil, 8)= offNodes;
+            %Get final phase results
+            
+            %GetMax
+             max = 0;
+            for x = 1:nodes*nodes
+                cont = finalPercentageList(x);
+                if(cont >= max)
+                    max = cont;
+                end
+            end
+            simulationResults(fil, 8)=max;
+            max
+            
+            %GetAvg
+            cont = 0;
+            for x = 1:nodes*nodes
+                cont = cont + finalPercentageList(x);
+            end
+            avg = cont/(nodes*nodes);
+            simulationResults(fil, 9)=avg;
+            avg
+            
+            %GetMin
+             min = 100;
+            for x = 1:nodes*nodes
+                cont = finalPercentageList(x);
+                if cont ~= 0
+                    if(cont <= min)
+                        min = cont;
+                    end
+                end
+            end
+            simulationResults(fil, 10)=min;
+            min
+            
+            simulationResults(fil, 11)= offNodes;
         end
     end
 end

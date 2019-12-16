@@ -1,4 +1,4 @@
-function [percentageList, finalMatrix, offNodes, errors] = mogaSDN (topologyPath, heuristic, numSDN, useSPT, trafficMatrix)
+function [percentageList, finalPercentageList, offNodes, errors] = mogaSDN (topologyPath, heuristic, numSDN, useSPT, trafficMatrix)
 
 global nvars; %Number of variables considered in the problem
 global mapCapacity;
@@ -51,7 +51,10 @@ for i = 1:nodes
         end
     end
 end
-sdnMatrix = getSDN(nodes, S.netLink, numSDN, heuristic, pathMatrix);
+
+if numSDN >= 1 
+    sdnMatrix = getSDN(nodes, S.netLink, numSDN, heuristic, pathMatrix);
+end
 
 
 
@@ -84,10 +87,14 @@ for i = 1:nodes
 end
 %Initial array of Shortest Path Trees
 if(useSPT == 1)
-    sptMatrix = priorPhase(nodes, mapCost, trafficMatrix);
+    [sptMatrix, error]= priorPhase(nodes, mapCost, trafficMatrix);
+    if error == 1
+    useSPT = 0;
+end 
 else
     sptMatrix = cell(nodes);
 end
+
 
 %Call shortest path algorithm
 [solMatrix, errors] = solutionShortestPath(capMatrix,nodes, trafficMatrix, sdnMatrix, numSDN, S.netLink, mapCost, mapCost2, sptMatrix, useSPT);
@@ -108,16 +115,6 @@ for x = 1:nodes
     end
 end
 
-
-% percentageList = ones(nodes*nodes, 1);
-% cont = 0;
-% for x = 1:nodes
-%     for y = 1:nodes
-%         cont = cont +1;
-%         percentageList(cont, 1) =  percentageMatrix(x, y);
-%     end
-% end
-
 finalMatrix = zeros(nodes);
 offNodes = 0;
 
@@ -137,6 +134,14 @@ for x = 1:nodes
 end
 
 
+percentageList = ones(nodes*nodes, 1);
+cont = 0;
+for x = 1:nodes
+    for y = 1:nodes
+        cont = cont +1;
+        percentageList(cont, 1) =  percentageMatrix(x, y);
+    end
+end
 
 
 

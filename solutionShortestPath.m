@@ -117,7 +117,10 @@ for fil = 1:nodes
                     end
                 else
                     errors = errors + 1;
-                    %disp("---- Capacidad superarda superada ----");
+%                     disp("---- Capacidad superarda superada ----");
+%                     disp(cell2mat(sol(shortestPath)));
+%                     totalTraffic
+%                     disp(capMatrix(mapCapacity(j),mapCapacity(j+1))); 
                 end
             end
             
