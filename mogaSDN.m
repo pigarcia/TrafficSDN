@@ -1,4 +1,4 @@
-function [percentageList, finalPercentageList, offNodes, errors] = mogaSDN (topologyPath, heuristic, numSDN, useSPT, trafficMatrix)
+function [percentageList, finalPercentageList, offNodes, errors, processingTime] = mogaSDN (topologyPath, heuristic, numSDN, useSPT, trafficMatrix)
 
 global nvars; %Number of variables considered in the problem
 global mapCapacity;
@@ -41,7 +41,6 @@ for i = 1:nodes
     end
 end
 
-tic;
 %Calculate SDN nodes and properties.
 pathMatrix = ones(nodes);
 for i = 1:nodes
@@ -95,11 +94,11 @@ else
     sptMatrix = cell(nodes);
 end
 
-
+tic;
 %Call shortest path algorithm
 [solMatrix, errors] = solutionShortestPath(capMatrix,nodes, trafficMatrix, sdnMatrix, numSDN, S.netLink, mapCost, mapCost2, sptMatrix, useSPT);
 
-toc;
+processingTime = toc;
 %Calculate solution in percentages
 percentageMatrix = getPercentage(solMatrix, capMatrix, nodes);
 
