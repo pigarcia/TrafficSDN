@@ -27,10 +27,10 @@ for matrix = 1:matrixCount
             trafficMatrixName = "S.T3";
         case 4
             trafficMatrix =  S.T4;
-            trafficMatrixName = "S.T3";
+            trafficMatrixName = "S.T4";
         case 5
             trafficMatrix =  S.T5;
-            trafficMatrixName = "S.T4";
+            trafficMatrixName = "S.T5";
     end
     for  heuristic = 0:heuristicCount-1
         switch(heuristic)
@@ -45,6 +45,7 @@ for matrix = 1:matrixCount
         
         for sdn = 0:sdnCount
             fil = fil + 1;
+            
             simulationResults(fil, 1) = matrix;
             simulationResults(fil, 2) = heuristic;
             simulationResults(fil, 3) = sdn;
@@ -90,7 +91,7 @@ for matrix = 1:matrixCount
             %Get final phase results
             
             %GetMax
-             max = 0;
+            max = 0;
             for x = 1:nodes*nodes
                 cont = finalPercentageList(x);
                 if(cont >= max)
@@ -110,7 +111,7 @@ for matrix = 1:matrixCount
             avg
             
             %GetMin
-             min = 100;
+            min = 100;
             for x = 1:nodes*nodes
                 cont = finalPercentageList(x);
                 if cont ~= 0
