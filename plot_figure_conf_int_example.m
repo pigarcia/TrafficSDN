@@ -14,6 +14,8 @@
         avg_rsrp_dist_bs_tmc_tim_conf_int{dist_bs_tmc_tim(i)} = conf_int_array;
     end
     
+%      avg_rsrp_dist_bs_tmc_tim_conf_int
+    
     avg_rsrp_vs_bs_tmc_tim = [];
     err_tmc_tim = [];
     for i=1:length(avg_rsrp_dist_bs_tmc_tim_conf_int)
@@ -26,6 +28,9 @@
         yCI95 = bsxfun(@times, ySEM, CI95(:));
         err_tmc_tim = [err_tmc_tim,yCI95(2)];
     end
+    
+    avg_rsrp_vs_bs_tmc_tim
+    %err_tmc_tim
     
     errorbar(avg_rsrp_vs_bs_tmc_tim,err_tmc_tim,'bo-','LineWidth',2,'MarkerSize',12)
 
@@ -43,6 +48,7 @@
     avg_rsrp_vs_bs_tmc_vodafone = [];
     err_tmc_vodafone = [];
     for i=1:length(avg_rsrp_dist_bs_tmc_vodafone_conf_int)
+        avg_rsrp_dist_bs_tmc_vodafone_conf_int{i}
         array_rsrp = avg_rsrp_dist_bs_tmc_vodafone_conf_int{i};
         N = length(array_rsrp);                                 
         yMean = mean(array_rsrp);
