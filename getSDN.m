@@ -5,7 +5,7 @@ function [ sdnMatrix] = getSDN( nodes, netLink, numSDN, heuristic, pathMatrix)
 sdnMatrix= zeros(2,numSDN);
 switch (heuristic)
     case "HDF"
-        disp("You chose HDF");
+%         disp("You chose HDF");
         for x = 1:numSDN
             % disp("siguiente SDN");
             max = 0;
@@ -30,7 +30,7 @@ switch (heuristic)
         end
         
     case "HCC"
-        disp("You chose Higher Closeness Centrality");
+%         disp("You chose Higher Closeness Centrality");
          shortestPathsEdges = zeros(1,nodes);
         for fil = 1:nodes
             for col = 1:nodes
@@ -41,7 +41,6 @@ switch (heuristic)
                 end
             end
         end
-        shortestPathsEdges
         
         %Obtener HCC ordenados
         for x = 1:numSDN
@@ -60,7 +59,7 @@ switch (heuristic)
         end
         
     case "HBC"
-        disp("You chose Higher Betweenness Centrality ");
+       % disp("You chose Higher Betweenness Centrality ");
         shortestPathsEdges = zeros(1,nodes);
         for fil = 1:nodes
             for col = 1:nodes
@@ -74,7 +73,6 @@ switch (heuristic)
                 end
             end
         end
-        shortestPathsEdges
         
         %Obtener HBC ordenados
         for x = 1:numSDN
@@ -95,9 +93,9 @@ switch (heuristic)
             sdnMatrix(2, x) = max;
         end
 end
-
-disp('La matriz SDN es:');
-sdnMatrix
+% 
+% disp('La matriz SDN es:');
+% sdnMatrix
 
 csvwrite("SDNMatrix.csv", sdnMatrix);
 

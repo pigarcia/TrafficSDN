@@ -16,16 +16,7 @@ end
 
 plot(x, y)
 
-num_sdn_hdf=cell(max(SimulationResults(1:18, 3)),1);
-
-for i=1:18
-    sdn_nodes = SimulationResults(i, 3);
-    if(sdn_nodes > 0)
-        conf_int_array = cell2mat(num_sdn_hdf(SimulationResults(i, 3)));
-        conf_int_array = [conf_int_array,SimulationResults(i, 4)];
-        num_sdn_hdf{SimulationResults(i, 3)} = conf_int_array;
-    end
-end
+num_sdn_hdf=simulationResultsMat(1:18, 4);
 
 interval_hdf = [];
 err_hdf = [];
@@ -46,16 +37,7 @@ errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HCC
-num_sdn_hcc=cell(max(SimulationResults(1:18, 3)),1);
-
-for i=19:36
-    sdn_nodes = SimulationResults(i, 3);
-    if(sdn_nodes > 0)
-        conf_int_array = cell2mat(num_sdn_hcc(SimulationResults(i, 3)));
-        conf_int_array = [conf_int_array,SimulationResults(i, 4)];
-        num_sdn_hcc{SimulationResults(i, 3)} = conf_int_array;
-    end
-end
+num_sdn_hcc=simulationResultsMat(19:36, 4);
 
 interval_hcc = [];
 err_hcc = [];
@@ -74,17 +56,8 @@ errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
 
 hold on
 
-%TMC - Wind
-num_sdn_hbc=cell(max(SimulationResults(1:18, 3)),1);
-
-for i=37:54
-    sdn_nodes = SimulationResults(i, 3);
-    if(sdn_nodes > 0)
-        conf_int_array = cell2mat(num_sdn_hbc(SimulationResults(i, 3)));
-        conf_int_array = [conf_int_array,SimulationResults(i, 4)];
-        num_sdn_hbc{SimulationResults(i, 3)} = conf_int_array;
-    end
-end
+%TMC - HBC
+num_sdn_hbc=simulationResultsMat(37:54, 4);
 
 interval_hbc = [];
 err_hbc = [];
@@ -132,16 +105,7 @@ end
 
 plot(x, y)
 
-num_sdn_hdf=cell(max(SimulationResults(55:72, 3)),1);
-
-for i=55:72
-    sdn_nodes = SimulationResults(i, 3);
-    if(sdn_nodes > 0)
-        conf_int_array = cell2mat(num_sdn_hdf(SimulationResults(i, 3)));
-        conf_int_array = [conf_int_array,SimulationResults(i, 4)];
-        num_sdn_hdf{SimulationResults(i, 3)} = conf_int_array;
-    end
-end
+num_sdn_hdf=simulationResultsMat(55:72, 4);
 
 interval_hdf = [];
 err_hdf = [];
@@ -162,16 +126,7 @@ errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HCC
-num_sdn_hcc=cell(max(SimulationResults(73:90, 3)),1);
-
-for i=73:90
-    sdn_nodes = SimulationResults(i, 3);
-    if(sdn_nodes > 0)
-        conf_int_array = cell2mat(num_sdn_hcc(SimulationResults(i, 3)));
-        conf_int_array = [conf_int_array,SimulationResults(i, 4)];
-        num_sdn_hcc{SimulationResults(i, 3)} = conf_int_array;
-    end
-end
+num_sdn_hcc=simulationResultsMat(73:90, 4);
 
 interval_hcc = [];
 err_hcc = [];
@@ -190,17 +145,8 @@ errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
 
 hold on
 
-%TMC - Wind
-num_sdn_hbc=cell(max(SimulationResults(91:108, 3)),1);
-
-for i=91:108
-    sdn_nodes = SimulationResults(i, 3);
-    if(sdn_nodes > 0)
-        conf_int_array = cell2mat(num_sdn_hbc(SimulationResults(i, 3)));
-        conf_int_array = [conf_int_array,SimulationResults(i, 4)];
-        num_sdn_hbc{SimulationResults(i, 3)} = conf_int_array;
-    end
-end
+%TMC - HBC
+num_sdn_hbc=simulationResultsMat(91:108, 4);
 
 interval_hbc = [];
 err_hbc = [];
@@ -247,16 +193,7 @@ end
 
 plot(x, y)
 
-num_sdn_hdf=cell(max(SimulationResults(109:126, 3)),1);
-
-for i=109:126
-    sdn_nodes = SimulationResults(i, 3);
-    if(sdn_nodes > 0)
-        conf_int_array = cell2mat(num_sdn_hdf(SimulationResults(i, 3)));
-        conf_int_array = [conf_int_array,SimulationResults(i, 4)];
-        num_sdn_hdf{SimulationResults(i, 3)} = conf_int_array;
-    end
-end
+num_sdn_hdf=simulationResultsMat(109:126, 4);
 
 interval_hdf = [];
 err_hdf = [];
@@ -277,16 +214,7 @@ errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HCC
-num_sdn_hcc=cell(max(SimulationResults(127:144, 3)),1);
-
-for i=127:144
-    sdn_nodes = SimulationResults(i, 3);
-    if(sdn_nodes > 0)
-        conf_int_array = cell2mat(num_sdn_hcc(SimulationResults(i, 3)));
-        conf_int_array = [conf_int_array,SimulationResults(i, 4)];
-        num_sdn_hcc{SimulationResults(i, 3)} = conf_int_array;
-    end
-end
+num_sdn_hcc=simulationResultsMat(127:144, 4);
 
 interval_hcc = [];
 err_hcc = [];
@@ -305,17 +233,8 @@ errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
 
 hold on
 
-%TMC - Wind
-num_sdn_hbc=cell(max(SimulationResults(145:162, 3)),1);
-
-for i=145:162
-    sdn_nodes = SimulationResults(i, 3);
-    if(sdn_nodes > 0)
-        conf_int_array = cell2mat(num_sdn_hbc(SimulationResults(i, 3)));
-        conf_int_array = [conf_int_array,SimulationResults(i, 4)];
-        num_sdn_hbc{SimulationResults(i, 3)} = conf_int_array;
-    end
-end
+%TMC - HBC
+num_sdn_hbc=simulationResultsMat(145:162, 4);
 
 interval_hbc = [];
 err_hbc = [];
@@ -362,16 +281,7 @@ end
 
 plot(x, y)
 
-num_sdn_hdf=cell(max(SimulationResults(163:180, 3)),1);
-
-for i=163:180
-    sdn_nodes = SimulationResults(i, 3);
-    if(sdn_nodes > 0)
-        conf_int_array = cell2mat(num_sdn_hdf(SimulationResults(i, 3)));
-        conf_int_array = [conf_int_array,SimulationResults(i, 4)];
-        num_sdn_hdf{SimulationResults(i, 3)} = conf_int_array;
-    end
-end
+num_sdn_hdf=simulationResultsMat(163:180, 4);
 
 interval_hdf = [];
 err_hdf = [];
@@ -392,16 +302,7 @@ errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HCC
-num_sdn_hcc=cell(max(SimulationResults(181:198, 3)),1);
-
-for i=181:198
-    sdn_nodes = SimulationResults(i, 3);
-    if(sdn_nodes > 0)
-        conf_int_array = cell2mat(num_sdn_hcc(SimulationResults(i, 3)));
-        conf_int_array = [conf_int_array,SimulationResults(i, 4)];
-        num_sdn_hcc{SimulationResults(i, 3)} = conf_int_array;
-    end
-end
+num_sdn_hcc=simulationResultsMat(181:198, 4);
 
 interval_hcc = [];
 err_hcc = [];
@@ -420,17 +321,8 @@ errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
 
 hold on
 
-%TMC - Wind
-num_sdn_hbc=cell(max(SimulationResults(199:216, 3)),1);
-
-for i=199:216
-    sdn_nodes = SimulationResults(i, 3);
-    if(sdn_nodes > 0)
-        conf_int_array = cell2mat(num_sdn_hbc(SimulationResults(i, 3)));
-        conf_int_array = [conf_int_array,SimulationResults(i, 4)];
-        num_sdn_hbc{SimulationResults(i, 3)} = conf_int_array;
-    end
-end
+%TMC - HBC
+num_sdn_hbc=simulationResultsMat(199:216, 4);
 
 interval_hbc = [];
 err_hbc = [];
@@ -477,16 +369,7 @@ end
 
 plot(x, y)
 
-num_sdn_hdf=cell(max(SimulationResults(217:234, 3)),1);
-
-for i=217:234
-    sdn_nodes = SimulationResults(i, 3);
-    if(sdn_nodes > 0)
-        conf_int_array = cell2mat(num_sdn_hdf(SimulationResults(i, 3)));
-        conf_int_array = [conf_int_array,SimulationResults(i, 4)];
-        num_sdn_hdf{SimulationResults(i, 3)} = conf_int_array;
-    end
-end
+num_sdn_hdf=simulationResultsMat(217:234, 4);
 
 interval_hdf = [];
 err_hdf = [];
@@ -507,16 +390,7 @@ errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HCC
-num_sdn_hcc=cell(max(SimulationResults(235:252, 3)),1);
-
-for i=235:252
-    sdn_nodes = SimulationResults(i, 3);
-    if(sdn_nodes > 0)
-        conf_int_array = cell2mat(num_sdn_hcc(SimulationResults(i, 3)));
-        conf_int_array = [conf_int_array,SimulationResults(i, 4)];
-        num_sdn_hcc{SimulationResults(i, 3)} = conf_int_array;
-    end
-end
+num_sdn_hcc=simulationResultsMat(235:252, 4);
 
 interval_hcc = [];
 err_hcc = [];
@@ -535,17 +409,8 @@ errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
 
 hold on
 
-%TMC - Wind
-num_sdn_hbc=cell(max(SimulationResults(253:270, 3)),1);
-
-for i=253:270
-    sdn_nodes = SimulationResults(i, 3);
-    if(sdn_nodes > 0)
-        conf_int_array = cell2mat(num_sdn_hbc(SimulationResults(i, 3)));
-        conf_int_array = [conf_int_array,SimulationResults(i, 4)];
-        num_sdn_hbc{SimulationResults(i, 3)} = conf_int_array;
-    end
-end
+%TMC - HBC
+num_sdn_hbc=simulationResultsMat(253:270, 4);
 
 interval_hbc = [];
 err_hbc = [];

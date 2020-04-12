@@ -6,9 +6,9 @@ offNodes = 0;
 
 %sort percentage list
 sortedPercentageList = sortrows(percentageList,3);
-disp(percentageList)
-disp("=========== sorted percentage list ==========")
-disp(sortedPercentageList)
+% disp(percentageList)
+% disp("=========== sorted percentage list ==========")
+% disp(sortedPercentageList)
 
 
 
@@ -37,7 +37,7 @@ for fil = 1:nodes
     end
 end
 
-disp("=========== sorted FINAL percentage list ==========")
+% disp("=========== sorted FINAL percentage list ==========")
 
 finalPercentageMatrix = getPercentage(finalMatrix, capMatrix, nodes);
 finalPercentageList = ones(nodes*nodes, 1);
@@ -53,7 +53,7 @@ end
 
 
 sortedPercentageList = sortrows(finalPercentageList,3);
-disp(sortedPercentageList)
+% disp(sortedPercentageList)
 
 end
 

@@ -12,7 +12,6 @@ function [ solMatrixAux, errors] = solutionShortestPathSDN(capMatrix, solMatrix,
 solMatrixAux = solMatrix;
 SDNLinks =  getSDNLinks(sdn, netLink);
 %SDNLinks
-length(SDNLinks)
 min=100;
 nShortestPaths=0;
 shortestPaths=cell(1, length(SDNLinks));

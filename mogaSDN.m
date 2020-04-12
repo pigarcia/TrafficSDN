@@ -22,8 +22,6 @@ for i = 1:nvars
     capMatrix(S.netLink(i,2),S.netLink(i,3))=S.C(S.netLink(i,1));
 end
 
-capMatrix
-
 %Process of mapping of capacities matrix to array (mapCapacity).
 link.capacity = 0;
 link.fromNode = 0;
@@ -73,7 +71,6 @@ for i = 1:nodes
     end
 end
 
-mapCost
 
 %Generate map cost matrix with normalized values
 mapCost2 = ones(nodes);
@@ -88,8 +85,8 @@ end
 if(useSPT == 1)
     [sptMatrix, error]= priorPhase(nodes, mapCost, trafficMatrix);
     if error == 1
-    useSPT = 0;
-end 
+        useSPT = 0;
+    end
 else
     sptMatrix = cell(nodes);
 end
@@ -141,14 +138,6 @@ for x = 1:nodes
         percentageList(cont, 1) =  percentageMatrix(x, y);
     end
 end
-
-
-
-disp("---- number of routing errors: ");
-disp(errors);
-
-disp("---- number of nodes turned off: ");
-disp(offNodes);
 
 
 %Write solution matrices
