@@ -101,6 +101,7 @@ percentageMatrix = getPercentage(solMatrix, capMatrix, nodes);
 
 
 percentageList = ones(nodes*nodes, 3);
+
 cont = 0;
 for x = 1:nodes
     for y = 1:nodes

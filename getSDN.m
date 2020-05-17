@@ -5,7 +5,7 @@ function [ sdnMatrix] = getSDN( nodes, netLink, numSDN, heuristic, pathMatrix)
 sdnMatrix= zeros(2,numSDN);
 switch (heuristic)
     case "HDF"
-%         disp("You chose HDF");
+        %         disp("You chose HDF");
         for x = 1:numSDN
             % disp("siguiente SDN");
             max = 0;
@@ -16,12 +16,20 @@ switch (heuristic)
                         cont = cont+1;
                     end
                 end
-                if(cont > max)
+                if(cont >= max)
                     % disp("el contador es mayor que el max");
                     if (0 == isSDN(i, numSDN, sdnMatrix))
                         % disp("es valido");
-                        sdn = i;
-                        max = cont;
+                        if cont == max
+                            num = rand;
+                            if(num > 0.5)
+                                sdn = i;
+                                max = cont;
+                            end
+                        else
+                            sdn = i;
+                            max = cont;
+                        end
                     end
                 end
             end
@@ -30,8 +38,8 @@ switch (heuristic)
         end
         
     case "HCC"
-%         disp("You chose Higher Closeness Centrality");
-         shortestPathsEdges = zeros(1,nodes);
+        %         disp("You chose Higher Closeness Centrality");
+        shortestPathsEdges = zeros(1,nodes);
         for fil = 1:nodes
             for col = 1:nodes
                 if fil ~= col
@@ -49,8 +57,16 @@ switch (heuristic)
                 cont = shortestPathsEdges(1,i);
                 if(cont <= min)
                     if (0 == isSDN(i, numSDN, sdnMatrix))
-                        sdn = i;
-                        min = cont;
+                        if cont == min
+                            num = rand;
+                            if(num > 0.5)
+                                sdn = i;
+                                min = cont;
+                            end
+                        else
+                            sdn = i;
+                            min = cont;
+                        end
                     end
                 end
             end
@@ -59,7 +75,7 @@ switch (heuristic)
         end
         
     case "HBC"
-       % disp("You chose Higher Betweenness Centrality ");
+        % disp("You chose Higher Betweenness Centrality ");
         shortestPathsEdges = zeros(1,nodes);
         for fil = 1:nodes
             for col = 1:nodes
@@ -84,8 +100,17 @@ switch (heuristic)
                     % disp("el contador es mayor que el max");
                     if (0 == isSDN(i, numSDN, sdnMatrix))
                         % disp("es valido");
-                        sdn = i;
-                        max = cont;
+                        if cont == max
+                            num = rand;
+                            if(num > 0.5)
+                                sdn = i;
+                                max = cont;
+                            end
+                        else
+                            sdn = i;
+                            max = cont;
+                        end
+                        
                     end
                 end
             end
@@ -93,7 +118,7 @@ switch (heuristic)
             sdnMatrix(2, x) = max;
         end
 end
-% 
+%
 % disp('La matriz SDN es:');
 % sdnMatrix
 
