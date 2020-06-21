@@ -10,8 +10,12 @@ for i = 1:270
         Z(x, y) = z;
     end
 end
-    bar3(Z)
-    title('FIGURA3')
-    xlabel('# Nodos SDN')
-    ylabel('% Carga de la matrix')
-    zlabel('%Carga MAX de los enlaces')
+
+bar3(Z)
+title('FIGURA3')
+xlabel('# Nodos SDN')
+ylabel('% Carga de la matrix')
+zlabel('%Carga MAX de los enlaces')
+
+savefig('figure3.fig')
+saveas(gcf,'figure3','epsc')

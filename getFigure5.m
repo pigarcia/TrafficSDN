@@ -13,6 +13,8 @@ title('FIGURA5: TM1')
 xlabel('#Nodos SDN')
 ylabel('Tº Cómputo medio')
 
+savefig('figure5_TM1.fig')
+saveas(gcf,'figure5_TM1','epsc')
 
 
 %FIGURE 5 : TM2
@@ -27,6 +29,8 @@ title('FIGURA5: TM2')
 xlabel('#Nodos SDN')
 ylabel('Tº Cómputo medio')
 
+savefig('figure5_TM2.fig')
+saveas(gcf,'figure5_TM2','epsc')
 
 
 %FIGURE 5 : TM3
@@ -41,6 +45,8 @@ title('FIGURA5: TM3')
 xlabel('#Nodos SDN')
 ylabel('Tº Cómputo medio')
 
+savefig('figure5_TM3.fig')
+saveas(gcf,'figure5_TM3','epsc')
 
 
 %FIGURE 5 : TM4
@@ -55,6 +61,9 @@ title('FIGURA5: TM4')
 xlabel('#Nodos SDN')
 ylabel('Tº Cómputo medio')
 
+savefig('figure5_TM4.fig')
+saveas(gcf,'figure5_TM4','epsc')
+
 
 
 %FIGURE 5 : TM5
@@ -68,3 +77,6 @@ plot(x, y1, x, y2, x, y3)
 title('FIGURA5: TM5')
 xlabel('#Nodos SDN')
 ylabel('Tº Cómputo medio')
+
+savefig('figure5_TM6.fig')
+saveas(gcf,'figure5_TM6','epsc')

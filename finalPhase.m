@@ -6,7 +6,7 @@ offNodes = 0;
 
 %sort percentage list
 sortedPercentageList = sortrows(percentageList,3);
-% disp(percentageList)
+disp(percentageList)
 % disp("=========== sorted percentage list ==========")
 % disp(sortedPercentageList)
 
@@ -15,7 +15,7 @@ sortedPercentageList = sortrows(percentageList,3);
 index = 1;
 for fil = 1:nodes
     for col = 1:nodes
-        if sortedPercentageList(index, 3) ~= 0
+        if (sortedPercentageList(index, 3) ~= 0) && (sortedPercentageList(index, 3) < 100)
             capacity = capMatrix(sortedPercentageList(index, 1), sortedPercentageList(index, 2));
             capMatrix(sortedPercentageList(index, 1), sortedPercentageList(index, 2)) = 0;
             mapCost(sortedPercentageList(index, 1), sortedPercentageList(index, 2))=inf;

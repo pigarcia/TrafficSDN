@@ -42,13 +42,13 @@ for matrix = 1:matrixCount
     for  heuristic = 0:heuristicCount-1
         switch(heuristic)
             case 0
-                disp("- Heuristic 1: HDF");
+                disp("- Heuristic 0: HDF");
                 heuristicName = "HDF";
             case 1
-                disp("- Heuristic 2: HCC");
+                disp("- Heuristic 1: HCC");
                 heuristicName = "HCC";
             case 2
-                disp("- Heuristic 3: HBC");
+                disp("- Heuristic 2: HBC");
                 heuristicName = "HBC";
         end
         

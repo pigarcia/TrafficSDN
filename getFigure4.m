@@ -17,3 +17,6 @@ end
     xlabel('# Nodos SDN')
     ylabel('% Carga de la matrix')
     zlabel('% Ahorro')
+    
+    savefig('figure4.fig')
+    saveas(gcf,'figure4','epsc')
