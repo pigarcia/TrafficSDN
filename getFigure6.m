@@ -17,11 +17,45 @@ alpha_array_HDF_3 = SimulationResults(109:126, 4);
 alpha_array_HDF_4 = SimulationResults(163:180, 4);
 alpha_array_HDF_5 = SimulationResults(217:234, 4);
 
-gamma_array_HDF_1 = SimulationResults(1:18, 11);
-gamma_array_HDF_2 = SimulationResults(55:72, 11);
-gamma_array_HDF_3 = SimulationResults(109:126, 11);
-gamma_array_HDF_4 = SimulationResults(163:180, 11);
-gamma_array_HDF_5 = SimulationResults(217:234, 11);
+gamma_array_HDF_1 = zeros(18,1);
+cont=1;
+for fil = 1:18
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HDF_1(cont, 1) = (offNodes/17) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HDF_2 = zeros(18,1);
+cont=1;
+for fil = 55:72
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HDF_2(cont, 1) = (offNodes/17) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HDF_3 = zeros(18,1);
+cont=1;
+for fil = 109:126
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HDF_3(cont, 1) = (offNodes/17) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HDF_4 = zeros(18,1);
+cont=1;
+for fil = 163:180
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HDF_4(cont, 1) = (offNodes/17) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HDF_5 = zeros(18,1);
+cont=1;
+for fil = 217:234
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HDF_5(cont, 1) = (offNodes/17) * 100;
+    cont = cont + 1;
+end
 
 grid on
 set(gca,'FontSize',20);
@@ -38,12 +72,12 @@ hold on
 plot(x,alpha_array_HDF_4,'-.bo','LineWidth',2,'MarkerSize',10);
 hold on
 plot(x,alpha_array_HDF_5,'-b*','LineWidth',2,'MarkerSize',10);
-xlabel('idle time (s.)')
+xlabel('#Nodos SDN')
 xticks([0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
 xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
 ylabel('% Carga max','Color','b')
 yyaxis right
-ylabel('% PS','Color','r')
+ylabel('%Ahorro','Color','r')
 hold on
 plot(x,gamma_array_HDF_1,'-rs','LineWidth',2,'MarkerSize',10);
 hold on
@@ -55,7 +89,7 @@ plot(x,gamma_array_HDF_4,'-.rs','LineWidth',2,'MarkerSize',10);
 hold on
 plot(x,gamma_array_HDF_5,'-rd','LineWidth',2,'MarkerSize',10);
 
-legend({'\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5', '\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5'},'FontSize',16,'location','northoutside','orientation','horizontal')
+legend({'\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5', '\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 hold off
 
 savefig('figure6_Nobel_HDF.fig')
@@ -77,11 +111,45 @@ alpha_array_HCC_3 = SimulationResults(127:144, 4);
 alpha_array_HCC_4 = SimulationResults(181:198, 4);
 alpha_array_HCC_5 = SimulationResults(235:252, 4);
 
-gamma_array_HCC_1 = SimulationResults(19:36, 11);
-gamma_array_HCC_2 = SimulationResults(73:90, 11);
-gamma_array_HCC_3 = SimulationResults(127:144, 11);
-gamma_array_HCC_4 = SimulationResults(181:198, 11);
-gamma_array_HCC_5 = SimulationResults(235:252, 11);
+gamma_array_HCC_1 = zeros(18,1);
+cont=1;
+for fil = 19:36
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HCC_1(cont, 1) = (offNodes/17) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HCC_2 = zeros(18,1);
+cont=1;
+for fil = 73:90
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HCC_2(cont, 1) = (offNodes/17) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HCC_3 = zeros(18,1);
+cont=1;
+for fil = 127:144
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HCC_3(cont, 1) = (offNodes/17) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HCC_4 = zeros(18,1);
+cont=1;
+for fil = 181:198
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HCC_4(cont, 1) = (offNodes/17) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HCC_5 = zeros(18,1);
+cont=1;
+for fil = 235:252
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HCC_5(cont, 1) = (offNodes/17) * 100;
+    cont = cont + 1;
+end
 
 grid on
 set(gca,'FontSize',20);
@@ -115,7 +183,7 @@ plot(x,gamma_array_HCC_4,'-.rs','LineWidth',2,'MarkerSize',10);
 hold on
 plot(x,gamma_array_HCC_5,'-rd','LineWidth',2,'MarkerSize',10);
 
-legend({'\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5', '\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5'},'FontSize',16,'location','northoutside','orientation','horizontal')
+legend({'\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5', '\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 hold off
 
 savefig('figure6_Nobel_HCC.fig')
@@ -138,11 +206,45 @@ alpha_array_HBC_3 = SimulationResults(145:162, 4);
 alpha_array_HBC_4 = SimulationResults(199:216, 4);
 alpha_array_HBC_5 = SimulationResults(253:270, 4);
 
-gamma_array_HBC_1 = SimulationResults(37:54, 11);
-gamma_array_HBC_2 = SimulationResults(91:108, 11);
-gamma_array_HBC_3 = SimulationResults(145:162, 11);
-gamma_array_HBC_4 = SimulationResults(199:216, 11);
-gamma_array_HBC_5 = SimulationResults(253:270, 11);
+gamma_array_HBC_1 = zeros(18,1);
+cont=1;
+for fil = 37:54
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HBC_1(cont, 1) = (offNodes/17) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HBC_2 = zeros(18,1);
+cont=1;
+for fil = 91:108
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HBC_2(cont, 1) = (offNodes/17) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HBC_3 = zeros(18,1);
+cont=1;
+for fil = 145:162
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HBC_3(cont, 1) = (offNodes/17) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HBC_4 = zeros(18,1);
+cont=1;
+for fil = 199:216
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HBC_4(cont, 1) = (offNodes/17) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HBC_5 = zeros(18,1);
+cont=1;
+for fil = 253:270
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HBC_5(cont, 1) = (offNodes/17) * 100;
+    cont = cont + 1;
+end
 
 grid on
 set(gca,'FontSize',20);
@@ -176,7 +278,7 @@ plot(x,gamma_array_HBC_4,'-.rs','LineWidth',2,'MarkerSize',10);
 hold on
 plot(x,gamma_array_HBC_5,'-rd','LineWidth',2,'MarkerSize',10);
 
-legend({'\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5', '\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5'},'FontSize',16,'location','northoutside','orientation','horizontal')
+legend({'\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5', '\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 hold off
 
 savefig('figure6_Nobel_HBC.fig')
@@ -200,11 +302,45 @@ alpha_array_HDF_3 = SimulationResultsGeant(139:161, 4);
 alpha_array_HDF_4 = SimulationResultsGeant(208:230, 4);
 alpha_array_HDF_5 = SimulationResultsGeant(277:299, 4);
 
-gamma_array_HDF_1 = SimulationResultsGeant(1:23, 11);
-gamma_array_HDF_2 = SimulationResultsGeant(70:92, 11);
-gamma_array_HDF_3 = SimulationResultsGeant(139:161, 11);
-gamma_array_HDF_4 = SimulationResultsGeant(208:230, 11);
-gamma_array_HDF_5 = SimulationResultsGeant(277:299, 11);
+gamma_array_HDF_1 = zeros(23,1);
+cont=1;
+for fil = 1:23
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HDF_1(cont, 1) = (offNodes/22) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HDF_2 = zeros(23,1);
+cont=1;
+for fil = 70:92
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HDF_2(cont, 1) = (offNodes/22) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HDF_3 = zeros(23,1);
+cont=1;
+for fil = 139:161
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HDF_3(cont, 1) = (offNodes/22) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HDF_4 = zeros(23,1);
+cont=1;
+for fil = 208:230
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HDF_4(cont, 1) = (offNodes/22) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HDF_5 = zeros(23,1);
+cont=1;
+for fil = 277:299
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HDF_5(cont, 1) = (offNodes/22) * 100;
+    cont = cont + 1;
+end
 
 grid on
 set(gca,'FontSize',20);
@@ -238,7 +374,7 @@ plot(x,gamma_array_HDF_4,'-.rs','LineWidth',2,'MarkerSize',10);
 hold on
 plot(x,gamma_array_HDF_5,'-rd','LineWidth',2,'MarkerSize',10);
 
-legend({'\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5', '\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5'},'FontSize',16,'location','northoutside','orientation','horizontal')
+legend({'\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5', '\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 hold off
 savefig('figure6_Geant_HDF.fig')
 saveas(gcf,'figure6_Geant_HDF','epsc')
@@ -260,11 +396,45 @@ alpha_array_HCC_3 = SimulationResultsGeant(162:184, 4);
 alpha_array_HCC_4 = SimulationResultsGeant(231:253, 4);
 alpha_array_HCC_5 = SimulationResultsGeant(300:322, 4);
 
-gamma_array_HCC_1 = SimulationResultsGeant(24:46, 11);
-gamma_array_HCC_2 = SimulationResultsGeant(93:115, 11);
-gamma_array_HCC_3 = SimulationResultsGeant(162:184, 11);
-gamma_array_HCC_4 = SimulationResultsGeant(231:253, 11);
-gamma_array_HCC_5 = SimulationResultsGeant(300:322, 11);
+gamma_array_HCC_1 = zeros(23,1);
+cont=1;
+for fil = 24:46
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HCC_1(cont, 1) = (offNodes/22) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HCC_2 = zeros(23,1);
+cont=1;
+for fil = 93:115
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HCC_2(cont, 1) = (offNodes/22) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HCC_3 = zeros(23,1);
+cont=1;
+for fil = 162:184
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HCC_3(cont, 1) = (offNodes/22) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HCC_4 = zeros(23,1);
+cont=1;
+for fil = 231:253
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HCC_4(cont, 1) = (offNodes/22) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HCC_5 = zeros(23,1);
+cont=1;
+for fil = 300:322
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HCC_5(cont, 1) = (offNodes/22) * 100;
+    cont = cont + 1;
+end
 
 grid on
 set(gca,'FontSize',20);
@@ -298,7 +468,7 @@ plot(x,gamma_array_HCC_4,'-.rs','LineWidth',2,'MarkerSize',10);
 hold on
 plot(x,gamma_array_HCC_5,'-rd','LineWidth',2,'MarkerSize',10);
 
-legend({'\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5', '\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5'},'FontSize',16,'location','northoutside','orientation','horizontal')
+legend({'\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5', '\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 hold off
 savefig('figure6_Geant_HCC.fig')
 saveas(gcf,'figure6_Geant_HCC','epsc')
@@ -319,11 +489,45 @@ alpha_array_HBC_3 = SimulationResultsGeant(185:207, 4);
 alpha_array_HBC_4 = SimulationResultsGeant(254:276, 4);
 alpha_array_HBC_5 = SimulationResultsGeant(323:345, 4);
 
-gamma_array_HBC_1 = SimulationResultsGeant(47:69, 11);
-gamma_array_HBC_2 = SimulationResultsGeant(116:138, 11);
-gamma_array_HBC_3 = SimulationResultsGeant(185:207, 11);
-gamma_array_HBC_4 = SimulationResultsGeant(254:276, 11);
-gamma_array_HBC_5 = SimulationResultsGeant(323:345, 11);
+gamma_array_HBC_1 = zeros(23,1);
+cont=1;
+for fil = 47:69
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HBC_1(cont, 1) = (offNodes/22) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HBC_2 = zeros(23,1);
+cont=1;
+for fil = 116:138
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HBC_2(cont, 1) = (offNodes/22) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HBC_3 = zeros(23,1);
+cont=1;
+for fil = 185:207
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HBC_3(cont, 1) = (offNodes/22) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HBC_4 = zeros(23,1);
+cont=1;
+for fil = 254:276
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HBC_4(cont, 1) = (offNodes/22) * 100;
+    cont = cont + 1;
+end
+
+gamma_array_HBC_5 = zeros(23,1);
+cont=1;
+for fil = 323:345
+    offNodes = SimulationResults(fil, 11);
+    gamma_array_HBC_5(cont, 1) = (offNodes/22) * 100;
+    cont = cont + 1;
+end
 
 grid on
 set(gca,'FontSize',20);
@@ -357,7 +561,7 @@ plot(x,gamma_array_HBC_4,'-.rs','LineWidth',2,'MarkerSize',10);
 hold on
 plot(x,gamma_array_HBC_5,'-rd','LineWidth',2,'MarkerSize',10);
 
-legend({'\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5', '\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5'},'FontSize',16,'location','northoutside','orientation','horizontal')
+legend({'\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5', '\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 hold off
 savefig('figure6_Geant_HBC.fig')
 saveas(gcf,'figure6_Geant_HBC','epsc')
