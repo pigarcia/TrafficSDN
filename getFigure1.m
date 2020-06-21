@@ -8,15 +8,15 @@ figure
 hold on
 grid on
 
-x = SimulationResults(1:18, 3);
-y = zeros(18, 1);
-for fil = 1:18
+x = SimulationResults(2:18, 3);
+y = zeros(17, 1);
+for fil = 1:17
     y(fil,1) = SimulationResults(1, 4);
 end
 
-plot(x, y)
+plot(x, y, 'LineWidth',2,'Color', 'k')
 
-num_sdn_hdf=simulationResultsMat(1:18, 4);
+num_sdn_hdf=simulationResultsMat(2:18, 4);
 
 interval_hdf = [];
 err_hdf = [];
@@ -37,7 +37,7 @@ errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HCC
-num_sdn_hcc=simulationResultsMat(19:36, 4);
+num_sdn_hcc=simulationResultsMat(20:36, 4);
 
 interval_hcc = [];
 err_hcc = [];
@@ -57,7 +57,7 @@ errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HBC
-num_sdn_hbc=simulationResultsMat(37:54, 4);
+num_sdn_hbc=simulationResultsMat(36:54, 4);
 
 interval_hbc = [];
 err_hbc = [];
@@ -75,14 +75,14 @@ end
 errorbar(interval_hbc,err_hbc,':rs','LineWidth',2,'MarkerSize',12)
 
 set(gca,'FontSize',20);
-legend({'TMC - IP','TMC - HDF','TMC - HCC','TMC - HBC'},'FontSize',16)
+legend({'IP','HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 view(0,90)
-xlim([1 18])
+xlim([1 17])
 ylim([0 100])
-xlabel('Number of SND Nodes')
-ylabel('MAX load')
-
-
+xlabel('Número de nodos SDN')
+ylabel('% Carga máxima')
+xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
+xticklabels({'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
 hold off
 
 savefig('figure1_TM1.fig')
@@ -97,15 +97,15 @@ figure
 hold on
 grid on
 
-x = SimulationResults(55:72, 3);
-y = zeros(18, 1);
-for fil = 1:18
+x = SimulationResults(56:72, 3);
+y = zeros(17, 1);
+for fil = 1:17
     y(fil,1) = SimulationResults(55, 4);
 end
 
-plot(x, y)
+plot(x, y, 'LineWidth',2,'Color', 'k')
 
-num_sdn_hdf=simulationResultsMat(55:72, 4);
+num_sdn_hdf=simulationResultsMat(56:72, 4);
 
 interval_hdf = [];
 err_hdf = [];
@@ -126,7 +126,7 @@ errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HCC
-num_sdn_hcc=simulationResultsMat(73:90, 4);
+num_sdn_hcc=simulationResultsMat(74:90, 4);
 
 interval_hcc = [];
 err_hcc = [];
@@ -146,7 +146,7 @@ errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HBC
-num_sdn_hbc=simulationResultsMat(91:108, 4);
+num_sdn_hbc=simulationResultsMat(92:108, 4);
 
 interval_hbc = [];
 err_hbc = [];
@@ -164,13 +164,14 @@ end
 errorbar(interval_hbc,err_hbc,':rs','LineWidth',2,'MarkerSize',12)
 
 set(gca,'FontSize',20);
-legend({'TMC - IP','TMC - HDF','TMC - HCC','TMC - HBC'},'FontSize',16)
+legend({'IP','HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 view(0,90)
-xlim([1 18])
+xlim([1 17])
 ylim([0 100])
-xlabel('Number of SND Nodes')
-ylabel('MAX load')
-
+xlabel('Número de nodos SDN')
+ylabel('% Carga máxima')
+xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
+xticklabels({'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
 
 hold off
 
@@ -185,15 +186,15 @@ figure
 hold on
 grid on
 
-x = SimulationResults(109:126, 3);
-y = zeros(18, 1);
-for fil = 1:18
+x = SimulationResults(110:126, 3);
+y = zeros(17, 1);
+for fil = 1:17
     y(fil,1) = SimulationResults(109, 4);
 end
 
-plot(x, y)
+plot(x, y, 'LineWidth',2,'Color', 'k')
 
-num_sdn_hdf=simulationResultsMat(109:126, 4);
+num_sdn_hdf=simulationResultsMat(110:126, 4);
 
 interval_hdf = [];
 err_hdf = [];
@@ -214,7 +215,7 @@ errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HCC
-num_sdn_hcc=simulationResultsMat(127:144, 4);
+num_sdn_hcc=simulationResultsMat(128:144, 4);
 
 interval_hcc = [];
 err_hcc = [];
@@ -234,7 +235,7 @@ errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HBC
-num_sdn_hbc=simulationResultsMat(145:162, 4);
+num_sdn_hbc=simulationResultsMat(146:162, 4);
 
 interval_hbc = [];
 err_hbc = [];
@@ -252,12 +253,14 @@ end
 errorbar(interval_hbc,err_hbc,':rs','LineWidth',2,'MarkerSize',12)
 
 set(gca,'FontSize',20);
-legend({'TMC - IP','TMC - HDF','TMC - HCC','TMC - HBC'},'FontSize',16)
+legend({'IP','HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 view(0,90)
-xlim([1 18])
+xlim([1 17])
 ylim([0 100])
-xlabel('Number of SND Nodes')
-ylabel('MAX load')
+xlabel('Número de nodos SDN')
+ylabel('% Carga máxima')
+xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
+xticklabels({'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
 
 
 hold off
@@ -273,15 +276,15 @@ figure
 hold on
 grid on
 
-x = SimulationResults(163:180, 3);
-y = zeros(18, 1);
-for fil = 1:18
+x = SimulationResults(164:180, 3);
+y = zeros(17, 1);
+for fil = 1:17
     y(fil,1) = SimulationResults(163, 4);
 end
 
-plot(x, y)
+plot(x, y, 'LineWidth',2,'Color', 'k')
 
-num_sdn_hdf=simulationResultsMat(163:180, 4);
+num_sdn_hdf=simulationResultsMat(164:180, 4);
 
 interval_hdf = [];
 err_hdf = [];
@@ -302,7 +305,7 @@ errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HCC
-num_sdn_hcc=simulationResultsMat(181:198, 4);
+num_sdn_hcc=simulationResultsMat(182:198, 4);
 
 interval_hcc = [];
 err_hcc = [];
@@ -322,7 +325,7 @@ errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HBC
-num_sdn_hbc=simulationResultsMat(199:216, 4);
+num_sdn_hbc=simulationResultsMat(200:216, 4);
 
 interval_hbc = [];
 err_hbc = [];
@@ -340,12 +343,14 @@ end
 errorbar(interval_hbc,err_hbc,':rs','LineWidth',2,'MarkerSize',12)
 
 set(gca,'FontSize',20);
-legend({'TMC - IP','TMC - HDF','TMC - HCC','TMC - HBC'},'FontSize',16)
+legend({'IP','HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 view(0,90)
-xlim([1 18])
+xlim([1 17])
 ylim([0 100])
-xlabel('Number of SND Nodes')
-ylabel('MAX load')
+xlabel('Número de nodos SDN')
+ylabel('% Carga máxima')
+xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
+xticklabels({'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
 
 
 hold off
@@ -361,15 +366,15 @@ figure
 hold on
 grid on
 
-x = SimulationResults(217:234, 3);
-y = zeros(18, 1);
-for fil = 1:18
+x = SimulationResults(218:234, 3);
+y = zeros(17, 1);
+for fil = 1:17
     y(fil,1) = SimulationResults(217, 4);
 end
 
-plot(x, y)
+plot(x, y, 'LineWidth',2,'Color', 'k')
 
-num_sdn_hdf=simulationResultsMat(217:234, 4);
+num_sdn_hdf=simulationResultsMat(218:234, 4);
 
 interval_hdf = [];
 err_hdf = [];
@@ -390,7 +395,7 @@ errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HCC
-num_sdn_hcc=simulationResultsMat(235:252, 4);
+num_sdn_hcc=simulationResultsMat(236:252, 4);
 
 interval_hcc = [];
 err_hcc = [];
@@ -410,7 +415,7 @@ errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HBC
-num_sdn_hbc=simulationResultsMat(253:270, 4);
+num_sdn_hbc=simulationResultsMat(254:270, 4);
 
 interval_hbc = [];
 err_hbc = [];
@@ -428,13 +433,14 @@ end
 errorbar(interval_hbc,err_hbc,':rs','LineWidth',2,'MarkerSize',12)
 
 set(gca,'FontSize',20);
-legend({'TMC - IP','TMC - HDF','TMC - HCC','TMC - HBC'},'FontSize',16)
+legend({'IP','HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 view(0,90)
-xlim([1 18])
+xlim([1 17])
 ylim([0 100])
-xlabel('Number of SND Nodes')
-ylabel('MAX load')
-
+xlabel('Número de nodos SDN')
+ylabel('% Carga máxima')
+xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
+xticklabels({'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
 
 hold off
 
