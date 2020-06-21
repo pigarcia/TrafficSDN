@@ -9,10 +9,9 @@ y3 = SimulationResults(37:54, 12);
 
 figure
 plot(x, y1, x, y2, x, y3)
-title('FIGURA5: TM1')
 xlabel('#Nodos SDN')
 ylabel('Tº Cómputo medio')
-
+legend({'HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 savefig('figure5_TM1.fig')
 saveas(gcf,'figure5_TM1','epsc')
 
@@ -25,10 +24,9 @@ y3 = SimulationResults(91:108, 12);
 
 figure
 plot(x, y1, x, y2, x, y3)
-title('FIGURA5: TM2')
 xlabel('#Nodos SDN')
 ylabel('Tº Cómputo medio')
-
+legend({'HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 savefig('figure5_TM2.fig')
 saveas(gcf,'figure5_TM2','epsc')
 
@@ -41,10 +39,9 @@ y3 = SimulationResults(145:162, 12);
 
 figure
 plot(x, y1, x, y2, x, y3)
-title('FIGURA5: TM3')
 xlabel('#Nodos SDN')
 ylabel('Tº Cómputo medio')
-
+legend({'HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 savefig('figure5_TM3.fig')
 saveas(gcf,'figure5_TM3','epsc')
 
@@ -57,10 +54,9 @@ y3 = SimulationResults(199:216, 12);
 
 figure
 plot(x, y1, x, y2, x, y3)
-title('FIGURA5: TM4')
 xlabel('#Nodos SDN')
 ylabel('Tº Cómputo medio')
-
+legend({'HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 savefig('figure5_TM4.fig')
 saveas(gcf,'figure5_TM4','epsc')
 
@@ -74,9 +70,8 @@ y3 = SimulationResults(253:270, 12);
 
 figure
 plot(x, y1, x, y2, x, y3)
-title('FIGURA5: TM5')
 xlabel('#Nodos SDN')
 ylabel('Tº Cómputo medio')
-
+legend({'HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 savefig('figure5_TM6.fig')
 saveas(gcf,'figure5_TM6','epsc')

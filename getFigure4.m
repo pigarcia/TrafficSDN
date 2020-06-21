@@ -13,9 +13,8 @@ for i = 1:270
     end
 end
     bar3(Z)
-    title('FIGURA4')
     xlabel('# Nodos SDN')
-    ylabel('% Carga de la matrix')
+    ylabel('% Carga máxima de la matrix')
     zlabel('% Ahorro')
     
     savefig('figure4.fig')

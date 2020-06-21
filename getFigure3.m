@@ -12,7 +12,6 @@ for i = 1:270
 end
 
 bar3(Z)
-title('FIGURA3')
 xlabel('# Nodos SDN')
 ylabel('% Carga de la matrix')
 zlabel('%Carga MAX de los enlaces')
