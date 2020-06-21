@@ -10,7 +10,6 @@ for fil = 1:270
 end
 figure
 plot(x, y)
-title('FIGURA2')
 xlabel('TM1 - TM5')
 ylabel('% Ahorro')
 
@@ -43,10 +42,9 @@ for fil = 37:54
 end
 figure
 plot(x, y1, x, y2, x, y3)
-title('FIGURA2: TM1')
 xlabel('#Nodos SDN')
 ylabel('%Ahorro')
-legend({'HDF','HCC','HBC'},'FontSize',16)
+legend({'HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 
 savefig('figure2_TM1.fig')
 saveas(gcf,'figure2_TM1','epsc')
@@ -79,10 +77,9 @@ for fil = 91:108
 end
 figure
 plot(x, y1, x, y2, x, y3)
-title('FIGURA2: TM2')
 xlabel('#Nodos SDN')
 ylabel('%Ahorro')
-legend({'HDF','HCC','HBC'},'FontSize',16)
+legend({'HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 
 savefig('figure2_TM2.fig')
 saveas(gcf,'figure2_TM2','epsc')
@@ -115,10 +112,9 @@ for fil = 145:162
 end
 figure
 plot(x, y1, x, y2, x, y3)
-title('FIGURA2: TM3')
 xlabel('#Nodos SDN')
 ylabel('%Ahorro')
-legend({'HDF','HCC','HBC'},'FontSize',16)
+legend({'HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 
 savefig('figure2_TM3.fig')
 saveas(gcf,'figure2_TM3','epsc')
@@ -151,10 +147,9 @@ for fil = 199:216
 end
 figure
 plot(x, y1, x, y2, x, y3)
-title('FIGURA2: TM4')
 xlabel('#Nodos SDN')
 ylabel('%Ahorro')
-legend({'HDF','HCC','HBC'},'FontSize',16)
+legend({'HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 
 savefig('figure2_TM4.fig')
 saveas(gcf,'figure2_TM4','epsc')
@@ -188,10 +183,9 @@ for fil = 253:270
 end
 figure
 plot(x, y1, x, y2, x, y3)
-title('FIGURA2: TM5')
 xlabel('#Nodos SDN')
 ylabel('%Ahorro')
-legend({'HDF','HCC','HBC'},'FontSize',16)
+legend({'HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 
 savefig('figure2_TM5.fig')
 saveas(gcf,'figure2_TM5','epsc')
