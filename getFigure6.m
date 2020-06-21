@@ -77,7 +77,7 @@ xticks([0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
 xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
 ylabel('% Carga max','Color','b')
 yyaxis right
-ylabel('%Ahorro','Color','r')
+ylabel('% Ahorro','Color','r')
 hold on
 plot(x,gamma_array_HDF_1,'-rs','LineWidth',2,'MarkerSize',10);
 hold on
@@ -166,12 +166,12 @@ hold on
 plot(x,alpha_array_HCC_4,'-.bo','LineWidth',2,'MarkerSize',10);
 hold on
 plot(x,alpha_array_HCC_5,'-b*','LineWidth',2,'MarkerSize',10);
-xlabel('idle time (s.)')
+xlabel('#Nodos SDN')
 xticks([0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
 xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
 ylabel('% Carga max','Color','b')
 yyaxis right
-ylabel('% PS','Color','r')
+ylabel('% Ahorro','Color','r')
 hold on
 plot(x,gamma_array_HCC_1,'-rs','LineWidth',2,'MarkerSize',10);
 hold on
@@ -261,12 +261,12 @@ hold on
 plot(x,alpha_array_HBC_4,'-.bo','LineWidth',2,'MarkerSize',10);
 hold on
 plot(x,alpha_array_HBC_5,'-b*','LineWidth',2,'MarkerSize',10);
-xlabel('idle time (s.)')
+xlabel('#Nodos SDN')
 xticks([0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
 xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
 ylabel('% Carga max','Color','b')
 yyaxis right
-ylabel('% PS','Color','r')
+ylabel('% Ahorro','Color','r')
 hold on
 plot(x,gamma_array_HBC_1,'-rs','LineWidth',2,'MarkerSize',10);
 hold on
@@ -357,12 +357,12 @@ hold on
 plot(x,alpha_array_HDF_4,'-.bo','LineWidth',2,'MarkerSize',10);
 hold on
 plot(x,alpha_array_HDF_5,'-b*','LineWidth',2,'MarkerSize',10);
-xlabel('idle time (s.)')
+xlabel('#Nodos SDN')
 xticks([0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22])
 xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22'})
 ylabel('% Carga max','Color','b')
 yyaxis right
-ylabel('% PS','Color','r')
+ylabel('% Ahorro','Color','r')
 hold on
 plot(x,gamma_array_HDF_1,'-rs','LineWidth',2,'MarkerSize',10);
 hold on
@@ -451,12 +451,12 @@ hold on
 plot(x,alpha_array_HCC_4,'-.bo','LineWidth',2,'MarkerSize',10);
 hold on
 plot(x,alpha_array_HCC_5,'-b*','LineWidth',2,'MarkerSize',10);
-xlabel('idle time (s.)')
+xlabel('#Nodos SDN')
 xticks([0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22])
 xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22'})
 ylabel('% Carga max','Color','b')
 yyaxis right
-ylabel('% PS','Color','r')
+ylabel('% Ahorro','Color','r')
 hold on
 plot(x,gamma_array_HCC_1,'-rs','LineWidth',2,'MarkerSize',10);
 hold on
@@ -544,12 +544,12 @@ hold on
 plot(x,alpha_array_HBC_4,'-.bo','LineWidth',2,'MarkerSize',10);
 hold on
 plot(x,alpha_array_HBC_5,'-b*','LineWidth',2,'MarkerSize',10);
-xlabel('idle time (s.)')
+xlabel('#Nodos SDN')
 xticks([0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22])
 xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22'})
 ylabel('% Carga max','Color','b')
 yyaxis right
-ylabel('% PS','Color','r')
+ylabel('% Ahorro','Color','r')
 hold on
 plot(x,gamma_array_HBC_1,'-rs','LineWidth',2,'MarkerSize',10);
 hold on
