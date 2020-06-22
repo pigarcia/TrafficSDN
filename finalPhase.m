@@ -6,34 +6,34 @@ offNodes = 0;
 
 %sort percentage list
 sortedPercentageList = sortrows(percentageList,3);
-disp(percentageList)
+% disp(percentageList)
 % disp("=========== sorted percentage list ==========")
 % disp(sortedPercentageList)
 
-
-
 index = 1;
-for fil = 1:nodes
-    for col = 1:nodes
-        if (sortedPercentageList(index, 3) ~= 0) && (sortedPercentageList(index, 3) < 100)
-            capacity = capMatrix(sortedPercentageList(index, 1), sortedPercentageList(index, 2));
-            capMatrix(sortedPercentageList(index, 1), sortedPercentageList(index, 2)) = 0;
-            mapCost(sortedPercentageList(index, 1), sortedPercentageList(index, 2))=inf;
-            mapCost2(sortedPercentageList(index, 1), sortedPercentageList(index, 2))=inf;
-            [SPTMatrix, errors] = priorPhase(nodes, mapCost, trafficMatrix);
-            if errors == 0 
-                [finalMatrix, errors] = solutionShortestPath(capMatrix,nodes, trafficMatrix, sdnMatrix, numSDN, netLink, mapCost, mapCost2, SPTMatrix, useSPT);
+if numSDN > 0
+    for fil = 1:nodes
+        for col = 1:nodes
+            if (sortedPercentageList(index, 3) ~= 0) && (sortedPercentageList(index, 3) < 100)
+                if ((true == isSDN(sortedPercentageList(index, 1), numSDN, sdnMatrix)) || (true == isSDN(sortedPercentageList(index, 2), numSDN, sdnMatrix)))
+                    capacity = capMatrix(sortedPercentageList(index, 1), sortedPercentageList(index, 2));
+                    capMatrix(sortedPercentageList(index, 1), sortedPercentageList(index, 2)) = 0;
+                    mapCost(sortedPercentageList(index, 1), sortedPercentageList(index, 2))=inf;
+                    mapCost2(sortedPercentageList(index, 1), sortedPercentageList(index, 2))=inf;
+                    [SPTMatrix, errors] = priorPhase(nodes, mapCost, trafficMatrix);
+                    if errors == 0
+                        [finalMatrix, errors] = solutionShortestPath(capMatrix,nodes, trafficMatrix, sdnMatrix, numSDN, netLink, mapCost, mapCost2, SPTMatrix, useSPT);
+                    end
+                    if errors ~= 0
+                        capMatrix(sortedPercentageList(index, 1), sortedPercentageList(index, 2)) = capacity;
+                    else
+                        offNodes = offNodes + 1;
+                        sortedPercentageList(index, 3) = 0;
+                    end
+                end
             end
-%             disp("--------- errors ------ ");
-%             disp(errors);
-            if errors ~= 0
-                capMatrix(sortedPercentageList(index, 1), sortedPercentageList(index, 2)) = capacity;
-            else
-                offNodes = offNodes + 1;
-                sortedPercentageList(index, 3) = 0;
-            end
+            index = index + 1;
         end
-        index = index + 1;
     end
 end
 
