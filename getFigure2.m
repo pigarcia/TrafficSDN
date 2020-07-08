@@ -1,194 +1,580 @@
-load SimulationResults.csv
+load simulationResults2.csv
 
-%FIGURE 2 
-x = zeros(270, 1);
-y = zeros(270, 1);
-for fil = 1:270
-    x(fil,1) = fil;
-    offNodes = SimulationResults(fil, 11);
-    y(fil, 1) = (offNodes/17) * 100;
-end
+%FIGURE 2 : TM1
+%MAX load VS NUMBER OF SDN Nodes
+%TMC - HDF
 figure
-plot(x, y)
-xlabel('TM1 - TM5')
-ylabel('% Ahorro')
+hold on
+grid on
 
-savefig('figure2.fig')
-saveas(gcf,'figure2','epsc')
-
-%FIGURE 2: TM1
-
-x = SimulationResults(1:18, 3);
-y1 = zeros(18, 1);
-y2 = zeros(18, 1);
-y3 = zeros(18, 1);
-for fil = 1:18
-    offNodes = SimulationResults(fil, 11);
-    y1(fil, 1) = (offNodes/17) * 100;
+x = simulationResults2(2:18, 3);
+y = zeros(17, 1);
+for fil = 1:17
+    y(fil,1) = simulationResults2(1, 11);
 end
-
+plot(x, y, 'LineWidth',2,'Color', 'k')
 cont=1;
-for fil = 19:36
-    offNodes = SimulationResults(fil, 11);
-    y2(cont, 1) = (offNodes/17) * 100;
+num_sdn_hdf=cell(1, 17);
+for fil = 2:18
+    offNodes = simulationResultsMat2(fil, 11);
+    nodeMatrix = cell2mat(offNodes);
+    for i = 1:5
+        nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
+    end
+    num_sdn_hdf(1, cont) = {nodeMatrix};
     cont = cont + 1;
 end
 
+interval_hdf = [];
+err_hdf = [];
+for i=1:length(num_sdn_hdf)
+    num_sdn_hdf{i}
+    array_rsrp = num_sdn_hdf{i};
+    N = length(array_rsrp);
+    yMean = mean(array_rsrp);
+    interval_hdf = [interval_hdf,yMean];
+    ySEM = std(array_rsrp)/sqrt(N);
+    CI95 = tinv([0.025 0.975], N-1);
+    yCI95 = bsxfun(@times, ySEM, CI95(:));
+    err_hdf = [err_hdf,yCI95(2)];
+end
+
+errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
+
+hold on
+
+%TMC - HCC
+num_sdn_hcc=cell(1, 17);
 cont=1;
-for fil = 37:54
-    offNodes = SimulationResults(fil, 11);
-    y3(cont, 1) = (offNodes/17) * 100;
+for fil = 20:36
+    offNodes = simulationResultsMat2(fil, 11);
+    nodeMatrix = cell2mat(offNodes);
+    for i = 1:5
+        nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
+    end
+    num_sdn_hcc(1, cont) ={nodeMatrix};
     cont = cont + 1;
 end
-figure
-plot(x, y1, x, y2, x, y3)
-xlabel('#Nodos SDN')
+
+interval_hcc = [];
+err_hcc = [];
+for i=1:length(num_sdn_hcc)
+    array_rsrp = num_sdn_hcc{i};
+    N = length(array_rsrp);
+    yMean = mean(array_rsrp);
+    interval_hcc = [interval_hcc,yMean];
+    ySEM = std(array_rsrp)/sqrt(N);
+    CI95 = tinv([0.025 0.975], N-1);
+    yCI95 = bsxfun(@times, ySEM, CI95(:));
+    err_hcc = [err_hcc,yCI95(2)];
+end
+
+errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
+
+hold on
+
+%TMC - HBC
+num_sdn_hbc=cell(1, 17);
+cont=1;
+for fil = 38:54
+    offNodes = simulationResultsMat2(fil, 11);
+    nodeMatrix = cell2mat(offNodes);
+    for i = 1:5
+        nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
+    end
+    num_sdn_hbc(1, cont) = {nodeMatrix};
+    cont = cont + 1;
+end
+
+interval_hbc = [];
+err_hbc = [];
+for i=1:length(num_sdn_hbc)
+    array_rsrp = num_sdn_hbc{i};
+    N = length(array_rsrp);
+    yMean = mean(array_rsrp);
+    interval_hbc = [interval_hbc,yMean];
+    ySEM = std(array_rsrp)/sqrt(N);
+    CI95 = tinv([0.025 0.975], N-1);
+    yCI95 = bsxfun(@times, ySEM, CI95(:));
+    err_hbc = [err_hbc,yCI95(2)];
+end
+
+errorbar(interval_hbc,err_hbc,':rs','LineWidth',2,'MarkerSize',12)
+
+set(gca,'FontSize',20);
+legend({'IP','HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
+view(0,90)
+xlim([1 17])
+ylim([0 60])
+xlabel('Número de nodos SDN')
 ylabel('%Ahorro')
-legend({'HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
+xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
+xticklabels({'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
+hold off
 
 savefig('figure2_TM1.fig')
 saveas(gcf,'figure2_TM1','epsc')
 
-%FIGURE 2: TM2
-
-x = SimulationResults(1:18, 3);
-y1 = zeros(18, 1);
-y2 = zeros(18, 1);
-y3 = zeros(18, 1);
-cont=1;
-for fil = 55:72
-    offNodes = SimulationResults(fil, 11);
-    y1(cont, 1) = (offNodes/17) * 100;
-    cont = cont + 1;
-end
-
-cont=1;
-for fil = 73:90
-    offNodes = SimulationResults(fil, 11);
-    y2(cont, 1) = (offNodes/17) * 100;
-    cont = cont + 1;
-end
-
-cont=1;
-for fil = 91:108
-    offNodes = SimulationResults(fil, 11);
-    y3(cont, 1) = (offNodes/17) * 100;
-    cont = cont + 1;
-end
+%FIGURE 2 : TM2
+%MAX load VS NUMBER OF SDN Nodes
+%TMC - HDF
 figure
-plot(x, y1, x, y2, x, y3)
-xlabel('#Nodos SDN')
+hold on
+grid on
+
+x = simulationResults2(2:18, 3);
+y = zeros(17, 1);
+for fil = 1:17
+    y(fil,1) = simulationResults2(1, 11);
+end
+plot(x, y, 'LineWidth',2,'Color', 'k')
+cont=1;
+num_sdn_hdf=cell(1, 17);
+for fil = 56:72
+    offNodes = simulationResultsMat2(fil, 11);
+    nodeMatrix = cell2mat(offNodes);
+    for i = 1:5
+        nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
+    end
+    num_sdn_hdf(1, cont) = {nodeMatrix};
+    cont = cont + 1;
+end
+
+interval_hdf = [];
+err_hdf = [];
+for i=1:length(num_sdn_hdf)
+    num_sdn_hdf{i}
+    array_rsrp = num_sdn_hdf{i};
+    N = length(array_rsrp);
+    yMean = mean(array_rsrp);
+    interval_hdf = [interval_hdf,yMean];
+    ySEM = std(array_rsrp)/sqrt(N);
+    CI95 = tinv([0.025 0.975], N-1);
+    yCI95 = bsxfun(@times, ySEM, CI95(:));
+    err_hdf = [err_hdf,yCI95(2)];
+end
+
+errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
+
+hold on
+
+%TMC - HCC
+num_sdn_hcc=cell(1, 17);
+cont=1;
+for fil = 74:90
+    offNodes = simulationResultsMat2(fil, 11);
+    nodeMatrix = cell2mat(offNodes);
+    for i = 1:5
+        nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
+    end
+    num_sdn_hcc(1, cont) ={nodeMatrix};
+    cont = cont + 1;
+end
+
+interval_hcc = [];
+err_hcc = [];
+for i=1:length(num_sdn_hcc)
+    array_rsrp = num_sdn_hcc{i};
+    N = length(array_rsrp);
+    yMean = mean(array_rsrp);
+    interval_hcc = [interval_hcc,yMean];
+    ySEM = std(array_rsrp)/sqrt(N);
+    CI95 = tinv([0.025 0.975], N-1);
+    yCI95 = bsxfun(@times, ySEM, CI95(:));
+    err_hcc = [err_hcc,yCI95(2)];
+end
+
+errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
+
+hold on
+
+%TMC - HBC
+num_sdn_hbc=cell(1, 17);
+cont=1;
+for fil = 92:108
+    offNodes = simulationResultsMat2(fil, 11);
+    nodeMatrix = cell2mat(offNodes);
+    for i = 1:5
+        nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
+    end
+    num_sdn_hbc(1, cont) = {nodeMatrix};
+    cont = cont + 1;
+end
+
+interval_hbc = [];
+err_hbc = [];
+for i=1:length(num_sdn_hbc)
+    array_rsrp = num_sdn_hbc{i};
+    N = length(array_rsrp);
+    yMean = mean(array_rsrp);
+    interval_hbc = [interval_hbc,yMean];
+    ySEM = std(array_rsrp)/sqrt(N);
+    CI95 = tinv([0.025 0.975], N-1);
+    yCI95 = bsxfun(@times, ySEM, CI95(:));
+    err_hbc = [err_hbc,yCI95(2)];
+end
+
+errorbar(interval_hbc,err_hbc,':rs','LineWidth',2,'MarkerSize',12)
+
+set(gca,'FontSize',20);
+legend({'IP','HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
+view(0,90)
+xlim([1 17])
+ylim([0 50])
+xlabel('Número de nodos SDN')
 ylabel('%Ahorro')
-legend({'HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
+xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
+xticklabels({'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
+hold off
 
 savefig('figure2_TM2.fig')
 saveas(gcf,'figure2_TM2','epsc')
 
-%FIGURE 2: TM3
-
-x = SimulationResults(1:18, 3);
-y1 = zeros(18, 1);
-y2 = zeros(18, 1);
-y3 = zeros(18, 1);
-cont=1;
-for fil = 109:126
-    offNodes = SimulationResults(fil, 11);
-    y1(cont, 1) = (offNodes/17) * 100;
-    cont = cont + 1;
-end
-
-cont=1;
-for fil = 127:144
-    offNodes = SimulationResults(fil, 11);
-    y2(cont, 1) = (offNodes/17) * 100;
-    cont = cont + 1;
-end
-
-cont=1;
-for fil = 145:162
-    offNodes = SimulationResults(fil, 11);
-    y3(cont, 1) = (offNodes/17) * 100;
-    cont = cont + 1;
-end
+%FIGURE 2 : TM3
+%MAX load VS NUMBER OF SDN Nodes
+%TMC - HDF
 figure
-plot(x, y1, x, y2, x, y3)
-xlabel('#Nodos SDN')
+hold on
+grid on
+
+x = simulationResults2(2:18, 3);
+y = zeros(17, 1);
+for fil = 1:17
+    y(fil,1) = simulationResults2(1, 11);
+end
+plot(x, y, 'LineWidth',2,'Color', 'k')
+cont=1;
+num_sdn_hdf=cell(1, 17);
+for fil = 110:126
+    offNodes = simulationResultsMat2(fil, 11);
+    nodeMatrix = cell2mat(offNodes);
+    for i = 1:5
+        nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
+    end
+    num_sdn_hdf(1, cont) = {nodeMatrix};
+    cont = cont + 1;
+end
+
+interval_hdf = [];
+err_hdf = [];
+for i=1:length(num_sdn_hdf)
+    num_sdn_hdf{i}
+    array_rsrp = num_sdn_hdf{i};
+    N = length(array_rsrp);
+    yMean = mean(array_rsrp);
+    interval_hdf = [interval_hdf,yMean];
+    ySEM = std(array_rsrp)/sqrt(N);
+    CI95 = tinv([0.025 0.975], N-1);
+    yCI95 = bsxfun(@times, ySEM, CI95(:));
+    err_hdf = [err_hdf,yCI95(2)];
+end
+
+errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
+
+hold on
+
+%TMC - HCC
+num_sdn_hcc=cell(1, 17);
+cont=1;
+for fil = 128:144
+    offNodes = simulationResultsMat2(fil, 11);
+    nodeMatrix = cell2mat(offNodes);
+    for i = 1:5
+        nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
+    end
+    num_sdn_hcc(1, cont) ={nodeMatrix};
+    cont = cont + 1;
+end
+
+interval_hcc = [];
+err_hcc = [];
+for i=1:length(num_sdn_hcc)
+    array_rsrp = num_sdn_hcc{i};
+    N = length(array_rsrp);
+    yMean = mean(array_rsrp);
+    interval_hcc = [interval_hcc,yMean];
+    ySEM = std(array_rsrp)/sqrt(N);
+    CI95 = tinv([0.025 0.975], N-1);
+    yCI95 = bsxfun(@times, ySEM, CI95(:));
+    err_hcc = [err_hcc,yCI95(2)];
+end
+
+errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
+
+hold on
+
+%TMC - HBC
+num_sdn_hbc=cell(1, 17);
+cont=1;
+for fil = 146:162
+    offNodes = simulationResultsMat2(fil, 11);
+    nodeMatrix = cell2mat(offNodes);
+    for i = 1:5
+        nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
+    end
+    num_sdn_hbc(1, cont) = {nodeMatrix};
+    cont = cont + 1;
+end
+
+interval_hbc = [];
+err_hbc = [];
+for i=1:length(num_sdn_hbc)
+    array_rsrp = num_sdn_hbc{i};
+    N = length(array_rsrp);
+    yMean = mean(array_rsrp);
+    interval_hbc = [interval_hbc,yMean];
+    ySEM = std(array_rsrp)/sqrt(N);
+    CI95 = tinv([0.025 0.975], N-1);
+    yCI95 = bsxfun(@times, ySEM, CI95(:));
+    err_hbc = [err_hbc,yCI95(2)];
+end
+
+errorbar(interval_hbc,err_hbc,':rs','LineWidth',2,'MarkerSize',12)
+
+set(gca,'FontSize',20);
+legend({'IP','HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
+view(0,90)
+xlim([1 17])
+ylim([0 50])
+xlabel('Número de nodos SDN')
 ylabel('%Ahorro')
-legend({'HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
+xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
+xticklabels({'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
+hold off
 
 savefig('figure2_TM3.fig')
 saveas(gcf,'figure2_TM3','epsc')
 
-%FIGURE 2: TM4
-
-x = SimulationResults(1:18, 3);
-y1 = zeros(18, 1);
-y2 = zeros(18, 1);
-y3 = zeros(18, 1);
-cont=1;
-for fil = 163:180
-    offNodes = SimulationResults(fil, 11);
-    y1(cont, 1) = (offNodes/17) * 100;
-    cont = cont + 1;
-end
-
-cont=1;
-for fil = 181:198
-    offNodes = SimulationResults(fil, 11);
-    y2(cont, 1) = (offNodes/17) * 100;
-    cont = cont + 1;
-end
-
-cont=1;
-for fil = 199:216
-    offNodes = SimulationResults(fil, 11);
-    y3(cont, 1) = (offNodes/17) * 100;
-    cont = cont + 1;
-end
+%FIGURE 2 : TM4
+%MAX load VS NUMBER OF SDN Nodes
+%TMC - HDF
 figure
-plot(x, y1, x, y2, x, y3)
-xlabel('#Nodos SDN')
+hold on
+grid on
+
+x = simulationResults2(2:18, 3);
+y = zeros(17, 1);
+for fil = 1:17
+    y(fil,1) = simulationResults2(1, 11);
+end
+plot(x, y, 'LineWidth',2,'Color', 'k')
+cont=1;
+num_sdn_hdf=cell(1, 17);
+for fil = 164:180
+    offNodes = simulationResultsMat2(fil, 11);
+    nodeMatrix = cell2mat(offNodes);
+    for i = 1:5
+        nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
+    end
+    num_sdn_hdf(1, cont) = {nodeMatrix};
+    cont = cont + 1;
+end
+
+interval_hdf = [];
+err_hdf = [];
+for i=1:length(num_sdn_hdf)
+    num_sdn_hdf{i}
+    array_rsrp = num_sdn_hdf{i};
+    N = length(array_rsrp);
+    yMean = mean(array_rsrp);
+    interval_hdf = [interval_hdf,yMean];
+    ySEM = std(array_rsrp)/sqrt(N);
+    CI95 = tinv([0.025 0.975], N-1);
+    yCI95 = bsxfun(@times, ySEM, CI95(:));
+    err_hdf = [err_hdf,yCI95(2)];
+end
+
+errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
+
+hold on
+
+%TMC - HCC
+num_sdn_hcc=cell(1, 17);
+cont=1;
+for fil = 182:198
+    offNodes = simulationResultsMat2(fil, 11);
+    nodeMatrix = cell2mat(offNodes);
+    for i = 1:5
+        nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
+    end
+    num_sdn_hcc(1, cont) ={nodeMatrix};
+    cont = cont + 1;
+end
+
+interval_hcc = [];
+err_hcc = [];
+for i=1:length(num_sdn_hcc)
+    array_rsrp = num_sdn_hcc{i};
+    N = length(array_rsrp);
+    yMean = mean(array_rsrp);
+    interval_hcc = [interval_hcc,yMean];
+    ySEM = std(array_rsrp)/sqrt(N);
+    CI95 = tinv([0.025 0.975], N-1);
+    yCI95 = bsxfun(@times, ySEM, CI95(:));
+    err_hcc = [err_hcc,yCI95(2)];
+end
+
+errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
+
+hold on
+
+%TMC - HBC
+num_sdn_hbc=cell(1, 17);
+cont=1;
+for fil = 200:216
+    offNodes = simulationResultsMat2(fil, 11);
+    nodeMatrix = cell2mat(offNodes);
+    for i = 1:5
+        nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
+    end
+    num_sdn_hbc(1, cont) = {nodeMatrix};
+    cont = cont + 1;
+end
+
+interval_hbc = [];
+err_hbc = [];
+for i=1:length(num_sdn_hbc)
+    array_rsrp = num_sdn_hbc{i};
+    N = length(array_rsrp);
+    yMean = mean(array_rsrp);
+    interval_hbc = [interval_hbc,yMean];
+    ySEM = std(array_rsrp)/sqrt(N);
+    CI95 = tinv([0.025 0.975], N-1);
+    yCI95 = bsxfun(@times, ySEM, CI95(:));
+    err_hbc = [err_hbc,yCI95(2)];
+end
+
+errorbar(interval_hbc,err_hbc,':rs','LineWidth',2,'MarkerSize',12)
+
+set(gca,'FontSize',20);
+legend({'IP','HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
+view(0,90)
+xlim([1 17])
+ylim([0 50])
+xlabel('Número de nodos SDN')
 ylabel('%Ahorro')
-legend({'HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
+xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
+xticklabels({'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
+hold off
 
 savefig('figure2_TM4.fig')
 saveas(gcf,'figure2_TM4','epsc')
 
-
-%FIGURE 2: TM5
-
-x = SimulationResults(1:18, 3);
-y1 = zeros(18, 1);
-y2 = zeros(18, 1);
-y3 = zeros(18, 1);
-cont=1;
-for fil = 217:234
-    offNodes = SimulationResults(fil, 11);
-    y1(cont, 1) = (offNodes/17) * 100;
-    cont = cont + 1;
-end
-
-cont=1;
-for fil = 235:252
-    offNodes = SimulationResults(fil, 11);
-    y2(cont, 1) = (offNodes/17) * 100;
-    cont = cont + 1;
-end
-
-cont=1;
-for fil = 253:270
-    offNodes = SimulationResults(fil, 11);
-    y3(cont, 1) = (offNodes/17) * 100;
-    cont = cont + 1;
-end
+%FIGURE 2 : TM5
+%MAX load VS NUMBER OF SDN Nodes
+%TMC - HDF
 figure
-plot(x, y1, x, y2, x, y3)
-xlabel('#Nodos SDN')
+hold on
+grid on
+
+x = simulationResults2(2:18, 3);
+y = zeros(17, 1);
+for fil = 1:17
+    y(fil,1) = simulationResults2(1, 11);
+end
+plot(x, y, 'LineWidth',2,'Color', 'k')
+cont=1;
+num_sdn_hdf=cell(1, 17);
+for fil = 218:234
+    offNodes = simulationResultsMat2(fil, 11);
+    nodeMatrix = cell2mat(offNodes);
+    for i = 1:5
+        nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
+    end
+    num_sdn_hdf(1, cont) = {nodeMatrix};
+    cont = cont + 1;
+end
+
+interval_hdf = [];
+err_hdf = [];
+for i=1:length(num_sdn_hdf)
+    num_sdn_hdf{i}
+    array_rsrp = num_sdn_hdf{i};
+    N = length(array_rsrp);
+    yMean = mean(array_rsrp);
+    interval_hdf = [interval_hdf,yMean];
+    ySEM = std(array_rsrp)/sqrt(N);
+    CI95 = tinv([0.025 0.975], N-1);
+    yCI95 = bsxfun(@times, ySEM, CI95(:));
+    err_hdf = [err_hdf,yCI95(2)];
+end
+
+errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
+
+hold on
+
+%TMC - HCC
+num_sdn_hcc=cell(1, 17);
+cont=1;
+for fil = 236:252
+    offNodes = simulationResultsMat2(fil, 11);
+    nodeMatrix = cell2mat(offNodes);
+    for i = 1:5
+        nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
+    end
+    num_sdn_hcc(1, cont) ={nodeMatrix};
+    cont = cont + 1;
+end
+
+interval_hcc = [];
+err_hcc = [];
+for i=1:length(num_sdn_hcc)
+    array_rsrp = num_sdn_hcc{i};
+    N = length(array_rsrp);
+    yMean = mean(array_rsrp);
+    interval_hcc = [interval_hcc,yMean];
+    ySEM = std(array_rsrp)/sqrt(N);
+    CI95 = tinv([0.025 0.975], N-1);
+    yCI95 = bsxfun(@times, ySEM, CI95(:));
+    err_hcc = [err_hcc,yCI95(2)];
+end
+
+errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
+
+hold on
+
+%TMC - HBC
+num_sdn_hbc=cell(1, 17);
+cont=1;
+for fil = 254:270
+    offNodes = simulationResultsMat2(fil, 11);
+    nodeMatrix = cell2mat(offNodes);
+    for i = 1:5
+        nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
+    end
+    num_sdn_hbc(1, cont) = {nodeMatrix};
+    cont = cont + 1;
+end
+
+interval_hbc = [];
+err_hbc = [];
+for i=1:length(num_sdn_hbc)
+    array_rsrp = num_sdn_hbc{i};
+    N = length(array_rsrp);
+    yMean = mean(array_rsrp);
+    interval_hbc = [interval_hbc,yMean];
+    ySEM = std(array_rsrp)/sqrt(N);
+    CI95 = tinv([0.025 0.975], N-1);
+    yCI95 = bsxfun(@times, ySEM, CI95(:));
+    err_hbc = [err_hbc,yCI95(2)];
+end
+
+errorbar(interval_hbc,err_hbc,':rs','LineWidth',2,'MarkerSize',12)
+
+set(gca,'FontSize',20);
+legend({'IP','HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
+view(0,90)
+xlim([1 17])
+ylim([0 30])
+xlabel('Número de nodos SDN')
 ylabel('%Ahorro')
-legend({'HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
+xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
+xticklabels({'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
+hold off
 
 savefig('figure2_TM5.fig')
 saveas(gcf,'figure2_TM5','epsc')
+
 
 
 
