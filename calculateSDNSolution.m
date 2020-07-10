@@ -42,7 +42,6 @@ while done == false
                             if node == destiny
                                 %disp("Ha llegado al destino");
                                 if validSolution == true
-                                    mapCapacity
                                     done = true;
                                     valid = true;
                                 end
@@ -53,7 +52,6 @@ while done == false
                                 %disp("El nodo sdn era el destino");
                                 solMatrixAux(mapCapacity(m),mapCapacity(m+1)) =  currentTraffic;
                                 if validSolution == true
-                                    mapCapacity
                                     done = true;
                                     valid = true;
                                 end
@@ -82,7 +80,7 @@ while done == false
 end
 
 if valid == false
-    disp("La solucion es invalida :(((");
+   % disp("La solucion es invalida :(((");
 end
 
 
