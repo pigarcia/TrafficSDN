@@ -11,7 +11,7 @@ end
 
 bar3(Z)
 xlabel('# Nodos SDN')
-ylabel('% Carga de la matrix')
+ylabel('% Carga de la matriz')
 zlabel('%Carga MAX de los enlaces')
 
 xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18])

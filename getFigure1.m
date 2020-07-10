@@ -8,15 +8,15 @@ figure
 hold on
 grid on
 
-x = SimulationResults(2:18, 3);
+x = simulationResults2(2:18, 3);
 y = zeros(17, 1);
 for fil = 1:17
-    y(fil,1) = SimulationResults(1, 4);
+    y(fil,1) = simulationResults2(1, 4);
 end
 
 plot(x, y, 'LineWidth',2,'Color', 'k')
 
-num_sdn_hdf=simulationResultsMat(2:18, 4);
+num_sdn_hdf=simulationResultsMat2(2:18, 4);
 
 interval_hdf = [];
 err_hdf = [];
@@ -37,7 +37,7 @@ errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HCC
-num_sdn_hcc=simulationResultsMat(20:36, 4);
+num_sdn_hcc=simulationResultsMat2(20:36, 4);
 
 interval_hcc = [];
 err_hcc = [];
@@ -57,7 +57,7 @@ errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HBC
-num_sdn_hbc=simulationResultsMat(36:54, 4);
+num_sdn_hbc=simulationResultsMat2(36:54, 4);
 
 interval_hbc = [];
 err_hbc = [];
@@ -97,15 +97,15 @@ figure
 hold on
 grid on
 
-x = SimulationResults(56:72, 3);
+x = simulationResults2(56:72, 3);
 y = zeros(17, 1);
 for fil = 1:17
-    y(fil,1) = SimulationResults(55, 4);
+    y(fil,1) = simulationResults2(55, 4);
 end
 
 plot(x, y, 'LineWidth',2,'Color', 'k')
 
-num_sdn_hdf=simulationResultsMat(56:72, 4);
+num_sdn_hdf=simulationResultsMat2(56:72, 4);
 
 interval_hdf = [];
 err_hdf = [];
@@ -126,7 +126,7 @@ errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HCC
-num_sdn_hcc=simulationResultsMat(74:90, 4);
+num_sdn_hcc=simulationResultsMat2(74:90, 4);
 
 interval_hcc = [];
 err_hcc = [];
@@ -146,7 +146,7 @@ errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HBC
-num_sdn_hbc=simulationResultsMat(92:108, 4);
+num_sdn_hbc=simulationResultsMat2(92:108, 4);
 
 interval_hbc = [];
 err_hbc = [];
@@ -186,15 +186,15 @@ figure
 hold on
 grid on
 
-x = SimulationResults(110:126, 3);
+x = simulationResults2(110:126, 3);
 y = zeros(17, 1);
 for fil = 1:17
-    y(fil,1) = SimulationResults(109, 4);
+    y(fil,1) = simulationResults2(109, 4);
 end
 
 plot(x, y, 'LineWidth',2,'Color', 'k')
 
-num_sdn_hdf=simulationResultsMat(110:126, 4);
+num_sdn_hdf=simulationResultsMat2(110:126, 4);
 
 interval_hdf = [];
 err_hdf = [];
@@ -215,7 +215,7 @@ errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HCC
-num_sdn_hcc=simulationResultsMat(128:144, 4);
+num_sdn_hcc=simulationResultsMat2(128:144, 4);
 
 interval_hcc = [];
 err_hcc = [];
@@ -235,7 +235,7 @@ errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HBC
-num_sdn_hbc=simulationResultsMat(146:162, 4);
+num_sdn_hbc=simulationResultsMat2(146:162, 4);
 
 interval_hbc = [];
 err_hbc = [];
@@ -276,15 +276,15 @@ figure
 hold on
 grid on
 
-x = SimulationResults(164:180, 3);
+x = simulationResults2(164:180, 3);
 y = zeros(17, 1);
 for fil = 1:17
-    y(fil,1) = SimulationResults(163, 4);
+    y(fil,1) = simulationResults2(163, 4);
 end
 
 plot(x, y, 'LineWidth',2,'Color', 'k')
 
-num_sdn_hdf=simulationResultsMat(164:180, 4);
+num_sdn_hdf=simulationResultsMat2(164:180, 4);
 
 interval_hdf = [];
 err_hdf = [];
@@ -305,7 +305,7 @@ errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HCC
-num_sdn_hcc=simulationResultsMat(182:198, 4);
+num_sdn_hcc=simulationResultsMat2(182:198, 4);
 
 interval_hcc = [];
 err_hcc = [];
@@ -325,7 +325,7 @@ errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HBC
-num_sdn_hbc=simulationResultsMat(200:216, 4);
+num_sdn_hbc=simulationResultsMat2(200:216, 4);
 
 interval_hbc = [];
 err_hbc = [];
@@ -366,15 +366,15 @@ figure
 hold on
 grid on
 
-x = SimulationResults(218:234, 3);
+x = simulationResults2(218:234, 3);
 y = zeros(17, 1);
 for fil = 1:17
-    y(fil,1) = SimulationResults(217, 4);
+    y(fil,1) = simulationResults2(217, 4);
 end
 
 plot(x, y, 'LineWidth',2,'Color', 'k')
 
-num_sdn_hdf=simulationResultsMat(218:234, 4);
+num_sdn_hdf=simulationResultsMat2(218:234, 4);
 
 interval_hdf = [];
 err_hdf = [];
@@ -395,7 +395,7 @@ errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HCC
-num_sdn_hcc=simulationResultsMat(236:252, 4);
+num_sdn_hcc=simulationResultsMat2(236:252, 4);
 
 interval_hcc = [];
 err_hcc = [];
@@ -415,7 +415,7 @@ errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HBC
-num_sdn_hbc=simulationResultsMat(254:270, 4);
+num_sdn_hbc=simulationResultsMat2(254:270, 4);
 
 interval_hbc = [];
 err_hbc = [];

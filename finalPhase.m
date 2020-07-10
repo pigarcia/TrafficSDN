@@ -9,7 +9,6 @@ sortedPercentageList = sortrows(percentageList,3);
 % disp(percentageList)
 % disp("=========== sorted percentage list ==========")
 % disp(sortedPercentageList)
-
 index = 1;
 if numSDN > 0
     for fil = 1:nodes
@@ -20,9 +19,9 @@ if numSDN > 0
                     capMatrix(sortedPercentageList(index, 1), sortedPercentageList(index, 2)) = 0;
                     mapCost(sortedPercentageList(index, 1), sortedPercentageList(index, 2))=inf;
                     mapCost2(sortedPercentageList(index, 1), sortedPercentageList(index, 2))=inf;
-                    [SPTMatrix, errors] = priorPhase(nodes, mapCost, trafficMatrix);
+                    [SPTMatrix, errors] = priorPhase(nodes, mapCost);
                     if errors == 0
-                        [finalMatrix, errors] = solutionShortestPath(capMatrix,nodes, trafficMatrix, sdnMatrix, numSDN, netLink, mapCost, mapCost2, SPTMatrix, useSPT);
+                        [finalMatrix, errors] = solutionShortestPath(capMatrix, nodes, trafficMatrix, sdnMatrix, numSDN, netLink, mapCost, mapCost2, SPTMatrix, useSPT);
                     end
                     if errors ~= 0
                         capMatrix(sortedPercentageList(index, 1), sortedPercentageList(index, 2)) = capacity;

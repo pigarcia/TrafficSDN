@@ -10,8 +10,8 @@ S = load(topologyPath,dataVars{:});
 nodes = S.N;
 sdnCount = S.N;
 
-simulationResults2Geant = zeros((matrixCount*matrixCount*(sdnCount+1)), 12);
-simulationResultsMat2Geant = cell((matrixCount*matrixCount*(sdnCount+1)), 12);
+simulationResultsGeant = zeros((matrixCount*matrixCount*(sdnCount+1)), 12);
+simulationResultsMatGeant= cell((matrixCount*matrixCount*(sdnCount+1)), 12);
 
 disp("======== Start simulation =========");
 
@@ -21,23 +21,18 @@ for matrix = 1:matrixCount
         case 1
             disp("--------- Traffic Matrix 1 ---------");
             trafficMatrix = S.T1;
-            trafficMatrixName = "S.T1";
         case 2
             disp("--------- Traffic Matrix 2 ---------");
             trafficMatrix =  S.T2;
-            trafficMatrixName = "S.T2";
         case 3
             disp("--------- Traffic Matrix 3 ---------");
             trafficMatrix =  S.T3;
-            trafficMatrixName = "S.T3";
         case 4
             disp("--------- Traffic Matrix 4 ---------");
             trafficMatrix =  S.T4;
-            trafficMatrixName = "S.T4";
         case 5
             disp("--------- Traffic Matrix 5 ---------");
             trafficMatrix =  S.T5;
-            trafficMatrixName = "S.T5";
     end
     for  heuristic = 0:heuristicCount-1
         switch(heuristic)
@@ -63,9 +58,9 @@ for matrix = 1:matrixCount
                 auxMatrix(it, 2) = heuristic;
                 auxMatrix(it, 3) = sdn;
                 
-                simulationResults2Geant(fil, 1) = matrix;
-                simulationResults2Geant(fil, 2) = heuristic;
-                simulationResults2Geant(fil, 3) = sdn;
+                simulationResultsGeant(fil, 1) = matrix;
+                simulationResultsGeant(fil, 2) = heuristic;
+                simulationResultsGeant(fil, 3) = sdn;
                 
                 [percentageList, finalPercentageList, offNodes, errors, processingTime] = mogaSDN(topologyPath,heuristicName, sdn, 1, trafficMatrix);
                 
@@ -80,7 +75,7 @@ for matrix = 1:matrixCount
                     end
                 end
                 auxMatrix(it, 4)=max;
-                simulationResults2Geant(fil, 4) = max;
+                simulationResultsGeant(fil, 4) = max;
                 
                 %GetAvg
                 cont = 0;
@@ -89,7 +84,7 @@ for matrix = 1:matrixCount
                 end
                 avg = cont/(nodes*nodes);
                 auxMatrix(it, 5)=avg;
-                simulationResults2Geant(fil, 5) = avg;
+                simulationResultsGeant(fil, 5) = avg;
                 
                 %GetMin
                 min = 100;
@@ -102,10 +97,10 @@ for matrix = 1:matrixCount
                     end
                 end
                 auxMatrix(it, 6)=min;
-                simulationResults2Geant(fil, 6) = min;
+                simulationResultsGeant(fil, 6) = min;
                 
                 auxMatrix(it, 7)= errors;
-                simulationResults2Geant(fil, 7) = errors;
+                simulationResultsGeant(fil, 7) = errors;
                 
                 %Get final phase results
                 
@@ -118,7 +113,7 @@ for matrix = 1:matrixCount
                     end
                 end
                 auxMatrix(it, 8)=max;
-                simulationResults2Geant(fil, 8) = max;
+                simulationResultsGeant(fil, 8) = max;
                 
                 %GetAvg
                 cont = 0;
@@ -127,7 +122,7 @@ for matrix = 1:matrixCount
                 end
                 avg = cont/(nodes*nodes);
                 auxMatrix(it, 9)=avg;
-                simulationResults2Geant(fil, 9) = avg;
+                simulationResultsGeant(fil, 9) = avg;
                 
                 %GetMin
                 min = 100;
@@ -140,13 +135,13 @@ for matrix = 1:matrixCount
                     end
                 end
                 auxMatrix(it, 10)=min;
-                simulationResults2Geant(fil, 10) = min;
+                simulationResultsGeant(fil, 10) = min;
                 
                 auxMatrix(it, 11)= offNodes;
-                simulationResults2Geant(fil, 11) = offNodes;
+                simulationResultsGeant(fil, 11) = offNodes;
                 
                 auxMatrix(it, 12)= processingTime;
-                simulationResults2Geant(fil, 12) = processingTime;
+                simulationResultsGeant(fil, 12) = processingTime;
             end
             
             for count = 1:12
@@ -155,14 +150,14 @@ for matrix = 1:matrixCount
                     valMatrix(1, it) = auxMatrix(it, count);
                 end
                 valCell = mat2cell(valMatrix, 1);
-                simulationResultsMat2Geant(fil, count) = valCell;
+                simulationResultsMatGeant(fil, count) = valCell;
             end
         end
     end
 end
 
-csvwrite("simulationResults2Geant.csv",simulationResults2Geant);
-save("simulationResults2Geant.mat", 'simulationResultsMat2Geant','-mat');
+csvwrite("simulationResultsGeant.csv",simulationResultsGeant);
+save("simulationResultsGeant.mat", 'simulationResultsMatGeant','-mat');
 
 disp("======== End of simulation =========");
 

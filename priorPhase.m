@@ -6,11 +6,13 @@ error = 0;
 SPTMatrix = cell(nodes);
 for fil = 1:nodes
     for col = 1:nodes
-        sol =  kShortestPath(mapCost, fil, col, 1);
-        if ~isempty(sol)
-            SPTMatrix(fil, col) = sol(1);
-        else
-            error = 1;
+        if fil ~= col
+            sol =  kShortestPath(mapCost, fil, col, 1);
+            if ~isempty(sol)
+                SPTMatrix(fil, col) = sol(1);
+            else
+                error = 1;
+            end
         end
     end
 end

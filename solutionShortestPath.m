@@ -11,16 +11,11 @@ function [ solMatrix, errors ] = solutionShortestPath(capMatrix ,nodes, trafficM
 % mapCost: map cost matrix.
 % mapCost2: normalized map cost matrix.
 
-
-
 solMatrix= zeros(nodes);
 errors = 0;
 for fil = 1:nodes
     for col = 1:nodes
         if(trafficMatrix(fil, col) ~= 0)
-            
-            
-            
             %Obtener los caminos míminos
             nShortestPaths=1;
             if(useSPT == 1)
@@ -101,29 +96,37 @@ for fil = 1:nodes
             
             %Guardar solución en la matriz
             mapCapacity = cell2mat(sol(shortestPath));
+            exit = 0;
             for j=1:length(mapCapacity)-1
-                totalTraffic =  solMatrix(mapCapacity(j),mapCapacity(j+1)) + trafficMatrix(fil, col);
-                if(totalTraffic < capMatrix(mapCapacity(j),mapCapacity(j+1)))
-                    if(false == isSDN(mapCapacity(j), numSDN, sdnMatrix))
-                        solMatrix(mapCapacity(j),mapCapacity(j+1)) =  totalTraffic;
-                        if(j== length(mapCapacity)-1)
-                            %disp("encontrada solucion");
+                if exit == 0
+                    totalTraffic =  solMatrix(mapCapacity(j),mapCapacity(j+1)) + trafficMatrix(fil, col);
+                    if(totalTraffic < capMatrix(mapCapacity(j),mapCapacity(j+1)))
+                        if(false == isSDN(mapCapacity(j), numSDN, sdnMatrix))
+                            solMatrix(mapCapacity(j),mapCapacity(j+1)) =  totalTraffic;
+                            if(j== length(mapCapacity)-1)
+                                %disp("encontrada solucion");
+                            end
+                        else
+                            sdn = mapCapacity(j);
+                            prevIndex = j-1;
+                            if prevIndex == 0
+                                prev = mapCapacity(j);
+                            else
+                                prev = mapCapacity(prevIndex);
+                            end
+                            totalTraffic = trafficMatrix(fil, col);
+                            [solMatrix, errors] = solutionShortestPathSDN(capMatrix, solMatrix, totalTraffic, sdn, prev, mapCost2, col, netLink, SPTMatrix, useSPT, numSDN, sdnMatrix, errors);
+                            exit = 1;
                         end
                     else
-                        %disp("El nodo es sdn");
-                        sdn = mapCapacity(j);
-                        totalTraffic = trafficMatrix(fil, col);
-                        [solMatrix, errors] = solutionShortestPathSDN(capMatrix, solMatrix, totalTraffic, sdn, mapCost2, col, netLink, SPTMatrix, useSPT, errors);
+                        errors = errors + 1;
+                        %                     disp("---- Capacidad superarda superada ----");
+                        %                     disp(cell2mat(sol(shortestPath)));
+                        %                     totalTraffic
+                        %                     disp(capMatrix(mapCapacity(j),mapCapacity(j+1)));
                     end
-                else
-                    errors = errors + 1;
-%                     disp("---- Capacidad superarda superada ----");
-%                     disp(cell2mat(sol(shortestPath)));
-%                     totalTraffic
-%                     disp(capMatrix(mapCapacity(j),mapCapacity(j+1))); 
                 end
             end
-            
         
         end
     end

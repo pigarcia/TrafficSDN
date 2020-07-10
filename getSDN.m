@@ -70,8 +70,14 @@ switch (heuristic)
                     end
                 end
             end
+            links = 0;
+            for j = 1:length(netLink)
+                if(netLink(j,2) == sdn)
+                    links = links + 1;
+                end
+            end
             sdnMatrix(1, x) = sdn;
-            sdnMatrix(2, x) = min;
+            sdnMatrix(2, x) = links;
         end
         
     case "HBC"
@@ -114,8 +120,14 @@ switch (heuristic)
                     end
                 end
             end
+            links = 0;
+            for j = 1:length(netLink)
+                if(netLink(j,2) == sdn)
+                    links = links + 1;
+                end
+            end
             sdnMatrix(1, x) = sdn;
-            sdnMatrix(2, x) = max;
+            sdnMatrix(2, x) = links;
         end
 end
 %

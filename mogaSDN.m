@@ -83,7 +83,7 @@ for i = 1:nodes
 end
 %Initial array of Shortest Path Trees
 if(useSPT == 1)
-    [sptMatrix, error]= priorPhase(nodes, mapCost, trafficMatrix);
+    [sptMatrix, error]= priorPhase(nodes, mapCost);
     if error == 1
         useSPT = 0;
     end
