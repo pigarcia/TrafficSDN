@@ -1,22 +1,23 @@
-load simulationResults2.csv
+load SimulationResults.csv
+load SimulationResults.mat
 
-%FIGURE 2 : TM1
-%MAX load VS NUMBER OF SDN Nodes
+%FIGURE TYPE 2: TM1
+%POWER SAVING VS NUMBER OF SDN Nodes
 %TMC - HDF
 figure
 hold on
 grid on
 
-x = simulationResults2(2:18, 3);
+x = SimulationResults(2:18, 3);
 y = zeros(17, 1);
 for fil = 1:17
-    y(fil,1) = simulationResults2(1, 11);
+    y(fil,1) = SimulationResults(1, 11);
 end
 plot(x, y, 'LineWidth',2,'Color', 'k')
 cont=1;
 num_sdn_hdf=cell(1, 17);
 for fil = 2:18
-    offNodes = simulationResultsMat2(fil, 11);
+    offNodes = SimulationResultsMat(fil, 11);
     nodeMatrix = cell2mat(offNodes);
     for i = 1:5
         nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
@@ -47,7 +48,7 @@ hold on
 num_sdn_hcc=cell(1, 17);
 cont=1;
 for fil = 20:36
-    offNodes = simulationResultsMat2(fil, 11);
+    offNodes = SimulationResultsMat(fil, 11);
     nodeMatrix = cell2mat(offNodes);
     for i = 1:5
         nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
@@ -77,7 +78,7 @@ hold on
 num_sdn_hbc=cell(1, 17);
 cont=1;
 for fil = 38:54
-    offNodes = simulationResultsMat2(fil, 11);
+    offNodes = SimulationResultsMat(fil, 11);
     nodeMatrix = cell2mat(offNodes);
     for i = 1:5
         nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
@@ -115,23 +116,23 @@ hold off
 savefig('figure2_TM1.fig')
 saveas(gcf,'figure2_TM1','epsc')
 
-%FIGURE 2 : TM2
-%MAX load VS NUMBER OF SDN Nodes
+%FIGURE TYPE 2: TM2
+%POWER SAVING VS NUMBER OF SDN Nodes
 %TMC - HDF
 figure
 hold on
 grid on
 
-x = simulationResults2(2:18, 3);
+x = SimulationResults(2:18, 3);
 y = zeros(17, 1);
 for fil = 1:17
-    y(fil,1) = simulationResults2(1, 11);
+    y(fil,1) = SimulationResults(1, 11);
 end
 plot(x, y, 'LineWidth',2,'Color', 'k')
 cont=1;
 num_sdn_hdf=cell(1, 17);
 for fil = 56:72
-    offNodes = simulationResultsMat2(fil, 11);
+    offNodes = SimulationResultsMat(fil, 11);
     nodeMatrix = cell2mat(offNodes);
     for i = 1:5
         nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
@@ -162,7 +163,7 @@ hold on
 num_sdn_hcc=cell(1, 17);
 cont=1;
 for fil = 74:90
-    offNodes = simulationResultsMat2(fil, 11);
+    offNodes = SimulationResultsMat(fil, 11);
     nodeMatrix = cell2mat(offNodes);
     for i = 1:5
         nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
@@ -192,7 +193,7 @@ hold on
 num_sdn_hbc=cell(1, 17);
 cont=1;
 for fil = 92:108
-    offNodes = simulationResultsMat2(fil, 11);
+    offNodes = SimulationResultsMat(fil, 11);
     nodeMatrix = cell2mat(offNodes);
     for i = 1:5
         nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
@@ -230,23 +231,23 @@ hold off
 savefig('figure2_TM2.fig')
 saveas(gcf,'figure2_TM2','epsc')
 
-%FIGURE 2 : TM3
-%MAX load VS NUMBER OF SDN Nodes
+%FIGURE TYPE 2: TM3
+%POWER SAVING VS NUMBER OF SDN Nodes
 %TMC - HDF
 figure
 hold on
 grid on
 
-x = simulationResults2(2:18, 3);
+x = SimulationResults(2:18, 3);
 y = zeros(17, 1);
 for fil = 1:17
-    y(fil,1) = simulationResults2(1, 11);
+    y(fil,1) = SimulationResults(1, 11);
 end
 plot(x, y, 'LineWidth',2,'Color', 'k')
 cont=1;
 num_sdn_hdf=cell(1, 17);
 for fil = 110:126
-    offNodes = simulationResultsMat2(fil, 11);
+    offNodes = SimulationResultsMat(fil, 11);
     nodeMatrix = cell2mat(offNodes);
     for i = 1:5
         nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
@@ -277,7 +278,7 @@ hold on
 num_sdn_hcc=cell(1, 17);
 cont=1;
 for fil = 128:144
-    offNodes = simulationResultsMat2(fil, 11);
+    offNodes = SimulationResultsMat(fil, 11);
     nodeMatrix = cell2mat(offNodes);
     for i = 1:5
         nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
@@ -307,7 +308,7 @@ hold on
 num_sdn_hbc=cell(1, 17);
 cont=1;
 for fil = 146:162
-    offNodes = simulationResultsMat2(fil, 11);
+    offNodes = SimulationResultsMat(fil, 11);
     nodeMatrix = cell2mat(offNodes);
     for i = 1:5
         nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
@@ -345,23 +346,23 @@ hold off
 savefig('figure2_TM3.fig')
 saveas(gcf,'figure2_TM3','epsc')
 
-%FIGURE 2 : TM4
-%MAX load VS NUMBER OF SDN Nodes
+%FIGURE TYPE 2: TM4
+%POWER SAVING VS NUMBER OF SDN Nodes
 %TMC - HDF
 figure
 hold on
 grid on
 
-x = simulationResults2(2:18, 3);
+x = SimulationResults(2:18, 3);
 y = zeros(17, 1);
 for fil = 1:17
-    y(fil,1) = simulationResults2(1, 11);
+    y(fil,1) = SimulationResults(1, 11);
 end
 plot(x, y, 'LineWidth',2,'Color', 'k')
 cont=1;
 num_sdn_hdf=cell(1, 17);
 for fil = 164:180
-    offNodes = simulationResultsMat2(fil, 11);
+    offNodes = SimulationResultsMat(fil, 11);
     nodeMatrix = cell2mat(offNodes);
     for i = 1:5
         nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
@@ -392,7 +393,7 @@ hold on
 num_sdn_hcc=cell(1, 17);
 cont=1;
 for fil = 182:198
-    offNodes = simulationResultsMat2(fil, 11);
+    offNodes = SimulationResultsMat(fil, 11);
     nodeMatrix = cell2mat(offNodes);
     for i = 1:5
         nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
@@ -422,7 +423,7 @@ hold on
 num_sdn_hbc=cell(1, 17);
 cont=1;
 for fil = 200:216
-    offNodes = simulationResultsMat2(fil, 11);
+    offNodes = SimulationResultsMat(fil, 11);
     nodeMatrix = cell2mat(offNodes);
     for i = 1:5
         nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
@@ -460,23 +461,23 @@ hold off
 savefig('figure2_TM4.fig')
 saveas(gcf,'figure2_TM4','epsc')
 
-%FIGURE 2 : TM5
-%MAX load VS NUMBER OF SDN Nodes
+%FIGURE TYPE 2: TM5
+%POWER SAVING VS NUMBER OF SDN Nodes
 %TMC - HDF
 figure
 hold on
 grid on
 
-x = simulationResults2(2:18, 3);
+x = SimulationResults(2:18, 3);
 y = zeros(17, 1);
 for fil = 1:17
-    y(fil,1) = simulationResults2(1, 11);
+    y(fil,1) = SimulationResults(1, 11);
 end
 plot(x, y, 'LineWidth',2,'Color', 'k')
 cont=1;
 num_sdn_hdf=cell(1, 17);
 for fil = 218:234
-    offNodes = simulationResultsMat2(fil, 11);
+    offNodes = SimulationResultsMat(fil, 11);
     nodeMatrix = cell2mat(offNodes);
     for i = 1:5
         nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
@@ -507,7 +508,7 @@ hold on
 num_sdn_hcc=cell(1, 17);
 cont=1;
 for fil = 236:252
-    offNodes = simulationResultsMat2(fil, 11);
+    offNodes = SimulationResultsMat(fil, 11);
     nodeMatrix = cell2mat(offNodes);
     for i = 1:5
         nodeMatrix(i) = (nodeMatrix(i)/26) * 100;
@@ -537,7 +538,7 @@ hold on
 num_sdn_hbc=cell(1, 17);
 cont=1;
 for fil = 254:270
-    offNodes = simulationResultsMat2(fil, 11);
+    offNodes = SimulationResultsMat(fil, 11);
     nodeMatrix = cell2mat(offNodes);
     for i = 1:5
         nodeMatrix(i) = (nodeMatrix(i)/26) * 100;

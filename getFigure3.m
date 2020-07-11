@@ -1,6 +1,6 @@
 load SimulationResults.csv
 
-%FIGURE 3
+%FIGURE TYPE 3
 Z = zeros(5,17);
 for i = 1:270
     x = SimulationResults(i, 1);

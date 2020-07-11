@@ -1,4 +1,15 @@
-function [percentageList, finalPercentageList, offNodes, errors, processingTime] = mogaSDN (topologyPath, heuristic, numSDN, useSPT, trafficMatrix)
+function [percentageList, finalPercentageList, offLinks, errors, processingTime] = trafficSDN (topologyPath, heuristic, numSDN, useSPT, trafficMatrix)
+%TRAFFICSDN Starts algorith based on parameters.
+% topologyPath: Topology's filename.
+% heuristic: Sets the SDN selection method.
+% numSDN: Number of desired SDN nodes.
+% useSPT: Indicates if users wants to use the Shortest Path Tree phase.
+% trafficMatrix: Indicates the traffic that needs to be routed in a mtrix form.
+% [percentageList]: List of links final traffic (%).
+% [percentageList]: List of links final traffic after power saving phase (%).
+% [offLinks]: Number of links switch off.
+% [errors]: Number of routing errors.
+% [processingTime]: Algorithm processing time.
 
 global nvars; %Number of variables considered in the problem
 global mapCapacity;
@@ -113,13 +124,15 @@ for x = 1:nodes
 end
 
 finalMatrix = zeros(nodes);
-offNodes = 0;
+offLinks = 0;
 
+%Call power saving pahse
 if errors == 0
-    [finalMatrix, offNodes] = finalPhase(percentageList, capMatrix, nodes, trafficMatrix, sdnMatrix, numSDN, S.netLink, mapCost, mapCost2, solMatrix, useSPT);
+    [finalMatrix, offLinks] = finalPhase(percentageList, capMatrix, nodes, trafficMatrix, sdnMatrix, numSDN, S.netLink, mapCost, mapCost2, solMatrix, useSPT);
     
 end
 
+%Order results
 finalPercentageMatrix = getPercentage(finalMatrix, capMatrix, nodes);
 finalPercentageList = ones(nodes*nodes, 1);
 cont = 0;
@@ -140,16 +153,5 @@ for x = 1:nodes
     end
 end
 
-
-%Write solution matrices
-csvwrite("salidaPorcentual.csv",percentageMatrix);
-csvwrite("listaPorcentual.csv",percentageList);
-
-csvwrite("salida.csv",solMatrix);
-
-csvwrite("salidaPorcentualFinal.csv",finalPercentageMatrix);
-csvwrite("listaPorcentualFinal.csv",finalPercentageList);
-
-csvwrite("salidaFinal.csv",finalMatrix);
 end
 

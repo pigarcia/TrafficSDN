@@ -1,13 +1,17 @@
 function [ sdnMatrix] = getSDN( nodes, netLink, numSDN, heuristic, pathMatrix)
-%SETSDN Summary of this function goes here
-%   Detailed explanation goes here
-%Finding the node with the most connections.
+%GETSDN Get SDN nodes based on selected heuristic.
+%nodes: Number of total nodes
+%netLink: Total links information.
+%numSDN: number of desired SDN nodes.
+%huristic: Name of selected heuristic.
+%pathMatrix: Matrix of links capacities.
+%[sdnMatrix]: Matrix of SDN nodes with their number of links.
+
 sdnMatrix= zeros(2,numSDN);
 switch (heuristic)
     case "HDF"
-        %         disp("You chose HDF");
+        %Count number of links and order them
         for x = 1:numSDN
-            % disp("siguiente SDN");
             max = 0;
             for i = 1:nodes
                 cont = 0;
@@ -17,9 +21,7 @@ switch (heuristic)
                     end
                 end
                 if(cont >= max)
-                    % disp("el contador es mayor que el max");
                     if (0 == isSDN(i, numSDN, sdnMatrix))
-                        % disp("es valido");
                         if cont == max
                             num = rand;
                             if(num > 0.5)
@@ -38,7 +40,7 @@ switch (heuristic)
         end
         
     case "HCC"
-        %         disp("You chose Higher Closeness Centrality");
+        %Get number of shortests paths
         shortestPathsEdges = zeros(1,nodes);
         for fil = 1:nodes
             for col = 1:nodes
@@ -50,7 +52,7 @@ switch (heuristic)
             end
         end
         
-        %Obtener HCC ordenados
+        %Order HCC nodes
         for x = 1:numSDN
             min = 1000;
             for i = 1:nodes
@@ -81,14 +83,13 @@ switch (heuristic)
         end
         
     case "HBC"
-        % disp("You chose Higher Betweenness Centrality ");
+        %Get number of shortest paths edges
         shortestPathsEdges = zeros(1,nodes);
         for fil = 1:nodes
             for col = 1:nodes
                 if fil ~= col
                     sol =  kShortestPath(pathMatrix, fil, col, 1);
                     minPath = cell2mat(sol(1));
-                    %Obtener los caminos míminos
                     for i=2:length(minPath)
                         shortestPathsEdges(1,minPath(i)) = shortestPathsEdges(1,minPath(i)) + 1;
                     end
@@ -96,16 +97,13 @@ switch (heuristic)
             end
         end
         
-        %Obtener HBC ordenados
+        %Order HBC nodes
         for x = 1:numSDN
-            % disp("siguiente SDN");
             max = 0;
             for i = 1:nodes
                 cont = shortestPathsEdges(1,i);
                 if(cont >= max)
-                    % disp("el contador es mayor que el max");
                     if (0 == isSDN(i, numSDN, sdnMatrix))
-                        % disp("es valido");
                         if cont == max
                             num = rand;
                             if(num > 0.5)
@@ -130,11 +128,6 @@ switch (heuristic)
             sdnMatrix(2, x) = links;
         end
 end
-%
-% disp('La matriz SDN es:');
-% sdnMatrix
-
-csvwrite("SDNMatrix.csv", sdnMatrix);
 
 end
 

@@ -1,7 +1,7 @@
 load SimulationResults.csv
 load SimulationResultsGeant.csv
 
-%FIGURE 6 : NOBEL - HDF
+%FIGURE TYPE 6 : NOBEL - HDF
 
 %FIGURE 2 AXES.
 fig = figure;
@@ -95,7 +95,7 @@ hold off
 savefig('figure6_Nobel_HDF.fig')
 saveas(gcf,'figure6_Nobel_HDF','epsc')
 
-%FIGURE 6 : NOBEL - HCC
+%FIGURE TYPE 6 : NOBEL - HCC
 
 %FIGURE 2 AXES.
 fig = figure;
@@ -190,7 +190,7 @@ savefig('figure6_Nobel_HCC.fig')
 saveas(gcf,'figure6_Nobel_HCC','epsc')
 
 
-%FIGURE 6 : NOBEL - HBC
+%FIGURE TYPE 6 : NOBEL - HBC
 
 %FIGURE 2 AXES.
 fig = figure;
@@ -286,7 +286,7 @@ saveas(gcf,'figure6_Nobel_HBC','epsc')
 
 %=================================================================================
 
-%FIGURE 6 : GEANT - HDF
+%FIGURE TYPE 6 : GEANT - HDF
 
 %FIGURE 2 AXES.
 fig = figure;
@@ -380,7 +380,7 @@ savefig('figure6_Geant_HDF.fig')
 saveas(gcf,'figure6_Geant_HDF','epsc')
 
 
-%FIGURE 6 : GEANT - HCC
+%FIGURE TYPE 6 : GEANT - HCC
 
 %FIGURE 2 AXES.
 fig = figure;
@@ -473,7 +473,7 @@ hold off
 savefig('figure6_Geant_HCC.fig')
 saveas(gcf,'figure6_Geant_HCC','epsc')
 
-%FIGURE 6 : GEANT - HBC
+%FIGURE TYPE 6 : GEANT - HBC
 
 %FIGURE 2 AXES.
 fig = figure;

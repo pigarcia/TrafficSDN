@@ -1,15 +1,11 @@
 function [ sdnLinks ] = getSDNLinks( sdn, netLink )
-%GETSDNLINKS obtener todos los links de un nodo SDN
-%   Detailed explanation goes here
+%GETSDNLINKS Get all links from one SDN node.
+% sdn: SDN node.
+% netLink: matrix of links and their nodes.
+% [sdnLinks]: Returns node's links.
+
 sdnLinks = [];
-if sdn == 2
- %   sdn
- %   netLink
-end
 for j = 1:length(netLink)
-    %disp("-- Matriz SDN --");
-    %netLink(j,2)
-    %sdn
     if(netLink(j,2) == sdn)
         sdnLinks = [sdnLinks, netLink(j,3)];
     end

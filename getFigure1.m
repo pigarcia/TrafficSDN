@@ -1,22 +1,23 @@
 load SimulationResults.csv
+load SimulationResults.mat
 
 
-%FIGURE 1 : TM1
+%FIGURE TYPE 1 : TM1
 %MAX load VS NUMBER OF SDN Nodes
 %TMC - HDF
 figure
 hold on
 grid on
 
-x = simulationResults2(2:18, 3);
+x = SimulationResults(2:18, 3);
 y = zeros(17, 1);
 for fil = 1:17
-    y(fil,1) = simulationResults2(1, 4);
+    y(fil,1) = SimulationResults(1, 4);
 end
 
 plot(x, y, 'LineWidth',2,'Color', 'k')
 
-num_sdn_hdf=simulationResultsMat2(2:18, 4);
+num_sdn_hdf=SimulationResultsMat(2:18, 4);
 
 interval_hdf = [];
 err_hdf = [];
@@ -37,7 +38,7 @@ errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HCC
-num_sdn_hcc=simulationResultsMat2(20:36, 4);
+num_sdn_hcc=SimulationResultsMat(20:36, 4);
 
 interval_hcc = [];
 err_hcc = [];
@@ -57,7 +58,7 @@ errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HBC
-num_sdn_hbc=simulationResultsMat2(36:54, 4);
+num_sdn_hbc=SimulationResultsMat(36:54, 4);
 
 interval_hbc = [];
 err_hbc = [];
@@ -90,22 +91,22 @@ saveas(gcf,'figure1_TM1','epsc')
 
 %===========================================================================
 
-%FIGURE 1 : TM2
+%FIGURE TYPE 1 : TM2
 %MAX load VS NUMBER OF SDN Nodes
 %TMC - HDF
 figure
 hold on
 grid on
 
-x = simulationResults2(56:72, 3);
+x = SimulationResults(56:72, 3);
 y = zeros(17, 1);
 for fil = 1:17
-    y(fil,1) = simulationResults2(55, 4);
+    y(fil,1) = SimulationResults(55, 4);
 end
 
 plot(x, y, 'LineWidth',2,'Color', 'k')
 
-num_sdn_hdf=simulationResultsMat2(56:72, 4);
+num_sdn_hdf=SimulationResultsMat(56:72, 4);
 
 interval_hdf = [];
 err_hdf = [];
@@ -126,7 +127,7 @@ errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HCC
-num_sdn_hcc=simulationResultsMat2(74:90, 4);
+num_sdn_hcc=SimulationResultsMat(74:90, 4);
 
 interval_hcc = [];
 err_hcc = [];
@@ -146,7 +147,7 @@ errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HBC
-num_sdn_hbc=simulationResultsMat2(92:108, 4);
+num_sdn_hbc=SimulationResultsMat(92:108, 4);
 
 interval_hbc = [];
 err_hbc = [];
@@ -179,22 +180,22 @@ savefig('figure1_TM2.fig')
 saveas(gcf,'figure1_TM2','epsc')
 
 %===========================================================================
-%FIGURE 1 : TM3
+%FIGURE TYPE 1 : TM3
 %MAX load VS NUMBER OF SDN Nodes
 %TMC - HDF
 figure
 hold on
 grid on
 
-x = simulationResults2(110:126, 3);
+x = SimulationResults(110:126, 3);
 y = zeros(17, 1);
 for fil = 1:17
-    y(fil,1) = simulationResults2(109, 4);
+    y(fil,1) = SimulationResults(109, 4);
 end
 
 plot(x, y, 'LineWidth',2,'Color', 'k')
 
-num_sdn_hdf=simulationResultsMat2(110:126, 4);
+num_sdn_hdf=SimulationResultsMat(110:126, 4);
 
 interval_hdf = [];
 err_hdf = [];
@@ -215,7 +216,7 @@ errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HCC
-num_sdn_hcc=simulationResultsMat2(128:144, 4);
+num_sdn_hcc=SimulationResultsMat(128:144, 4);
 
 interval_hcc = [];
 err_hcc = [];
@@ -235,7 +236,7 @@ errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HBC
-num_sdn_hbc=simulationResultsMat2(146:162, 4);
+num_sdn_hbc=SimulationResultsMat(146:162, 4);
 
 interval_hbc = [];
 err_hbc = [];
@@ -269,22 +270,22 @@ savefig('figure1_TM3.fig')
 saveas(gcf,'figure1_TM3','epsc')
 
 %===========================================================================
-%FIGURE 1 : TM4
+%FIGURE TYPE 1 : TM4
 %MAX load VS NUMBER OF SDN Nodes
 %TMC - HDF
 figure
 hold on
 grid on
 
-x = simulationResults2(164:180, 3);
+x = SimulationResults(164:180, 3);
 y = zeros(17, 1);
 for fil = 1:17
-    y(fil,1) = simulationResults2(163, 4);
+    y(fil,1) = SimulationResults(163, 4);
 end
 
 plot(x, y, 'LineWidth',2,'Color', 'k')
 
-num_sdn_hdf=simulationResultsMat2(164:180, 4);
+num_sdn_hdf=SimulationResultsMat(164:180, 4);
 
 interval_hdf = [];
 err_hdf = [];
@@ -305,7 +306,7 @@ errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HCC
-num_sdn_hcc=simulationResultsMat2(182:198, 4);
+num_sdn_hcc=SimulationResultsMat(182:198, 4);
 
 interval_hcc = [];
 err_hcc = [];
@@ -325,7 +326,7 @@ errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HBC
-num_sdn_hbc=simulationResultsMat2(200:216, 4);
+num_sdn_hbc=SimulationResultsMat(200:216, 4);
 
 interval_hbc = [];
 err_hbc = [];
@@ -359,22 +360,22 @@ savefig('figure1_TM4.fig')
 saveas(gcf,'figure1_TM4','epsc')
 
 %===========================================================================
-%FIGURE 1 : TM5
+%FIGURE TYPE 1 : TM5
 %MAX load VS NUMBER OF SDN Nodes
 %TMC - HDF
 figure
 hold on
 grid on
 
-x = simulationResults2(218:234, 3);
+x = SimulationResults(218:234, 3);
 y = zeros(17, 1);
 for fil = 1:17
-    y(fil,1) = simulationResults2(217, 4);
+    y(fil,1) = SimulationResults(217, 4);
 end
 
 plot(x, y, 'LineWidth',2,'Color', 'k')
 
-num_sdn_hdf=simulationResultsMat2(218:234, 4);
+num_sdn_hdf=SimulationResultsMat(218:234, 4);
 
 interval_hdf = [];
 err_hdf = [];
@@ -395,7 +396,7 @@ errorbar(interval_hdf,err_hdf,'bo-','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HCC
-num_sdn_hcc=simulationResultsMat2(236:252, 4);
+num_sdn_hcc=SimulationResultsMat(236:252, 4);
 
 interval_hcc = [];
 err_hcc = [];
@@ -415,7 +416,7 @@ errorbar(interval_hcc,err_hcc,'-.g*','LineWidth',2,'MarkerSize',12)
 hold on
 
 %TMC - HBC
-num_sdn_hbc=simulationResultsMat2(254:270, 4);
+num_sdn_hbc=SimulationResultsMat(254:270, 4);
 
 interval_hbc = [];
 err_hbc = [];

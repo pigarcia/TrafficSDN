@@ -1,6 +1,9 @@
 function [ SPTMatrix, error ] = priorPhase( nodes, mapCost)
-%INITIALPHASE Summary of this function goes here
-%   Detailed explanation goes here
+%PRIORPHASE This phase calculates the topology's shortest path trees.
+% nodes: nodes: Number of total nodes
+% mapCost: Matrix of topology's costs.
+% [SPTMatrix]: Matrix of shortest path trees.
+% [error]: Number of nodes without connection.
 
 error = 0;
 SPTMatrix = cell(nodes);
@@ -16,6 +19,4 @@ for fil = 1:nodes
         end
     end
 end
-% disp("SPTMatrix");
-% disp(SPTMatrix);
 end

@@ -1,6 +1,9 @@
 function [ percentageMatrix ] = getPercentage( solMatrix, capacities, nodes )
-%GETPORCENTAGE Summary of this function goes here
-%   Detailed explanation goes here
+%GETPORCENTAGE Gets traffic percentage list.
+% solMatrix: Matrix of routed traffic.
+% capacities: Matrix of link's capacities.
+% nodes: number of nodes.
+% [percentageMatrix]: Matrix of routed traffic in percentages.
 
 percentageMatrix =zeros(nodes);
 for i=1:nodes
