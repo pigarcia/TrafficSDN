@@ -109,8 +109,6 @@ if linkIsDestiny == 0
                             [solMatrixAux, errors] = solutionShortestPathSDN(capMatrix, solMatrixAux, currentTraffic, sdnNode, prevNode, mapCost2, destiny, netLink, SPTMatrix, useSPT, numSDN, sdnMatrix, errors);
                             exit = 1;
                         end
-                    else
-                        errors = errors + 1;
                     end
                 end
             end

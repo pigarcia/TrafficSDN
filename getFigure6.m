@@ -20,7 +20,7 @@ alpha_array_HDF_5 = SimulationResults(217:234, 4);
 gamma_array_HDF_1 = zeros(18,1);
 cont=1;
 for fil = 1:18
-    offNodes = simulationResults2(fil, 11);
+    offNodes = SimulationResults(fil, 11);
     gamma_array_HDF_1(cont, 1) = (offNodes/26) * 100;
     cont = cont + 1;
 end
@@ -28,7 +28,7 @@ end
 gamma_array_HDF_2 = zeros(18,1);
 cont=1;
 for fil = 55:72
-    offNodes = simulationResults2(fil, 11);
+    offNodes = SimulationResults(fil, 11);
     gamma_array_HDF_2(cont, 1) = (offNodes/26) * 100;
     cont = cont + 1;
 end
@@ -36,7 +36,7 @@ end
 gamma_array_HDF_3 = zeros(18,1);
 cont=1;
 for fil = 109:126
-    offNodes = simulationResults2(fil, 11);
+    offNodes = SimulationResults(fil, 11);
     gamma_array_HDF_3(cont, 1) = (offNodes/26) * 100;
     cont = cont + 1;
 end
@@ -44,7 +44,7 @@ end
 gamma_array_HDF_4 = zeros(18,1);
 cont=1;
 for fil = 163:180
-    offNodes = simulationResults2(fil, 11);
+    offNodes = SimulationResults(fil, 11);
     gamma_array_HDF_4(cont, 1) = (offNodes/26) * 100;
     cont = cont + 1;
 end
@@ -52,7 +52,7 @@ end
 gamma_array_HDF_5 = zeros(18,1);
 cont=1;
 for fil = 217:234
-    offNodes = simulationResults2(fil, 11);
+    offNodes = SimulationResults(fil, 11);
     gamma_array_HDF_5(cont, 1) = (offNodes/26) * 100;
     cont = cont + 1;
 end
@@ -114,7 +114,7 @@ alpha_array_HCC_5 = SimulationResults(235:252, 4);
 gamma_array_HCC_1 = zeros(18,1);
 cont=1;
 for fil = 19:36
-    offNodes = simulationResults2(fil, 11);
+    offNodes = SimulationResults(fil, 11);
     gamma_array_HCC_1(cont, 1) = (offNodes/26) * 100;
     cont = cont + 1;
 end
@@ -122,7 +122,7 @@ end
 gamma_array_HCC_2 = zeros(18,1);
 cont=1;
 for fil = 73:90
-    offNodes = simulationResults2(fil, 11);
+    offNodes = SimulationResults(fil, 11);
     gamma_array_HCC_2(cont, 1) = (offNodes/26) * 100;
     cont = cont + 1;
 end
@@ -130,7 +130,7 @@ end
 gamma_array_HCC_3 = zeros(18,1);
 cont=1;
 for fil = 127:144
-    offNodes = simulationResults2(fil, 11);
+    offNodes = SimulationResults(fil, 11);
     gamma_array_HCC_3(cont, 1) = (offNodes/26) * 100;
     cont = cont + 1;
 end
@@ -138,7 +138,7 @@ end
 gamma_array_HCC_4 = zeros(18,1);
 cont=1;
 for fil = 181:198
-    offNodes = simulationResults2(fil, 11);
+    offNodes = SimulationResults(fil, 11);
     gamma_array_HCC_4(cont, 1) = (offNodes/26) * 100;
     cont = cont + 1;
 end
@@ -146,7 +146,7 @@ end
 gamma_array_HCC_5 = zeros(18,1);
 cont=1;
 for fil = 235:252
-    offNodes = simulationResults2(fil, 11);
+    offNodes = SimulationResults(fil, 11);
     gamma_array_HCC_5(cont, 1) = (offNodes/26) * 100;
     cont = cont + 1;
 end
@@ -209,7 +209,7 @@ alpha_array_HBC_5 = SimulationResults(253:270, 4);
 gamma_array_HBC_1 = zeros(18,1);
 cont=1;
 for fil = 37:54
-    offNodes = simulationResults2(fil, 11);
+    offNodes = SimulationResults(fil, 11);
     gamma_array_HBC_1(cont, 1) = (offNodes/26) * 100;
     cont = cont + 1;
 end
@@ -217,7 +217,7 @@ end
 gamma_array_HBC_2 = zeros(18,1);
 cont=1;
 for fil = 91:108
-    offNodes = simulationResults2(fil, 11);
+    offNodes = SimulationResults(fil, 11);
     gamma_array_HBC_2(cont, 1) = (offNodes/26) * 100;
     cont = cont + 1;
 end
@@ -225,7 +225,7 @@ end
 gamma_array_HBC_3 = zeros(18,1);
 cont=1;
 for fil = 145:162
-    offNodes = simulationResults2(fil, 11);
+    offNodes = SimulationResults(fil, 11);
     gamma_array_HBC_3(cont, 1) = (offNodes/26) * 100;
     cont = cont + 1;
 end
@@ -233,7 +233,7 @@ end
 gamma_array_HBC_4 = zeros(18,1);
 cont=1;
 for fil = 199:216
-    offNodes = simulationResults2(fil, 11);
+    offNodes = SimulationResults(fil, 11);
     gamma_array_HBC_4(cont, 1) = (offNodes/26) * 100;
     cont = cont + 1;
 end
@@ -241,7 +241,7 @@ end
 gamma_array_HBC_5 = zeros(18,1);
 cont=1;
 for fil = 253:270
-    offNodes = simulationResults2(fil, 11);
+    offNodes = SimulationResults(fil, 11);
     gamma_array_HBC_5(cont, 1) = (offNodes/26) * 100;
     cont = cont + 1;
 end
@@ -305,7 +305,7 @@ alpha_array_HDF_5 = SimulationResultsGeant(277:299, 4);
 gamma_array_HDF_1 = zeros(23,1);
 cont=1;
 for fil = 1:23
-    offNodes = simulationResults2Geant(fil, 11);
+    offNodes = SimulationResultsGeant(fil, 11);
     gamma_array_HDF_1(cont, 1) = (offNodes/36) * 100;
     cont = cont + 1;
 end
@@ -313,7 +313,7 @@ end
 gamma_array_HDF_2 = zeros(23,1);
 cont=1;
 for fil = 70:92
-    offNodes = simulationResults2Geant(fil, 11);
+    offNodes = SimulationResultsGeant(fil, 11);
     gamma_array_HDF_2(cont, 1) = (offNodes/36) * 100;
     cont = cont + 1;
 end
@@ -321,7 +321,7 @@ end
 gamma_array_HDF_3 = zeros(23,1);
 cont=1;
 for fil = 139:161
-    offNodes = simulationResults2Geant(fil, 11);
+    offNodes = SimulationResultsGeant(fil, 11);
     gamma_array_HDF_3(cont, 1) = (offNodes/36) * 100;
     cont = cont + 1;
 end
@@ -329,7 +329,7 @@ end
 gamma_array_HDF_4 = zeros(23,1);
 cont=1;
 for fil = 208:230
-    offNodes = simulationResults2Geant(fil, 11);
+    offNodes = SimulationResultsGeant(fil, 11);
     gamma_array_HDF_4(cont, 1) = (offNodes/36) * 100;
     cont = cont + 1;
 end
@@ -337,7 +337,7 @@ end
 gamma_array_HDF_5 = zeros(23,1);
 cont=1;
 for fil = 277:299
-    offNodes = simulationResults2Geant(fil, 11);
+    offNodes = SimulationResultsGeant(fil, 11);
     gamma_array_HDF_5(cont, 1) = (offNodes/36) * 100;
     cont = cont + 1;
 end
@@ -399,7 +399,7 @@ alpha_array_HCC_5 = SimulationResultsGeant(300:322, 4);
 gamma_array_HCC_1 = zeros(23,1);
 cont=1;
 for fil = 24:46
-    offNodes = simulationResults2Geant(fil, 11);
+    offNodes = SimulationResultsGeant(fil, 11);
     gamma_array_HCC_1(cont, 1) = (offNodes/36) * 100;
     cont = cont + 1;
 end
@@ -407,7 +407,7 @@ end
 gamma_array_HCC_2 = zeros(23,1);
 cont=1;
 for fil = 93:115
-    offNodes = simulationResults2Geant(fil, 11);
+    offNodes = SimulationResultsGeant(fil, 11);
     gamma_array_HCC_2(cont, 1) = (offNodes/36) * 100;
     cont = cont + 1;
 end
@@ -415,7 +415,7 @@ end
 gamma_array_HCC_3 = zeros(23,1);
 cont=1;
 for fil = 162:184
-    offNodes = simulationResults2Geant(fil, 11);
+    offNodes = SimulationResultsGeant(fil, 11);
     gamma_array_HCC_3(cont, 1) = (offNodes/36) * 100;
     cont = cont + 1;
 end
@@ -423,7 +423,7 @@ end
 gamma_array_HCC_4 = zeros(23,1);
 cont=1;
 for fil = 231:253
-    offNodes = simulationResults2Geant(fil, 11);
+    offNodes = SimulationResultsGeant(fil, 11);
     gamma_array_HCC_4(cont, 1) = (offNodes/36) * 100;
     cont = cont + 1;
 end
@@ -431,7 +431,7 @@ end
 gamma_array_HCC_5 = zeros(23,1);
 cont=1;
 for fil = 300:322
-    offNodes = simulationResults2Geant(fil, 11);
+    offNodes = SimulationResultsGeant(fil, 11);
     gamma_array_HCC_5(cont, 1) = (offNodes/36) * 100;
     cont = cont + 1;
 end
@@ -492,7 +492,7 @@ alpha_array_HBC_5 = SimulationResultsGeant(323:345, 4);
 gamma_array_HBC_1 = zeros(23,1);
 cont=1;
 for fil = 47:69
-    offNodes = simulationResults2Geant(fil, 11);
+    offNodes = SimulationResultsGeant(fil, 11);
     gamma_array_HBC_1(cont, 1) = (offNodes/36) * 100;
     cont = cont + 1;
 end
@@ -500,7 +500,7 @@ end
 gamma_array_HBC_2 = zeros(23,1);
 cont=1;
 for fil = 116:138
-    offNodes = simulationResults2Geant(fil, 11);
+    offNodes = SimulationResultsGeant(fil, 11);
     gamma_array_HBC_2(cont, 1) = (offNodes/36) * 100;
     cont = cont + 1;
 end
@@ -516,7 +516,7 @@ end
 gamma_array_HBC_4 = zeros(23,1);
 cont=1;
 for fil = 254:276
-    offNodes = simulationResults2Geant(fil, 11);
+    offNodes = SimulationResultsGeant(fil, 11);
     gamma_array_HBC_4(cont, 1) = (offNodes/36) * 100;
     cont = cont + 1;
 end
@@ -524,7 +524,7 @@ end
 gamma_array_HBC_5 = zeros(23,1);
 cont=1;
 for fil = 323:345
-    offNodes = simulationResults2Geant(fil, 11);
+    offNodes = SimulationResultsGeant(fil, 11);
     gamma_array_HBC_5(cont, 1) = (offNodes/36) * 100;
     cont = cont + 1;
 end

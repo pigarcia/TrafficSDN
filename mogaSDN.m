@@ -116,7 +116,7 @@ finalMatrix = zeros(nodes);
 offNodes = 0;
 
 if errors == 0
-    [finalMatrix, offNodes] = finalPhase(percentageList, capMatrix, nodes, trafficMatrix, sdnMatrix, numSDN, S.netLink, mapCost, mapCost2, sptMatrix, useSPT);
+    [finalMatrix, offNodes] = finalPhase(percentageList, capMatrix, nodes, trafficMatrix, sdnMatrix, numSDN, S.netLink, mapCost, mapCost2, solMatrix, useSPT);
     
 end
 

@@ -1,7 +1,8 @@
-function [ finalMatrix, offNodes ] = finalPhase( percentageList, capMatrix ,nodes, trafficMatrix, sdnMatrix, numSDN, netLink, mapCost, mapCost2, SPTMatrix, useSPT)
+function [ finalMatrix, offNodes ] = finalPhase( percentageList, capMatrix ,nodes, trafficMatrix, sdnMatrix, numSDN, netLink, mapCost, mapCost2, solMatrix, useSPT)
 %FINALPHASE Summary of this function goes here
 %   Detailed explanation goes here
-finalMatrix = zeros(nodes);
+finalMatrix = solMatrix;
+finalAuxMatrix = zeros(nodes);
 offNodes = 0;
 
 %sort percentage list
@@ -21,9 +22,10 @@ if numSDN > 0
                     mapCost2(sortedPercentageList(index, 1), sortedPercentageList(index, 2))=inf;
                     [SPTMatrix, errors] = priorPhase(nodes, mapCost);
                     if errors == 0
-                        [finalMatrix, errors] = solutionShortestPath(capMatrix, nodes, trafficMatrix, sdnMatrix, numSDN, netLink, mapCost, mapCost2, SPTMatrix, useSPT);
+                        [finalAuxMatrix, errors] = solutionShortestPath(capMatrix, nodes, trafficMatrix, sdnMatrix, numSDN, netLink, mapCost, mapCost2, SPTMatrix, useSPT);
                     end
                     if errors ~= 0
+                        finalMatrix = finalAuxMatrix;
                         capMatrix(sortedPercentageList(index, 1), sortedPercentageList(index, 2)) = capacity;
                     else
                         offNodes = offNodes + 1;
