@@ -75,6 +75,7 @@ plot(x,alpha_array_HDF_5,'-b*','LineWidth',2,'MarkerSize',10);
 xlabel('#Nodos SDN')
 xticks([0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
 xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
+xlim([0 17])
 ylabel('% Carga max','Color','b')
 yyaxis right
 ylabel('% Ahorro','Color','r')
@@ -92,8 +93,8 @@ plot(x,gamma_array_HDF_5,'-rd','LineWidth',2,'MarkerSize',10);
 legend({'\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5', '\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 hold off
 
-savefig('figure6_Nobel_HDF.fig')
-saveas(gcf,'figure6_Nobel_HDF','epsc')
+savefig('figures/figure6_Nobel_HDF.fig')
+saveas(gcf,'figures/figure6_Nobel_HDF','epsc')
 
 %FIGURE TYPE 6 : NOBEL - HCC
 
@@ -169,6 +170,7 @@ plot(x,alpha_array_HCC_5,'-b*','LineWidth',2,'MarkerSize',10);
 xlabel('#Nodos SDN')
 xticks([0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
 xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
+xlim([0 17])
 ylabel('% Carga max','Color','b')
 yyaxis right
 ylabel('% Ahorro','Color','r')
@@ -186,8 +188,8 @@ plot(x,gamma_array_HCC_5,'-rd','LineWidth',2,'MarkerSize',10);
 legend({'\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5', '\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 hold off
 
-savefig('figure6_Nobel_HCC.fig')
-saveas(gcf,'figure6_Nobel_HCC','epsc')
+savefig('figures/figure6_Nobel_HCC.fig')
+saveas(gcf,'figures/figure6_Nobel_HCC','epsc')
 
 
 %FIGURE TYPE 6 : NOBEL - HBC
@@ -264,6 +266,7 @@ plot(x,alpha_array_HBC_5,'-b*','LineWidth',2,'MarkerSize',10);
 xlabel('#Nodos SDN')
 xticks([0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
 xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
+xlim([0 17])
 ylabel('% Carga max','Color','b')
 yyaxis right
 ylabel('% Ahorro','Color','r')
@@ -281,8 +284,8 @@ plot(x,gamma_array_HBC_5,'-rd','LineWidth',2,'MarkerSize',10);
 legend({'\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5', '\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 hold off
 
-savefig('figure6_Nobel_HBC.fig')
-saveas(gcf,'figure6_Nobel_HBC','epsc')
+savefig('figures/figure6_Nobel_HBC.fig')
+saveas(gcf,'figures/figure6_Nobel_HBC','epsc')
 
 %=================================================================================
 
@@ -360,6 +363,7 @@ plot(x,alpha_array_HDF_5,'-b*','LineWidth',2,'MarkerSize',10);
 xlabel('#Nodos SDN')
 xticks([0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22])
 xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22'})
+xlim([0 22])
 ylabel('% Carga max','Color','b')
 yyaxis right
 ylabel('% Ahorro','Color','r')
@@ -376,8 +380,8 @@ plot(x,gamma_array_HDF_5,'-rd','LineWidth',2,'MarkerSize',10);
 
 legend({'\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5', '\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 hold off
-savefig('figure6_Geant_HDF.fig')
-saveas(gcf,'figure6_Geant_HDF','epsc')
+savefig('figures/figure6_Geant_HDF.fig')
+saveas(gcf,'figures/figure6_Geant_HDF','epsc')
 
 
 %FIGURE TYPE 6 : GEANT - HCC
@@ -454,6 +458,7 @@ plot(x,alpha_array_HCC_5,'-b*','LineWidth',2,'MarkerSize',10);
 xlabel('#Nodos SDN')
 xticks([0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22])
 xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22'})
+xlim([0 22])
 ylabel('% Carga max','Color','b')
 yyaxis right
 ylabel('% Ahorro','Color','r')
@@ -470,8 +475,8 @@ plot(x,gamma_array_HCC_5,'-rd','LineWidth',2,'MarkerSize',10);
 
 legend({'\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5', '\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 hold off
-savefig('figure6_Geant_HCC.fig')
-saveas(gcf,'figure6_Geant_HCC','epsc')
+savefig('figures/figure6_Geant_HCC.fig')
+saveas(gcf,'figures/figure6_Geant_HCC','epsc')
 
 %FIGURE TYPE 6 : GEANT - HBC
 
@@ -547,6 +552,7 @@ plot(x,alpha_array_HBC_5,'-b*','LineWidth',2,'MarkerSize',10);
 xlabel('#Nodos SDN')
 xticks([0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22])
 xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22'})
+xlim([0 22])
 ylabel('% Carga max','Color','b')
 yyaxis right
 ylabel('% Ahorro','Color','r')
@@ -563,6 +569,6 @@ plot(x,gamma_array_HBC_5,'-rd','LineWidth',2,'MarkerSize',10);
 
 legend({'\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5', '\rho = TM1','\rho = TM2','\rho = TM3','\rho = TM4', '\rho = TM5'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 hold off
-savefig('figure6_Geant_HBC.fig')
-saveas(gcf,'figure6_Geant_HBC','epsc')
+savefig('figures/figure6_Geant_HBC.fig')
+saveas(gcf,'figures/figure6_Geant_HBC','epsc')
 

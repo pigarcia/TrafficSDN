@@ -22,7 +22,6 @@ num_sdn_hdf=SimulationResultsMat(2:18, 4);
 interval_hdf = [];
 err_hdf = [];
 for i=1:length(num_sdn_hdf)
-    num_sdn_hdf{i}
     array_rsrp = num_sdn_hdf{i};
     N = length(array_rsrp);
     yMean = mean(array_rsrp);
@@ -86,8 +85,8 @@ xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
 xticklabels({'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
 hold off
 
-savefig('figure1_TM1.fig')
-saveas(gcf,'figure1_TM1','epsc')
+savefig('figures/figure1_TM1.fig')
+saveas(gcf,'figures/figure1_TM1','epsc')
 
 %===========================================================================
 
@@ -111,7 +110,6 @@ num_sdn_hdf=SimulationResultsMat(56:72, 4);
 interval_hdf = [];
 err_hdf = [];
 for i=1:length(num_sdn_hdf)
-    num_sdn_hdf{i}
     array_rsrp = num_sdn_hdf{i};
     N = length(array_rsrp);
     yMean = mean(array_rsrp);
@@ -176,8 +174,8 @@ xticklabels({'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','
 
 hold off
 
-savefig('figure1_TM2.fig')
-saveas(gcf,'figure1_TM2','epsc')
+savefig('figures/figure1_TM2.fig')
+saveas(gcf,'figures/figure1_TM2','epsc')
 
 %===========================================================================
 %FIGURE TYPE 1 : TM3
@@ -200,7 +198,6 @@ num_sdn_hdf=SimulationResultsMat(110:126, 4);
 interval_hdf = [];
 err_hdf = [];
 for i=1:length(num_sdn_hdf)
-    num_sdn_hdf{i}
     array_rsrp = num_sdn_hdf{i};
     N = length(array_rsrp);
     yMean = mean(array_rsrp);
@@ -266,8 +263,8 @@ xticklabels({'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','
 
 hold off
 
-savefig('figure1_TM3.fig')
-saveas(gcf,'figure1_TM3','epsc')
+savefig('figures/figure1_TM3.fig')
+saveas(gcf,'figures/figure1_TM3','epsc')
 
 %===========================================================================
 %FIGURE TYPE 1 : TM4
@@ -290,7 +287,6 @@ num_sdn_hdf=SimulationResultsMat(164:180, 4);
 interval_hdf = [];
 err_hdf = [];
 for i=1:length(num_sdn_hdf)
-    num_sdn_hdf{i}
     array_rsrp = num_sdn_hdf{i};
     N = length(array_rsrp);
     yMean = mean(array_rsrp);
@@ -356,8 +352,8 @@ xticklabels({'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','
 
 hold off
 
-savefig('figure1_TM4.fig')
-saveas(gcf,'figure1_TM4','epsc')
+savefig('figures/figure1_TM4.fig')
+saveas(gcf,'figures/figure1_TM4','epsc')
 
 %===========================================================================
 %FIGURE TYPE 1 : TM5
@@ -380,7 +376,6 @@ num_sdn_hdf=SimulationResultsMat(218:234, 4);
 interval_hdf = [];
 err_hdf = [];
 for i=1:length(num_sdn_hdf)
-    num_sdn_hdf{i}
     array_rsrp = num_sdn_hdf{i};
     N = length(array_rsrp);
     yMean = mean(array_rsrp);
@@ -445,6 +440,6 @@ xticklabels({'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','
 
 hold off
 
-savefig('figure1_TM5.fig')
-saveas(gcf,'figure1_TM5','epsc')
+savefig('figures/figure1_TM5.fig')
+saveas(gcf,'figures/figure1_TM5','epsc')
 

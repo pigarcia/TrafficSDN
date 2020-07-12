@@ -96,7 +96,7 @@ for fil = 1:nodes
                                 prev = mapCapacity(prevIndex);
                             end
                             totalTraffic = trafficMatrix(fil, col);
-                            [solMatrix, errors] = solutionShortestPathSDN(capMatrix, solMatrix, totalTraffic, sdn, prev, mapCost2, col, netLink, SPTMatrix, useSPT, numSDN, sdnMatrix, errors);
+                            [solMatrix, errors] = solutionShortestPathSDN(capMatrix, solMatrix, totalTraffic, sdn, prev, mapCost2, col, netLink, SPTMatrix, useSPT, errors);
                             exit = 1;
                         end
                     else

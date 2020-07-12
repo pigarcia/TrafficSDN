@@ -11,9 +11,10 @@ figure
 plot(x, y1, x, y2, x, y3)
 xlabel('#Nodos SDN')
 ylabel('Tº Cómputo medio')
+xlim([0 17])
 legend({'HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
-savefig('figure5_TM1.fig')
-saveas(gcf,'figure5_TM1','epsc')
+savefig('figures/figure5_TM1.fig')
+saveas(gcf,'figures/figure5_TM1','epsc')
 
 
 %FIGURE TYPE 5 : TM2
@@ -26,9 +27,10 @@ figure
 plot(x, y1, x, y2, x, y3)
 xlabel('#Nodos SDN')
 ylabel('Tº Cómputo medio')
+xlim([0 17])
 legend({'HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
-savefig('figure5_TM2.fig')
-saveas(gcf,'figure5_TM2','epsc')
+savefig('figures/figure5_TM2.fig')
+saveas(gcf,'figures/figure5_TM2','epsc')
 
 
 %FIGURE TYPE 5 : TM3
@@ -41,9 +43,10 @@ figure
 plot(x, y1, x, y2, x, y3)
 xlabel('#Nodos SDN')
 ylabel('Tº Cómputo medio')
+xlim([0 17])
 legend({'HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
-savefig('figure5_TM3.fig')
-saveas(gcf,'figure5_TM3','epsc')
+savefig('figures/figure5_TM3.fig')
+saveas(gcf,'figures/figure5_TM3','epsc')
 
 
 %FIGURE TYPE 5 : TM4
@@ -56,9 +59,10 @@ figure
 plot(x, y1, x, y2, x, y3)
 xlabel('#Nodos SDN')
 ylabel('Tº Cómputo medio')
+xlim([0 17])
 legend({'HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
-savefig('figure5_TM4.fig')
-saveas(gcf,'figure5_TM4','epsc')
+savefig('figures/figure5_TM4.fig')
+saveas(gcf,'figures/figure5_TM4','epsc')
 
 
 
@@ -72,6 +76,7 @@ figure
 plot(x, y1, x, y2, x, y3)
 xlabel('#Nodos SDN')
 ylabel('Tº Cómputo medio')
+xlim([0 17])
 legend({'HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
-savefig('figure5_TM6.fig')
-saveas(gcf,'figure5_TM6','epsc')
+savefig('figures/figure5_TM6.fig')
+saveas(gcf,'figures/figure5_TM6','epsc')

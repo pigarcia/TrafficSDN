@@ -1,6 +1,6 @@
 function initialScript(topologyPath)
 %INITIALSCRIPT Launches all possible simulations for one topology and
-%returns the simulation's results. 
+%returns the simulation's results.
 %   topologyPath: Topology's filename.
 
 matrixCount = 5;
@@ -65,7 +65,7 @@ for matrix = 1:matrixCount
                 
                 [percentageList, finalPercentageList, offLinks, errors, processingTime] = trafficSDN(topologyPath,heuristicName, sdn, 1, trafficMatrix);
                 
- 
+                
                 %GetMax
                 max = 0;
                 for x = 1:nodes*nodes
@@ -155,11 +155,20 @@ for matrix = 1:matrixCount
         end
     end
 end
-
-csvwrite("SimulationResults.csv",SimulationResults);
-save("SimulationResults.mat", 'SimulationResultsMat','-mat');
-
-disp("======== End of simulation =========");
-
+    
+    if nodes ==  22
+        SimulationResultsGeant = SimulationResults;
+        SimulationResultsMatGeant = SimulationResultsMat;
+        csvwrite("SimulationResultsGeant.csv",SimulationResultsGeant);
+        save("SimulationResultsGeant.mat", 'SimulationResultsMatGeant','-mat');
+    else
+        csvwrite("SimulationResults.csv",SimulationResults);
+        save("SimulationResults.mat", 'SimulationResultsMat','-mat');
+    end
+    
+    
+    
+    disp("======== End of simulation =========");
+    
 end
 

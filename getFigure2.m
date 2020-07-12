@@ -29,7 +29,6 @@ end
 interval_hdf = [];
 err_hdf = [];
 for i=1:length(num_sdn_hdf)
-    num_sdn_hdf{i}
     array_rsrp = num_sdn_hdf{i};
     N = length(array_rsrp);
     yMean = mean(array_rsrp);
@@ -113,8 +112,8 @@ xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
 xticklabels({'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
 hold off
 
-savefig('figure2_TM1.fig')
-saveas(gcf,'figure2_TM1','epsc')
+savefig('figures/figure2_TM1.fig')
+saveas(gcf,'figures/figure2_TM1','epsc')
 
 %FIGURE TYPE 2: TM2
 %POWER SAVING VS NUMBER OF SDN Nodes
@@ -144,7 +143,6 @@ end
 interval_hdf = [];
 err_hdf = [];
 for i=1:length(num_sdn_hdf)
-    num_sdn_hdf{i}
     array_rsrp = num_sdn_hdf{i};
     N = length(array_rsrp);
     yMean = mean(array_rsrp);
@@ -221,15 +219,15 @@ set(gca,'FontSize',20);
 legend({'IP','HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 view(0,90)
 xlim([1 17])
-ylim([0 50])
+ylim([0 70])
 xlabel('Número de nodos SDN')
 ylabel('%Ahorro')
 xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
 xticklabels({'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
 hold off
 
-savefig('figure2_TM2.fig')
-saveas(gcf,'figure2_TM2','epsc')
+savefig('figures/figure2_TM2.fig')
+saveas(gcf,'figures/figure2_TM2','epsc')
 
 %FIGURE TYPE 2: TM3
 %POWER SAVING VS NUMBER OF SDN Nodes
@@ -259,7 +257,6 @@ end
 interval_hdf = [];
 err_hdf = [];
 for i=1:length(num_sdn_hdf)
-    num_sdn_hdf{i}
     array_rsrp = num_sdn_hdf{i};
     N = length(array_rsrp);
     yMean = mean(array_rsrp);
@@ -336,15 +333,15 @@ set(gca,'FontSize',20);
 legend({'IP','HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 view(0,90)
 xlim([1 17])
-ylim([0 50])
+ylim([0 60])
 xlabel('Número de nodos SDN')
 ylabel('%Ahorro')
 xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
 xticklabels({'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
 hold off
 
-savefig('figure2_TM3.fig')
-saveas(gcf,'figure2_TM3','epsc')
+savefig('figures/figure2_TM3.fig')
+saveas(gcf,'figures/figure2_TM3','epsc')
 
 %FIGURE TYPE 2: TM4
 %POWER SAVING VS NUMBER OF SDN Nodes
@@ -374,7 +371,6 @@ end
 interval_hdf = [];
 err_hdf = [];
 for i=1:length(num_sdn_hdf)
-    num_sdn_hdf{i}
     array_rsrp = num_sdn_hdf{i};
     N = length(array_rsrp);
     yMean = mean(array_rsrp);
@@ -458,8 +454,8 @@ xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
 xticklabels({'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
 hold off
 
-savefig('figure2_TM4.fig')
-saveas(gcf,'figure2_TM4','epsc')
+savefig('figures/figure2_TM4.fig')
+saveas(gcf,'figures/figure2_TM4','epsc')
 
 %FIGURE TYPE 2: TM5
 %POWER SAVING VS NUMBER OF SDN Nodes
@@ -489,7 +485,6 @@ end
 interval_hdf = [];
 err_hdf = [];
 for i=1:length(num_sdn_hdf)
-    num_sdn_hdf{i}
     array_rsrp = num_sdn_hdf{i};
     N = length(array_rsrp);
     yMean = mean(array_rsrp);
@@ -566,15 +561,15 @@ set(gca,'FontSize',20);
 legend({'IP','HDF','HCC','HBC'},'FontSize',16,'location','northeastoutside','orientation','vertical')
 view(0,90)
 xlim([1 17])
-ylim([0 40])
+ylim([0 60])
 xlabel('Número de nodos SDN')
 ylabel('%Ahorro')
 xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17])
 xticklabels({'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'})
 hold off
 
-savefig('figure2_TM5.fig')
-saveas(gcf,'figure2_TM5','epsc')
+savefig('figures/figure2_TM5.fig')
+saveas(gcf,'figures/figure2_TM5','epsc')
 
 
 

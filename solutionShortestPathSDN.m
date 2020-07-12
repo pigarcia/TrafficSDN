@@ -1,4 +1,4 @@
-function [ solMatrixAux, errors] = solutionShortestPathSDN(capMatrix, solMatrix, totalTraffic, sdn, prev, mapCost2, destiny, netLink, SPTMatrix, useSPT, numSDN, sdnMatrix, errors)
+function [ solMatrixAux, errors] = solutionShortestPathSDN(capMatrix, solMatrix, totalTraffic, sdn, prev, mapCost2, destiny, netLink, SPTMatrix, useSPT, errors)
 %SOLUTIONSHORTESTPATHSDN Calculates the traffic between an SDN node and the
 %destiny.
 % capMatrix: matrix that indicates de capacity of each node.
@@ -11,9 +11,6 @@ function [ solMatrixAux, errors] = solutionShortestPathSDN(capMatrix, solMatrix,
 % netLink: matrix of links and their nodes.
 % SPTMatrix: Matrix of K shortest paths.
 % useSPT: Indicates if users wants to use the Shortest Path Tree phase.
-% numSDN: number of SDN nodes.
-% sdnMatrix: matrix that indicates de SDN nodes used and the number of
-% links of each one.
 % errors: Number of routing errors.
 % [solMatrixAux]: new matrix containing the solution.
 % [errors]: Number of routing errors.
@@ -93,25 +90,10 @@ if linkIsDestiny == 0
         currentTraffic =  solMatrixAux(sdn, shortestPath) + totalTraffic;
         if(currentTraffic < capMatrix(sdn, shortestPath))
             solMatrixAux(sdn, shortestPath) =  totalTraffic;
-            exit = 0;
             for j=1:length(mapCapacity)-1
-                if exit == 0
-                    currentTraffic =  solMatrix(mapCapacity(j),mapCapacity(j+1)) + totalTraffic;
-                    if(currentTraffic < capMatrix(mapCapacity(j),mapCapacity(j+1)))
-                        if(false == isSDN(mapCapacity(j), numSDN, sdnMatrix))
-                            solMatrixAux(mapCapacity(j),mapCapacity(j+1)) =  currentTraffic;
-                        else
-                            sdnNode = mapCapacity(j);
-                            prevIndex = j-1;
-                            if prevIndex == 0
-                                prevNode = sdn;
-                            else
-                                prevNode = mapCapacity(prevIndex);
-                            end
-                            [solMatrixAux, errors] = solutionShortestPathSDN(capMatrix, solMatrixAux, currentTraffic, sdnNode, prevNode, mapCost2, destiny, netLink, SPTMatrix, useSPT, numSDN, sdnMatrix, errors);
-                            exit = 1;
-                        end
-                    end
+                currentTraffic =  solMatrix(mapCapacity(j),mapCapacity(j+1)) + totalTraffic;
+                if(currentTraffic < capMatrix(mapCapacity(j),mapCapacity(j+1)))
+                    solMatrixAux(mapCapacity(j),mapCapacity(j+1)) =  currentTraffic;
                 end
             end
         end
@@ -125,27 +107,13 @@ if linkIsDestiny == 0
                 if(currentTraffic < capMatrix(sdn, SDNLinks(x)))
                     solMatrixAux(sdn, SDNLinks(x)) =  traffic;
                     mapCapacity = cell2mat(shortestPaths(1,x));
-                    exit = 0;
                     for j=1:length(mapCapacity)-1
-                        if exit == 0
-                            currentTraffic =  solMatrix(mapCapacity(j),mapCapacity(j+1)) + traffic;
-                            if(currentTraffic < capMatrix(mapCapacity(j),mapCapacity(j+1)))
-                                if(false == isSDN(mapCapacity(j), numSDN, sdnMatrix))
-                                    solMatrixAux(mapCapacity(j),mapCapacity(j+1)) =  currentTraffic;
-                                else
-                                    sdnNode = mapCapacity(j);
-                                    prevIndex = j-1;
-                                    if prevIndex == 0
-                                        prevNode = sdn;
-                                    else
-                                        prevNode = mapCapacity(prevIndex);
-                                    end
-                                    [solMatrixAux, errors] = solutionShortestPathSDN(capMatrix, solMatrixAux, currentTraffic, sdnNode, prevNode, mapCost2, destiny, netLink, SPTMatrix, useSPT, numSDN, sdnMatrix, errors);
-                                    exit = 1;
-                                end
-                            end
+                        currentTraffic =  solMatrix(mapCapacity(j),mapCapacity(j+1)) + traffic;
+                        if(currentTraffic < capMatrix(mapCapacity(j),mapCapacity(j+1)))
+                            solMatrixAux(mapCapacity(j),mapCapacity(j+1)) =  currentTraffic;
                         end
                     end
+                    
                 end
             end
         end
